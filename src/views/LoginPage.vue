@@ -51,6 +51,7 @@
             </div>
           </div>
           <a href="#" class="btn btn_color1 login__btn-submit">로그인</a>
+          <a href="#" class="btn btn_color2 login__btn-submit">회원가입</a>
         </div>
       </fieldset>
     </form>

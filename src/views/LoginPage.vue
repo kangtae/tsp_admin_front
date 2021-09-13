@@ -57,7 +57,11 @@
           <button type="submit" class="btn btn_color1 login__btn-submit">
             로그인
           </button>
-          <a href="#" class="btn btn_color2 login__btn-submit">회원가입</a>
+          <router-link
+            to="/admin/signup"
+            class="btn btn_color2 login__btn-submit"
+            >회원가입</router-link
+          >
         </div>
       </fieldset>
     </form>

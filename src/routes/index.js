@@ -21,6 +21,11 @@ const router = new VueRouter({
       path: "/admin/login",
       component: () => import("../views/LoginPage.vue"),
     },
+    {
+      //로그인
+      path: "/admin/signup",
+      component: () => import("../views/SignupPage.vue"),
+    },
   ],
 });
 

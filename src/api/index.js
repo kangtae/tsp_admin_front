@@ -17,6 +17,12 @@ function loginUser(userData) {
   });
 }
 
+function signUser(userData) {
+  return instance.post("api/auth/admin-signup", JSON.stringify(userData), {
+    headers,
+  });
+}
+
 //토큰 값 넘기기
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -24,4 +30,4 @@ const headers = {
   Accept: "*/*",
 };
 
-export { loginUser };
+export { loginUser, signUser };

@@ -369,3 +369,14 @@ select[disabled="disabled"]{background:#ccc;}
 .popup_area{position:fixed;top:0;height:100%;width:100%; background-color:#000; background-color:rgba(0,0,0,0.7);text-align:center;}
 .popup_area:before{display:inline-block;vertical-align:middle;content:'';height:100%;}
 .popup_area .layer_popup{display:inline-block;vertical-align:middle;text-align:left;}
+
+/*custom*/
+.error-message {
+	display: none;
+	margin-top: 10px;
+	color: red;
+	font-size: 11px;
+}
+.error-message.is-active {
+	display: block;
+}

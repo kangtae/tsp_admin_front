@@ -1,7 +1,7 @@
 <template>
   <div class="cont_tit">
     <h2>남자모델</h2>
-    <div class="location"><span>홈</span> &gt; 모델 관리 &gt; 남자모델 te</div>
+    <div class="location"><span>홈</span> &gt; 모델 관리 &gt; 남자모델</div>
   </div>
 </template>
 

@@ -22,6 +22,12 @@ const router = new VueRouter({
       component: () => import("../views/LoginPage.vue"),
     },
     {
+      //컨텐츠
+      path: "/admin/content/:page",
+      component: () => import("../views/ListPage.vue"),
+      meta: { auth: true },
+    },
+    {
       //로그인
       path: "/admin/signup",
       component: () => import("../views/SignupPage.vue"),

@@ -39,10 +39,16 @@
                         >
                           일주일
                         </button>
-                        <button class="btn btn_color2 btn_size-80">
+                        <button
+                          class="btn btn_color2 btn_size-80"
+                          @click.self.prevent="monthBtn"
+                        >
                           1개월
                         </button>
-                        <button class="btn btn_color2 btn_size-80">
+                        <button
+                          class="btn btn_color2 btn_size-80"
+                          @click.self.prevent="monthThreeBtn"
+                        >
                           3개월
                         </button>
                       </span>
@@ -215,6 +221,12 @@ export default {
       d.setMonth(monthOfYear - 1);
       return d;
     },
+    lastThreeMonth() {
+      let d = new Date();
+      let monthOfYear = d.getMonth();
+      d.setMonth(monthOfYear - 3);
+      return d;
+    },
   },
   methods: {
     todayBtn() {
@@ -252,6 +264,55 @@ export default {
         weekDate = `0${weekDate}`;
       }
       this.time1 = `${weekYear}-${weekMonth}-${weekDate}`;
+    },
+    monthBtn() {
+      let today = new Date();
+      let year = today.getFullYear();
+      let month = today.getMonth() + 1;
+      let date = today.getDate();
+      if (month < 10) {
+        month = `0${month}`;
+      }
+      if (date < 10) {
+        date = `0${date}`;
+      }
+      this.time2 = `${year}-${month}-${date}`;
+
+      let lastMonth = this.lastMonth;
+      let lastMonthYear = lastMonth.getFullYear();
+      let lastMonthMonth = lastMonth.getMonth() + 1;
+      let lastMonthDate = lastMonth.getDate();
+      if (lastMonthMonth < 10) {
+        lastMonthMonth = `0${lastMonthMonth}`;
+      }
+      if (lastMonthDate < 10) {
+        lastMonthDate = `0${lastMonthDate}`;
+      }
+      this.time1 = `${lastMonthYear}-${lastMonthMonth}-${lastMonthDate}`;
+    },
+    monthThreeBtn() {
+      let today = new Date();
+      let year = today.getFullYear();
+      let month = today.getMonth() + 1;
+      let date = today.getDate();
+      if (month < 10) {
+        month = `0${month}`;
+      }
+      if (date < 10) {
+        date = `0${date}`;
+      }
+      this.time2 = `${year}-${month}-${date}`;
+      let lastThreeMonth = this.lastThreeMonth;
+      let lastThreeMonthYear = lastThreeMonth.getFullYear();
+      let lastThreeMonthMonth = lastThreeMonth.getMonth() + 1;
+      let lastThreeMonthDate = lastThreeMonth.getDate();
+      if (lastThreeMonthMonth < 10) {
+        lastThreeMonthMonth = `0${lastThreeMonthMonth}`;
+      }
+      if (lastThreeMonthDate < 10) {
+        lastThreeMonthDate = `0${lastThreeMonthDate}`;
+      }
+      this.time1 = `${lastThreeMonthYear}-${lastThreeMonthMonth}-${lastThreeMonthDate}`;
     },
   },
 };

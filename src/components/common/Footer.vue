@@ -1,7 +1,5 @@
 <template>
-  <div id="footer">
-    Copyright @ TSP Co.,Ltd communications All Rights Reserved
-  </div>
+  <div class="site-footer">Copyright &copy; TSP All Rights Reserved.</div>
 </template>
 
 <script>

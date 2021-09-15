@@ -1,0 +1,15 @@
+.professors-profile {
+  overflow: hidden;
+}
+
+.professors-profile-photo {
+  float: left;
+  width: 180px;
+  margin-right: 20px;
+}
+
+.professors-profile-list {
+  overflow: hidden;
+}
+
+/*# sourceMappingURL=maps/style.css.map */

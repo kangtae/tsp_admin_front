@@ -1,69 +1,91 @@
 <template>
   <div>
-    <form v-on:submit.prevent="submitForm">
-      <fieldset class="fieldset">
-        <legend class="legend">로그인</legend>
-
-        <div class="login">
-          <h1 class="login__tit">관리자 로그인</h1>
-          <div class="login__column">
-            <label for="loginId" class="login__label"
-              ><i class="fa fa-user"></i></label
-            ><input
-              v-model="userId"
-              type="text"
-              name=""
-              id="loginId"
-              class="input1 login__input"
-            />
+    <form>
+      <div class="login-wrap">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h1 class="panel-title text-center">TSP 관리자</h1>
           </div>
-          <div class="login__column">
-            <label for="loginPw" class="login__label"
-              ><i class="fa fa-key"></i></label
-            ><input
-              v-model="password"
-              type="password"
-              name=""
-              id="loginPw"
-              class="input1 login__input"
-            />
+          <div class="panel-body">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <input
+                      v-model="userId"
+                      id="username"
+                      type="text"
+                      placeholder="ID"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-lock"></i>
+                    </span>
+                    <input
+                      id="password"
+                      type="password"
+                      placeholder="Password"
+                      v-model="password"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <div class="checkbox">
+                    <label>
+                      <input v-model="loginIdSave" type="checkbox" /> 아이디
+                      저장
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="checkbox">
+                    <label>
+                      <input v-model="loginPwSave" type="checkbox" /> 비밀번호
+                      저장
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <button
+                    type="submit"
+                    @click.self.prevent="submitForm"
+                    class="btn btn-primary btn-block"
+                  >
+                    로그인
+                  </button>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <router-link
+                    to="/admin/signup"
+                    class="btn btn-default btn-block"
+                  >
+                    회원가입
+                  </router-link>
+                </div>
+              </div>
+            </form>
+            <!-- //form-horizontal -->
           </div>
-          <div class="login__column">
-            <div class="login__chk">
-              <input
-                type="checkbox"
-                name=""
-                value=""
-                id="loginIdSave"
-                class="checkbox1"
-                v-model="loginIdSave"
-              /><label class="checkbox1-label" for="loginIdSave"
-                >아이디 저장</label
-              >
-            </div>
-            <div class="login__chk">
-              <input
-                type="checkbox"
-                name=""
-                value=""
-                id="loginPwSave"
-                class="checkbox1"
-                v-model="loginPwSave"
-              /><label class="checkbox1-label" for="loginPwSave"
-                >비밀번호 저장</label
-              >
-            </div>
-          </div>
-          <button type="submit" class="btn btn_color1 login__btn-submit">
-            로그인
-          </button>
-          <router-link
-            to="/admin/signup"
-            class="btn btn_color2 login__btn-submit"
-            >회원가입</router-link
-          >
+          <!-- //panel-body -->
         </div>
-      </fieldset>
+        <!-- //panel -->
+      </div>
     </form>
   </div>
 </template>
@@ -121,4 +143,44 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.login-wrap {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 400px;
+  margin: auto;
+  -webkit-animation: login-wrap 0.3s ease-out;
+  animation: login-wrap 0.3s ease-out;
+}
+
+@-webkit-keyframes login-wrap {
+  0% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    opacity: 1;
+  }
+}
+
+@keyframes login-wrap {
+  0% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    opacity: 1;
+  }
+}
+</style>

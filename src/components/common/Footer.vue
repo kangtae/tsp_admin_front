@@ -1,7 +1,6 @@
 <template>
   <div id="footer">
-    Copyright @ Galaxia Communications Co.,Ltd communications All Rights
-    Reserved
+    Copyright @ TSP Co.,Ltd communications All Rights Reserved
   </div>
 </template>
 

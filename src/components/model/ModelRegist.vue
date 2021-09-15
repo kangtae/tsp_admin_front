@@ -1,109 +1,191 @@
 <template>
-  <div class="box1">
-    <table class="table2">
-      <!-- 2016-05-13 수정 -->
-      <colgroup>
-        <col style="width: 10%" />
-        <col style="width: auto" />
-      </colgroup>
-      <!--// 2016-05-13 수정 -->
-      <tbody>
-        <tr>
-          <th class="table2__th">
-            이름 (한글)<span class="required-field">(필수)</span>
-          </th>
-          <td class="table2__td">
-            <input type="text" name="" id="" class="input1 input1_size-100p" />
-          </td>
-        </tr>
-        <tr>
-          <th class="table2__th">
-            이름 (영문)<span class="required-field">(필수)</span>
-          </th>
-          <td class="table2__td">
-            <input type="text" name="" id="" class="input1 input1_size-100p" />
-          </td>
-        </tr>
-        <tr>
-          <th class="table2__th">
-            내용<span class="required-field">(필수)</span>
-          </th>
-          <td class="table2__td">
-            <textarea cols="3" rows="3" style="height: 200px"> </textarea>
-            <hr class="bar pt5" />
-            <input
-              type="file"
-              name=""
-              id=""
-              class="input1 input1_file input1_size-100p"
-            />
-            <p class="pt5 color01">
-              가로 000px 세로 000px ( 1mb 이내의 JPG/GIF/PNG파일만 가능)
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <th class="table2__th">
-            대표 이미지<span class="required-field">(필수)</span>
-          </th>
-          <td class="table2__td">
-            <dl class="define-list1">
-              <dt class="define-list1__dt define-list1__dt_size-50">
-                PC 이미지
-              </dt>
-              <dd class="define-list1__dd">
-                <input
-                  type="file"
-                  name=""
-                  id=""
-                  class="input1 input1_file input1_size-100p"
-                />
-                <hr class="bar" />
-                <p class="color01">가로 000px 세로 000px(PNG파일만 가능)</p>
-              </dd>
-              <dt class="define-list1__dt define-list1__dt_size-50">
-                Mobile 이미지
-              </dt>
-              <dd class="define-list1__dd">
-                <input
-                  type="file"
-                  name=""
-                  id=""
-                  class="input1 input1_file input1_size-100p"
-                />
-                <hr class="bar" />
-                <p class="color01">가로 000px 세로 000px(PNG파일만 가능)</p>
-              </dd>
-            </dl>
-            <!-- //define-list1 -->
-          </td>
-        </tr>
-        <tr>
-          <th class="table2__th">
-            공개여부<span class="required-field">(필수)</span>
-          </th>
-          <td class="table2__td">
-            <input
-              type="radio"
-              name="private"
-              value="1"
-              id="private0"
-              class="radio1"
-            /><label for="private0" class="radio1-label">공개</label>
-            <input
-              type="radio"
-              name="private"
-              value="2"
-              id="private1"
-              class="radio1"
-              checked="checked"
-            /><label for="private1" class="radio1-label">비공개</label>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="site-container">
+    <div class="container-fluid">
+      <div class="page-header">
+        <h1 class="h2 font-weight-light">News</h1>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <th class="text-center" style="width: 60px">번호</th>
+              <th class="text-center">제목</th>
+              <th class="text-center" style="width: 100px">등록일</th>
+              <th class="text-center" style="width: 100px">조회수</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center">10</td>
+                <td>
+                  <a href="News관리_02상세.html" class="board-link"
+                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
+                  >
+                </td>
+                <td class="text-center">2017-11-21</td>
+                <td class="text-center">43543</td>
+              </tr>
+              <tr>
+                <td class="text-center">9</td>
+                <td>
+                  <a href="News관리_02상세.html" class="board-link"
+                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
+                  >
+                </td>
+                <td class="text-center">2017-11-21</td>
+                <td class="text-center">43543</td>
+              </tr>
+              <tr>
+                <td class="text-center">8</td>
+                <td>
+                  <a href="News관리_02상세.html" class="board-link"
+                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
+                  >
+                </td>
+                <td class="text-center">2017-11-21</td>
+                <td class="text-center">43543</td>
+              </tr>
+              <tr>
+                <td class="text-center">7</td>
+                <td>
+                  <a href="News관리_02상세.html" class="board-link"
+                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
+                  >
+                </td>
+                <td class="text-center">2017-11-21</td>
+                <td class="text-center">43543</td>
+              </tr>
+              <tr>
+                <td class="text-center">6</td>
+                <td>
+                  <a href="News관리_02상세.html" class="board-link"
+                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
+                  >
+                </td>
+                <td class="text-center">2017-11-21</td>
+                <td class="text-center">43543</td>
+              </tr>
+              <tr>
+                <td class="text-center">5</td>
+                <td>
+                  <a href="News관리_02상세.html" class="board-link"
+                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
+                  >
+                </td>
+                <td class="text-center">2017-11-21</td>
+                <td class="text-center">43543</td>
+              </tr>
+              <tr>
+                <td class="text-center">4</td>
+                <td>
+                  <a href="News관리_02상세.html" class="board-link"
+                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
+                  >
+                </td>
+                <td class="text-center">2017-11-21</td>
+                <td class="text-center">43543</td>
+              </tr>
+              <tr>
+                <td class="text-center">3</td>
+                <td>
+                  <a href="News관리_02상세.html" class="board-link"
+                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
+                  >
+                </td>
+                <td class="text-center">2017-11-21</td>
+                <td class="text-center">43543</td>
+              </tr>
+              <tr>
+                <td class="text-center">2</td>
+                <td>
+                  <a href="News관리_02상세.html" class="board-link"
+                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
+                  >
+                </td>
+                <td class="text-center">2017-11-21</td>
+                <td class="text-center">43543</td>
+              </tr>
+              <tr>
+                <td class="text-center">1</td>
+                <td>
+                  <a href="News관리_02상세.html" class="board-link"
+                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
+                  >
+                </td>
+                <td class="text-center">2017-11-21</td>
+                <td class="text-center">43543</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- //table -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="text-center">
+            <ul class="pagination">
+              <li>
+                <a href="#" aria-label="Previous">
+                  <span aria-hidden="true">
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="active">
+                <a href="#"
+                  >1
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">2</a>
+              </li>
+              <li>
+                <a href="#">3</a>
+              </li>
+              <li>
+                <a href="#">4</a>
+              </li>
+              <li>
+                <a href="#">5</a>
+              </li>
+              <li>
+                <a href="#">6</a>
+              </li>
+              <li>
+                <a href="#">7</a>
+              </li>
+              <li>
+                <a href="#">8</a>
+              </li>
+              <li>
+                <a href="#">9</a>
+              </li>
+              <li>
+                <a href="#">10</a>
+              </li>
+              <li>
+                <a href="#" aria-label="Next">
+                  <span aria-hidden="true">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 text-left"></div>
+        <div class="col-sm-4 text-center"></div>
+        <div class="col-sm-4 text-right">
+          <a class="btn btn-success" href="News관리_03등록.html" role="button">
+            <i class="fa fa-pencil" aria-hidden="true"></i> 등록</a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- //container-fluid -->
   </div>
-  <!-- //box1 -->
 </template>
 
 <script>

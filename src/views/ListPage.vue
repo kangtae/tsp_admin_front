@@ -1,15 +1,7 @@
 <template>
-  <div>
+  <div style="display: table; width: 100%">
     <Header></Header>
-    <div id="container">
-      <Lnb></Lnb>
-      <div class="content">
-        <div class="inner_cont">
-          <ContentHeader></ContentHeader>
-          <component :is="currentComponent"></component>
-        </div>
-      </div>
-    </div>
+    <component :is="currentComponent"></component>
     <Footer></Footer>
   </div>
 </template>

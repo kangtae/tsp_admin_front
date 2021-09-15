@@ -25,7 +25,7 @@
                 data-toggle="dropdown"
                 role="button"
                 aria-expanded="false"
-                >계정관리
+                >모델관리
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
@@ -37,16 +37,13 @@
               </ul>
             </li>
             <li role="presentation">
-              <a href="../news/News관리_01목록.html">News 관리</a>
+              <a href="../news/News관리_01목록.html">프로덕션 관리</a>
             </li>
             <li role="presentation">
-              <a href="../notice/Notice관리_01목록.html">Notice 관리</a>
+              <a href="../notice/Notice관리_01목록.html">포트폴리오 관리</a>
             </li>
             <li role="presentation">
-              <a href="../gallery/Gallery관리_01목록.html">Gallery 관리</a>
-            </li>
-            <li role="presentation">
-              <a href="../professors/연구자관리_01목록.html">연구자 관리</a>
+              <a href="../gallery/Gallery관리_01목록.html">지원서 관리</a>
             </li>
           </ul>
           <p class="navbar-text navbar-right">

@@ -1,319 +1,227 @@
 <template>
-  <div>
-    <div class="box1">
-      <table class="table2">
-        <!-- 2016-05-13 수정 -->
-        <colgroup>
-          <col style="width: 7%" />
-          <col style="width: auto" />
-        </colgroup>
-        <!--// 2016-05-13 수정 -->
-        <tbody>
-          <tr>
-            <th class="table2__th">등록일자</th>
-            <td class="table2__td">
-              <form action="">
-                <fieldset class="fieldset">
-                  <legend class="legend">검색조건</legend>
-                  <div class="filter-form">
-                    <div class="filter-form__item">
-                      <date-picker
-                        v-model="time1"
-                        valueType="format"
-                      ></date-picker>
-                      ~
-                      <date-picker
-                        v-model="time2"
-                        valueType="format"
-                      ></date-picker>
-                      <span class="pl10">
-                        <button
-                          class="btn btn_color2 btn_size-80"
-                          @click.self.prevent="todayBtn"
-                        >
-                          오늘
-                        </button>
-                        <button
-                          class="btn btn_color2 btn_size-80"
-                          @click.self.prevent="weekBtn"
-                        >
-                          일주일
-                        </button>
-                        <button
-                          class="btn btn_color2 btn_size-80"
-                          @click.self.prevent="monthBtn"
-                        >
-                          1개월
-                        </button>
-                        <button
-                          class="btn btn_color2 btn_size-80"
-                          @click.self.prevent="monthThreeBtn"
-                        >
-                          3개월
-                        </button>
-                      </span>
-                    </div>
-                  </div>
-                  <!-- //filter-form -->
-                </fieldset>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <th class="table2__th">검색어</th>
-            <td class="table2__td">
-              <form action="">
-                <fieldset class="fieldset">
-                  <legend class="legend">검색조건</legend>
-                  <div class="filter-form">
-                    <div class="filter-form__item">
-                      <input
-                        type="text"
-                        name=""
-                        id=""
-                        class="input1 input1_size-200"
-                      />
-                      <a href="#" class="btn btn_color1"
-                        ><i class="fa fa-search fa-lg"></i>&nbsp; 조회</a
-                      >
-                    </div>
-                  </div>
-                  <!-- //filter-form -->
-                </fieldset>
-              </form>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!-- //box1 -->
-
-    <div class="box1 box1_transparent">
-      <div class="action-form">
-        <select name="" id="" class="select1">
-          <option value="">10개씩 보기</option>
-          <option value="">30개씩 보기</option>
-          <option value="">50개씩 보기</option>
-        </select>
+  <div class="site-container">
+    <div class="container-fluid">
+      <PageHeader :title="건설"></PageHeader>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="pull-right">
+            <div class="form-inline">
+              <div class="input-group">
+                <select class="form-control">
+                  <option value="">구분</option>
+                  <option value="">토목</option>
+                  <option value="">건축</option>
+                  <option value="">플랜트</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <input type="text" class="form-control" />
+                <span class="input-group-btn">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="window.location.href='건설_01목록.html'"
+                  >
+                    <span class="fa fa-search" aria-hidden="true"></span>
+                    <span class="text-hide">검색</span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="space-vertical"></div>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <th class="text-center" style="width: 60px">번호</th>
+              <th class="text-center" style="width: 100px">구분</th>
+              <th class="text-center">공사명</th>
+              <th class="text-center" style="width: 100px">등록일</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center">10</td>
+                <td class="text-center">건축</td>
+                <td>
+                  <a href="건설_02상세.html" class="board-link board-nowrap"
+                    >종로구 평창동 타운하우스 신축공사</a
+                  >
+                </td>
+                <td class="text-center">2018-11-21</td>
+              </tr>
+              <tr>
+                <td class="text-center">9</td>
+                <td class="text-center">건축</td>
+                <td>
+                  <a href="건설_02상세.html" class="board-link board-nowrap"
+                    >종로구 평창동 타운하우스 신축공사</a
+                  >
+                </td>
+                <td class="text-center">2018-11-21</td>
+              </tr>
+              <tr>
+                <td class="text-center">8</td>
+                <td class="text-center">건축</td>
+                <td>
+                  <a href="건설_02상세.html" class="board-link board-nowrap"
+                    >종로구 평창동 타운하우스 신축공사</a
+                  >
+                </td>
+                <td class="text-center">2018-11-21</td>
+              </tr>
+              <tr>
+                <td class="text-center">7</td>
+                <td class="text-center">건축</td>
+                <td>
+                  <a href="건설_02상세.html" class="board-link board-nowrap"
+                    >종로구 평창동 타운하우스 신축공사</a
+                  >
+                </td>
+                <td class="text-center">2018-11-21</td>
+              </tr>
+              <tr>
+                <td class="text-center">6</td>
+                <td class="text-center">건축</td>
+                <td>
+                  <a href="건설_02상세.html" class="board-link board-nowrap"
+                    >종로구 평창동 타운하우스 신축공사</a
+                  >
+                </td>
+                <td class="text-center">2018-11-21</td>
+              </tr>
+              <tr>
+                <td class="text-center">5</td>
+                <td class="text-center">건축</td>
+                <td>
+                  <a href="건설_02상세.html" class="board-link board-nowrap"
+                    >종로구 평창동 타운하우스 신축공사</a
+                  >
+                </td>
+                <td class="text-center">2018-11-21</td>
+              </tr>
+              <tr>
+                <td class="text-center">4</td>
+                <td class="text-center">건축</td>
+                <td>
+                  <a href="건설_02상세.html" class="board-link board-nowrap"
+                    >종로구 평창동 타운하우스 신축공사</a
+                  >
+                </td>
+                <td class="text-center">2018-11-21</td>
+              </tr>
+              <tr>
+                <td class="text-center">3</td>
+                <td class="text-center">건축</td>
+                <td>
+                  <a href="건설_02상세.html" class="board-link board-nowrap"
+                    >종로구 평창동 타운하우스 신축공사</a
+                  >
+                </td>
+                <td class="text-center">2018-11-21</td>
+              </tr>
+              <tr>
+                <td class="text-center">2</td>
+                <td class="text-center">건축</td>
+                <td>
+                  <a href="건설_02상세.html" class="board-link board-nowrap"
+                    >종로구 평창동 타운하우스 신축공사</a
+                  >
+                </td>
+                <td class="text-center">2018-11-21</td>
+              </tr>
+              <tr>
+                <td class="text-center">1</td>
+                <td class="text-center">건축</td>
+                <td>
+                  <a href="건설_02상세.html" class="board-link board-nowrap"
+                    >종로구 평창동 타운하우스 신축공사</a
+                  >
+                </td>
+                <td class="text-center">2018-11-21</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- //table -->
+        </div>
       </div>
-      <!-- //action-form -->
-    </div>
-    <!-- //box1 -->
-
-    <div class="box1">
-      <table class="table1">
-        <colgroup>
-          <col style="width: 5%" />
-          <col style="width: 10%" />
-          <col style="width: 45%" />
-          <col style="width: 10%" />
-          <col style="width: 10%" />
-        </colgroup>
-        <thead>
-          <tr>
-            <th class="table1__th">
-              <label class="label1"
-                ><input
-                  type="checkbox"
-                  name=""
-                  value=""
-                  id=""
-                  class="checkbox1" /><span
-                  class="checkbox1-label checkbox1-label_single"
-                ></span
-              ></label>
-            </th>
-            <th class="table1__th">번호</th>
-            <th class="table1__th">이름</th>
-            <th class="table1__th">게시</th>
-            <th class="table1__th">등록일자</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="table1__td">
-              <label
-                ><input
-                  type="checkbox"
-                  name=""
-                  value=""
-                  id=""
-                  class="checkbox1" /><span
-                  class="checkbox1-label checkbox1-label_single"
-                ></span
-              ></label>
-            </td>
-            <td class="table1__td">10400</td>
-            <td class="table1__td">
-              <a href="#" class="link">강태완</a>
-            </td>
-            <td class="table1__td">O</td>
-            <td class="table1__td">2021.09.13</td>
-          </tr>
-
-          <!-- 게시글이 없는 경우 -->
-          <tr>
-            <td class="table1__td" colspan="7">등록된 글이 없습니다.</td>
-          </tr>
-          <!--// 게시글이 없는 경우 -->
-        </tbody>
-      </table>
-      <!-- //table1 -->
-    </div>
-    <!-- //box1 -->
-
-    <div class="btn-group box1">
-      <div class="btn-group__left">
-        <select name="" id="" class="select1">
-          <option value="">선택변경</option>
-          <option value="">등록</option>
-        </select>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="text-center">
+            <ul class="pagination">
+              <li>
+                <a href="#" aria-label="Previous">
+                  <span aria-hidden="true">
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="active">
+                <a href="#"
+                  >1
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">2</a>
+              </li>
+              <li>
+                <a href="#">3</a>
+              </li>
+              <li>
+                <a href="#">4</a>
+              </li>
+              <li>
+                <a href="#">5</a>
+              </li>
+              <li>
+                <a href="#">6</a>
+              </li>
+              <li>
+                <a href="#">7</a>
+              </li>
+              <li>
+                <a href="#">8</a>
+              </li>
+              <li>
+                <a href="#">9</a>
+              </li>
+              <li>
+                <a href="#">10</a>
+              </li>
+              <li>
+                <a href="#" aria-label="Next">
+                  <span aria-hidden="true">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="btn-group__right">
-        <a href="#" class="btn btn_color1">게시 등록</a>
+      <div class="row">
+        <div class="col-sm-4 text-left"></div>
+        <div class="col-sm-4 text-center"></div>
+        <div class="col-sm-4 text-right">
+          <a class="btn btn-success" href="건설_03등록.html" role="button">
+            <i class="fa fa-pencil" aria-hidden="true"></i> 등록</a
+          >
+        </div>
       </div>
     </div>
-    <!-- //btn-group -->
-
-    <div class="paging">
-      <a href="#" class="paging__link paging__link_home fa fa-angle-double-left"
-        >처음</a
-      >
-      <a href="#" class="paging__link paging__link_prev fa fa-angle-left"
-        >이전</a
-      >
-      <a href="#" class="paging__link on">1</a>
-      <a href="#" class="paging__link">2</a>
-      <a href="#" class="paging__link">3</a>
-      <a href="#" class="paging__link">4</a>
-      <a href="#" class="paging__link paging__link_next fa fa-angle-right"
-        >다음</a
-      >
-      <a href="#" class="paging__link paging__link_end fa fa-angle-double-right"
-        >끝</a
-      >
-    </div>
-    <!-- //paging -->
+    <!-- //container-fluid -->
   </div>
 </template>
 
 <script>
-import DatePicker from "vue2-datepicker";
-import "vue2-datepicker/index.css";
+import PageHeader from "@/components/common/PageHeader";
+
 export default {
-  components: { DatePicker },
   data() {
-    return {
-      time1: null,
-      time2: null,
-    };
+    return {};
   },
-  computed: {
-    lastWeek() {
-      let d = new Date();
-      let dayOfMonth = d.getDate();
-      d.setDate(dayOfMonth - 7);
-      return d;
-    },
-    lastMonth() {
-      let d = new Date();
-      let monthOfYear = d.getMonth();
-      d.setMonth(monthOfYear - 1);
-      return d;
-    },
-    lastThreeMonth() {
-      let d = new Date();
-      let monthOfYear = d.getMonth();
-      d.setMonth(monthOfYear - 3);
-      return d;
-    },
-  },
-  methods: {
-    todayBtn() {
-      let today = new Date();
-      let year = today.getFullYear();
-      let month = today.getMonth() + 1;
-      let date = today.getDate();
-      if (month < 10) {
-        month = `0${month}`;
-      }
-      this.time1 = `${year}-${month}-${date}`;
-      this.time2 = `${year}-${month}-${date}`;
-    },
-    weekBtn() {
-      let today = new Date();
-      let year = today.getFullYear();
-      let month = today.getMonth() + 1;
-      let date = today.getDate();
-      if (month < 10) {
-        month = `0${month}`;
-      }
-      if (date < 10) {
-        date = `0${date}`;
-      }
-      this.time2 = `${year}-${month}-${date}`;
-
-      let week = this.lastWeek;
-      let weekYear = week.getFullYear();
-      let weekMonth = week.getMonth() + 1;
-      let weekDate = week.getDate();
-      if (weekMonth < 10) {
-        weekMonth = `0${weekMonth}`;
-      }
-      if (weekDate < 10) {
-        weekDate = `0${weekDate}`;
-      }
-      this.time1 = `${weekYear}-${weekMonth}-${weekDate}`;
-    },
-    monthBtn() {
-      let today = new Date();
-      let year = today.getFullYear();
-      let month = today.getMonth() + 1;
-      let date = today.getDate();
-      if (month < 10) {
-        month = `0${month}`;
-      }
-      if (date < 10) {
-        date = `0${date}`;
-      }
-      this.time2 = `${year}-${month}-${date}`;
-
-      let lastMonth = this.lastMonth;
-      let lastMonthYear = lastMonth.getFullYear();
-      let lastMonthMonth = lastMonth.getMonth() + 1;
-      let lastMonthDate = lastMonth.getDate();
-      if (lastMonthMonth < 10) {
-        lastMonthMonth = `0${lastMonthMonth}`;
-      }
-      if (lastMonthDate < 10) {
-        lastMonthDate = `0${lastMonthDate}`;
-      }
-      this.time1 = `${lastMonthYear}-${lastMonthMonth}-${lastMonthDate}`;
-    },
-    monthThreeBtn() {
-      let today = new Date();
-      let year = today.getFullYear();
-      let month = today.getMonth() + 1;
-      let date = today.getDate();
-      if (month < 10) {
-        month = `0${month}`;
-      }
-      if (date < 10) {
-        date = `0${date}`;
-      }
-      this.time2 = `${year}-${month}-${date}`;
-      let lastThreeMonth = this.lastThreeMonth;
-      let lastThreeMonthYear = lastThreeMonth.getFullYear();
-      let lastThreeMonthMonth = lastThreeMonth.getMonth() + 1;
-      let lastThreeMonthDate = lastThreeMonth.getDate();
-      if (lastThreeMonthMonth < 10) {
-        lastThreeMonthMonth = `0${lastThreeMonthMonth}`;
-      }
-      if (lastThreeMonthDate < 10) {
-        lastThreeMonthDate = `0${lastThreeMonthDate}`;
-      }
-      this.time1 = `${lastThreeMonthYear}-${lastThreeMonthMonth}-${lastThreeMonthDate}`;
-    },
+  components: {
+    PageHeader,
   },
 };
 </script>

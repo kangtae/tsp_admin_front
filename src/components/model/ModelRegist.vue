@@ -2,117 +2,85 @@
   <div class="site-container">
     <div class="container-fluid">
       <div class="page-header">
-        <h1 class="h2 font-weight-light">News</h1>
+        <h1 class="h2 font-weight-light">남자 모델</h1>
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <table class="table table-striped table-bordered">
-            <thead>
-              <th class="text-center" style="width: 60px">번호</th>
-              <th class="text-center">제목</th>
-              <th class="text-center" style="width: 100px">등록일</th>
-              <th class="text-center" style="width: 100px">조회수</th>
-            </thead>
+          <table class="table table-bordered">
+            <colgroup>
+              <col style="width: 100px" />
+              <col />
+              <col style="width: 100px" />
+              <col />
+            </colgroup>
             <tbody>
               <tr>
-                <td class="text-center">10</td>
-                <td>
-                  <a href="News관리_02상세.html" class="board-link"
-                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
-                  >
+                <th class="active">제목</th>
+                <td colspan="3">
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    class="form-control input-sm"
+                  />
                 </td>
-                <td class="text-center">2017-11-21</td>
-                <td class="text-center">43543</td>
               </tr>
               <tr>
-                <td class="text-center">9</td>
-                <td>
-                  <a href="News관리_02상세.html" class="board-link"
-                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
-                  >
-                </td>
-                <td class="text-center">2017-11-21</td>
-                <td class="text-center">43543</td>
+                <th class="active">등록일</th>
+                <td>2021-09-16</td>
+                <th class="active">조회수</th>
+                <td></td>
               </tr>
               <tr>
-                <td class="text-center">8</td>
-                <td>
-                  <a href="News관리_02상세.html" class="board-link"
-                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
-                  >
+                <th class="active">첨부파일</th>
+                <td colspan="3">
+                  <div class="hidden">
+                    <div class="col-xs-2 input-file-box model">
+                      <input
+                        type="file"
+                        data-height="100"
+                        data-default-file=""
+                      />
+                      <button class="btn btn-xs btn-danger btn-remove">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        <span class="sr-only">삭제</span>
+                      </button>
+                      <button class="btn btn-xs btn-primary btn-duplicator">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <span class="sr-only">추가</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-2 input-file-box">
+                      <input
+                        type="file"
+                        class="dropify"
+                        data-height="100"
+                        data-default-file=""
+                      />
+                      <button class="btn btn-xs btn-primary btn-duplicator">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <span class="sr-only">추가</span>
+                      </button>
+                    </div>
+                  </div>
                 </td>
-                <td class="text-center">2017-11-21</td>
-                <td class="text-center">43543</td>
               </tr>
               <tr>
-                <td class="text-center">7</td>
-                <td>
-                  <a href="News관리_02상세.html" class="board-link"
-                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
-                  >
+                <td colspan="4">
+                  <div>
+                    <div
+                      style="
+                        padding: 200px;
+                        background-color: skyblue;
+                        text-align: center;
+                      "
+                    >
+                      에디터
+                    </div>
+                  </div>
                 </td>
-                <td class="text-center">2017-11-21</td>
-                <td class="text-center">43543</td>
-              </tr>
-              <tr>
-                <td class="text-center">6</td>
-                <td>
-                  <a href="News관리_02상세.html" class="board-link"
-                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
-                  >
-                </td>
-                <td class="text-center">2017-11-21</td>
-                <td class="text-center">43543</td>
-              </tr>
-              <tr>
-                <td class="text-center">5</td>
-                <td>
-                  <a href="News관리_02상세.html" class="board-link"
-                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
-                  >
-                </td>
-                <td class="text-center">2017-11-21</td>
-                <td class="text-center">43543</td>
-              </tr>
-              <tr>
-                <td class="text-center">4</td>
-                <td>
-                  <a href="News관리_02상세.html" class="board-link"
-                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
-                  >
-                </td>
-                <td class="text-center">2017-11-21</td>
-                <td class="text-center">43543</td>
-              </tr>
-              <tr>
-                <td class="text-center">3</td>
-                <td>
-                  <a href="News관리_02상세.html" class="board-link"
-                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
-                  >
-                </td>
-                <td class="text-center">2017-11-21</td>
-                <td class="text-center">43543</td>
-              </tr>
-              <tr>
-                <td class="text-center">2</td>
-                <td>
-                  <a href="News관리_02상세.html" class="board-link"
-                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
-                  >
-                </td>
-                <td class="text-center">2017-11-21</td>
-                <td class="text-center">43543</td>
-              </tr>
-              <tr>
-                <td class="text-center">1</td>
-                <td>
-                  <a href="News관리_02상세.html" class="board-link"
-                    >제 1회 현미경을 이용한 전기계측 워크숍 안내</a
-                  >
-                </td>
-                <td class="text-center">2017-11-21</td>
-                <td class="text-center">43543</td>
               </tr>
             </tbody>
           </table>
@@ -120,68 +88,16 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
-          <div class="text-center">
-            <ul class="pagination">
-              <li>
-                <a href="#" aria-label="Previous">
-                  <span aria-hidden="true">
-                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="active">
-                <a href="#"
-                  >1
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">2</a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
-              <li>
-                <a href="#">4</a>
-              </li>
-              <li>
-                <a href="#">5</a>
-              </li>
-              <li>
-                <a href="#">6</a>
-              </li>
-              <li>
-                <a href="#">7</a>
-              </li>
-              <li>
-                <a href="#">8</a>
-              </li>
-              <li>
-                <a href="#">9</a>
-              </li>
-              <li>
-                <a href="#">10</a>
-              </li>
-              <li>
-                <a href="#" aria-label="Next">
-                  <span aria-hidden="true">
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-sm-4 text-left"></div>
-        <div class="col-sm-4 text-center"></div>
-        <div class="col-sm-4 text-right">
-          <a class="btn btn-success" href="News관리_03등록.html" role="button">
-            <i class="fa fa-pencil" aria-hidden="true"></i> 등록</a
+        <div class="col-sm-4 text-center">
+          <a class="btn btn-default" href="자료실_01목록.html" role="button">
+            <i class="fa fa-times" aria-hidden="true"></i> 취소</a
+          >
+          <a class="btn btn-success" href="자료실_02상세.html" role="button">
+            <i class="fa fa-check" aria-hidden="true"></i> 등록</a
           >
         </div>
+        <div class="col-sm-4 text-right"></div>
       </div>
     </div>
     <!-- //container-fluid -->
@@ -189,7 +105,54 @@
 </template>
 
 <script>
-export default {};
+import $ from "jquery";
+export default {
+  created() {
+    $(document).ready(function () {
+      var dropifyOtp = {
+        messages: {
+          default: "파일을 여기 끌어다 놓거나 클릭하십시오.",
+          replace: "파일을 바꾸려면 드래그 앤 드롭하거나 클릭하십시오.",
+          remove: "삭제",
+          error: "죄송합니다.",
+        },
+        error: {
+          fileSize: "파일 크기가 너무 큽니다. (최대 {{ value }})",
+          minWidth: "이미지가 너무 작습니다. (최고 {{ value }}px)",
+          maxWidth: "이미지 너비가 너무 큽니다. (최대 {{ value }}px)",
+          minHeight: "이미지 높이가 너무 작습니다. (최소 {{ value }}px)",
+          maxHeight: "이미지 높이가 너무 큽니다. (최대 {{ value }}px )",
+          imageFormat: "이미지 형식이 허용되지 않습니다. ({{ value }}만 허용)",
+          fileExtension: "허용되지 않는 파일형식입니다. ({{ value }}만 허용)",
+        },
+      };
+
+      $(".dropify").dropify(dropifyOtp);
+      $("body").on("click", ".btn-duplicator", clone_model);
+      $("body").on("click", ".btn-remove", remove);
+
+      //Functions
+      function clone_model() {
+        var b = $(this).parent(".input-file-box"),
+          c = $(".model").clone(true, true);
+
+        c.removeClass("model");
+        c.find("input").addClass("dropify");
+
+        $(b).after(c);
+        $(".dropify").dropify(dropifyOtp);
+      }
+
+      function remove() {
+        $(this).closest(".input-file-box").remove();
+      }
+    });
+  },
+};
 </script>
 
-<style></style>
+<style>
+.dropify-wrapper .dropify-message p {
+  font-size: 14px;
+}
+</style>

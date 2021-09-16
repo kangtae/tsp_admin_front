@@ -110,9 +110,13 @@
         <div class="col-sm-4 text-left"></div>
         <div class="col-sm-4 text-center"></div>
         <div class="col-sm-4 text-right">
-          <a class="btn btn-success" href="건설_03등록.html" role="button">
-            <i class="fa fa-pencil" aria-hidden="true"></i> 등록</a
+          <router-link
+            class="btn btn-success"
+            to="/admin/regist/model"
+            role="button"
           >
+            <i class="fa fa-pencil" aria-hidden="true"></i> 등록
+          </router-link>
         </div>
       </div>
     </div>

@@ -7,7 +7,6 @@
 <script>
 // import "http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js";
 import "../src/assets/libs/dropify/js/dropify.min.js";
-import "../src/assets/js/common";
 import Layout from "@/components/common/Layout";
 
 export default {

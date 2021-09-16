@@ -1,7 +1,7 @@
 <template>
   <div class="site-container">
     <div class="container-fluid">
-      <PageHeader :title="건설"></PageHeader>
+      <PageHeader :title="title"></PageHeader>
       <div class="row">
         <div class="col-sm-12">
           <div class="pull-right">
@@ -9,12 +9,11 @@
               <div class="input-group">
                 <select class="form-control">
                   <option value="">구분</option>
-                  <option value="">토목</option>
-                  <option value="">건축</option>
-                  <option value="">플랜트</option>
+                  <option value="">이름</option>
+                  <option value="">내용</option>
                 </select>
               </div>
-              <div class="input-group">
+              <div class="input-group ml5">
                 <input type="text" class="form-control" />
                 <span class="input-group-btn">
                   <button
@@ -34,110 +33,18 @@
           <table class="table table-striped table-bordered">
             <thead>
               <th class="text-center" style="width: 60px">번호</th>
-              <th class="text-center" style="width: 100px">구분</th>
-              <th class="text-center">공사명</th>
+              <th class="text-center">모델명</th>
               <th class="text-center" style="width: 100px">등록일</th>
             </thead>
             <tbody>
               <tr>
-                <td class="text-center">10</td>
-                <td class="text-center">건축</td>
-                <td>
-                  <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >종로구 평창동 타운하우스 신축공사</a
-                  >
-                </td>
-                <td class="text-center">2018-11-21</td>
-              </tr>
-              <tr>
-                <td class="text-center">9</td>
-                <td class="text-center">건축</td>
-                <td>
-                  <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >종로구 평창동 타운하우스 신축공사</a
-                  >
-                </td>
-                <td class="text-center">2018-11-21</td>
-              </tr>
-              <tr>
-                <td class="text-center">8</td>
-                <td class="text-center">건축</td>
-                <td>
-                  <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >종로구 평창동 타운하우스 신축공사</a
-                  >
-                </td>
-                <td class="text-center">2018-11-21</td>
-              </tr>
-              <tr>
-                <td class="text-center">7</td>
-                <td class="text-center">건축</td>
-                <td>
-                  <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >종로구 평창동 타운하우스 신축공사</a
-                  >
-                </td>
-                <td class="text-center">2018-11-21</td>
-              </tr>
-              <tr>
-                <td class="text-center">6</td>
-                <td class="text-center">건축</td>
-                <td>
-                  <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >종로구 평창동 타운하우스 신축공사</a
-                  >
-                </td>
-                <td class="text-center">2018-11-21</td>
-              </tr>
-              <tr>
-                <td class="text-center">5</td>
-                <td class="text-center">건축</td>
-                <td>
-                  <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >종로구 평창동 타운하우스 신축공사</a
-                  >
-                </td>
-                <td class="text-center">2018-11-21</td>
-              </tr>
-              <tr>
-                <td class="text-center">4</td>
-                <td class="text-center">건축</td>
-                <td>
-                  <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >종로구 평창동 타운하우스 신축공사</a
-                  >
-                </td>
-                <td class="text-center">2018-11-21</td>
-              </tr>
-              <tr>
-                <td class="text-center">3</td>
-                <td class="text-center">건축</td>
-                <td>
-                  <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >종로구 평창동 타운하우스 신축공사</a
-                  >
-                </td>
-                <td class="text-center">2018-11-21</td>
-              </tr>
-              <tr>
-                <td class="text-center">2</td>
-                <td class="text-center">건축</td>
-                <td>
-                  <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >종로구 평창동 타운하우스 신축공사</a
-                  >
-                </td>
-                <td class="text-center">2018-11-21</td>
-              </tr>
-              <tr>
                 <td class="text-center">1</td>
-                <td class="text-center">건축</td>
                 <td>
                   <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >종로구 평창동 타운하우스 신축공사</a
+                    >강태완</a
                   >
                 </td>
-                <td class="text-center">2018-11-21</td>
+                <td class="text-center">2021-09-16</td>
               </tr>
             </tbody>
           </table>
@@ -218,7 +125,9 @@ import PageHeader from "@/components/common/PageHeader";
 
 export default {
   data() {
-    return {};
+    return {
+      title: "남자모델",
+    };
   },
   components: {
     PageHeader,

@@ -8,7 +8,6 @@
 
 <script>
 import Header from "@/components/common/Header";
-import ContentHeader from "@/components/common/ContentHeader";
 import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
 import ModelList from "@/components/model/ModelList";
@@ -21,7 +20,6 @@ export default {
   },
   components: {
     Header,
-    ContentHeader,
     Footer,
     Lnb,
     ModelList,

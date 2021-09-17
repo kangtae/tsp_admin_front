@@ -10,25 +10,29 @@
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
-import ModelList from "@/components/model/ModelList";
+import ModelManList from "@/components/model/ModelManList";
+import PortfolioList from "@/components/portfolio/PortfolioList";
 
 export default {
   data() {
     return {
-      currentComponent: "ModelList",
+      currentComponent: "ModelManList",
     };
   },
   components: {
     Header,
     Footer,
     Lnb,
-    ModelList,
+    ModelManList,
+    PortfolioList,
   },
   methods: {
     fetchData() {
       const page = this.$route.params.page;
-      if (page == "model") {
-        this.currentComponent = "ModelList";
+      if (page == "man") {
+        this.currentComponent = "ModelManList";
+      } else if (page == "portfolio") {
+        this.currentComponent = "PortfolioList";
       }
     },
   },

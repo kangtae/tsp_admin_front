@@ -25,8 +25,18 @@
               </router-link>
               <ul class="dropdown-menu" role="menu">
                 <li>
-                  <a href="../account/계정관리_01비밀번호변경.html" class=""
-                    >비밀번호 변경</a
+                  <router-link to="/admin/content/woman" class=""
+                    >여자 모델</router-link
+                  >
+                </li>
+                <li>
+                  <router-link to="/admin/content/man" class=""
+                    >남자 모델</router-link
+                  >
+                </li>
+                <li>
+                  <router-link to="/admin/content/senior" class=""
+                    >시니어 모델</router-link
                   >
                 </li>
               </ul>
@@ -35,7 +45,7 @@
               <a href="../news/News관리_01목록.html">프로덕션 관리</a>
             </li>
             <li role="presentation">
-              <a href="../notice/Notice관리_01목록.html">포트폴리오 관리</a>
+              <a href="/admin/content/portfolio">포트폴리오 관리</a>
             </li>
             <li role="presentation">
               <a href="../gallery/Gallery관리_01목록.html">지원서 관리</a>

@@ -10,25 +10,25 @@
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
-import ModelRegist from "@/components/model/ModelRegist";
+import ModelManRegist from "@/components/model/ModelManRegist";
 
 export default {
   data() {
     return {
-      currentComponent: "ModelRegist",
+      currentComponent: "ModelManRegist",
     };
   },
   components: {
     Header,
     Footer,
     Lnb,
-    ModelRegist,
+    ModelManRegist,
   },
   methods: {
     fetchData() {
       const page = this.$route.params.page;
       if (page == "model") {
-        this.currentComponent = "ModelRegist";
+        this.currentComponent = "ModelManRegist";
       }
     },
   },

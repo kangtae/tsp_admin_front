@@ -120,6 +120,7 @@ export default {
           password: this.password,
         };
         const { data } = await loginUser(userData);
+        console.log(data);
         if (data.loginYn == "Y") {
           this.$store.commit("setToken", data.token.body.token);
           this.$store.commit("setIsLogin", data.loginYn);

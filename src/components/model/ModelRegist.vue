@@ -12,11 +12,13 @@
               <col />
               <col style="width: 100px" />
               <col />
+              <col style="width: 100px" />
+              <col />
             </colgroup>
             <tbody>
               <tr>
-                <th class="active">제목</th>
-                <td colspan="3">
+                <th class="active">국문 이름</th>
+                <td colspan="5">
                   <input
                     type="text"
                     name=""
@@ -26,14 +28,69 @@
                 </td>
               </tr>
               <tr>
-                <th class="active">등록일</th>
-                <td>2021-09-16</td>
-                <th class="active">조회수</th>
-                <td></td>
+                <th class="active">영문 이름</th>
+                <td colspan="5">
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    class="form-control input-sm"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th class="active">height</th>
+                <td>
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    class="form-control input-sm"
+                  />
+                </td>
+                <th class="active">3-size</th>
+                <td>
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    class="form-control input-sm"
+                  />
+                </td>
+                <th class="active">shoes</th>
+                <td>
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    class="form-control input-sm"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th class="active">대표 이미지</th>
+                <td colspan="5">
+                  <div class="row">
+                    <div class="col-xs-2">
+                      <input
+                        type="file"
+                        id="input-file-now"
+                        class="dropify"
+                        data-height="200"
+                        data-default-file=""
+                        data-allowed-file-extensions="jpg png gif"
+                      />
+                    </div>
+                  </div>
+                  <div class="xs-mt-5">
+                    권장비율 00:00 <br />
+                    권장사이즈 000x000
+                  </div>
+                </td>
               </tr>
               <tr>
                 <th class="active">첨부파일</th>
-                <td colspan="3">
+                <td colspan="5">
                   <div class="hidden">
                     <div class="col-xs-2 input-file-box model">
                       <input
@@ -68,17 +125,14 @@
                 </td>
               </tr>
               <tr>
-                <td colspan="4">
+                <td colspan="6">
                   <div>
-                    <div
-                      style="
-                        padding: 200px;
-                        background-color: skyblue;
-                        text-align: center;
-                      "
-                    >
-                      에디터
-                    </div>
+                    <Editor
+                      @change="editorChange"
+                      initialEditType="wysiwyg"
+                      preview-style="tab"
+                      ref="toastuiEditor"
+                    />
                   </div>
                 </td>
               </tr>
@@ -106,7 +160,10 @@
 
 <script>
 import $ from "jquery";
+import "@toast-ui/editor/dist/toastui-editor.css";
+import { Editor } from "@toast-ui/vue-editor";
 export default {
+  components: { Editor },
   created() {
     $(document).ready(function () {
       var dropifyOtp = {

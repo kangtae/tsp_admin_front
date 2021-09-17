@@ -19,15 +19,10 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" role="navigation">
             <li role="presentation" class="dropdown">
-              <a
-                href="../account/계정관리_01비밀번호변경.html"
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                role="button"
-                aria-expanded="false"
+              <router-link to="#" @click.self.native="dropdownToggle"
                 >모델관리
                 <span class="caret"></span>
-              </a>
+              </router-link>
               <ul class="dropdown-menu" role="menu">
                 <li>
                   <a href="../account/계정관리_01비밀번호변경.html" class=""
@@ -61,7 +56,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    dropdownToggle(e) {
+      const navElem = e.target.parentNode;
+      if (navElem.classList.contains("open")) {
+        navElem.classList.remove("open");
+      } else {
+        navElem.classList.add("open");
+      }
+    },
+  },
+  created() {},
+};
 </script>
 
 <style></style>

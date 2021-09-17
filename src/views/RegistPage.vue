@@ -11,6 +11,7 @@ import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
 import ModelManRegist from "@/components/model/ModelManRegist";
+import PortfolioRegist from "@/components/portfolio/PortfolioRegist";
 
 export default {
   data() {
@@ -23,12 +24,15 @@ export default {
     Footer,
     Lnb,
     ModelManRegist,
+    PortfolioRegist,
   },
   methods: {
     fetchData() {
       const page = this.$route.params.page;
-      if (page == "model") {
+      if (page == "man") {
         this.currentComponent = "ModelManRegist";
+      } else if (page == "portfolio") {
+        this.currentComponent = "PortfolioRegist";
       }
     },
   },

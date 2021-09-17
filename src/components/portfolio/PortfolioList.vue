@@ -114,7 +114,7 @@
         <div class="col-sm-4 text-right">
           <router-link
             class="btn btn-success"
-            to="/admin/regist/model"
+            to="/admin/regist/portfolio"
             role="button"
           >
             <i class="fa fa-pencil" aria-hidden="true"></i> 등록

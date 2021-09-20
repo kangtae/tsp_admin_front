@@ -2,7 +2,7 @@
   <div class="site-container">
     <div class="container-fluid">
       <div class="page-header">
-        <h1 class="h2 font-weight-light">남자 모델</h1>
+        <h1 class="h2 font-weight-light">남자 모델11</h1>
       </div>
       <div class="row">
         <div class="col-sm-12">

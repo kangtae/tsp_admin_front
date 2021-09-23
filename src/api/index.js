@@ -32,6 +32,16 @@ function portfolioCreated(portfolioData) {
   });
 }
 
+//프로덕션 리스트
+function ProductionList(page) {
+  return instance.get(
+    "api/production/lists" + "?page=" + page.page + "&size=" + page.size,
+    {
+      headers,
+    }
+  );
+}
+
 //토큰 값 넘기기
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -46,4 +56,4 @@ const headersFormdata = {
   Accept: "*/*",
 };
 
-export { loginUser, signUser, portfolioCreated };
+export { loginUser, signUser, portfolioCreated, ProductionList };

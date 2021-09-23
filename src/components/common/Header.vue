@@ -42,7 +42,9 @@
               </ul>
             </li>
             <li role="presentation">
-              <a href="../news/News관리_01목록.html">프로덕션 관리</a>
+              <router-link to="/admin/content/production"
+                >프로덕션 관리</router-link
+              >
             </li>
             <li role="presentation">
               <a href="/admin/content/portfolio">포트폴리오 관리</a>

@@ -12,6 +12,7 @@ import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
 import ModelManList from "@/components/model/ModelManList";
 import PortfolioList from "@/components/portfolio/PortfolioList";
+import ProductionList from "@/components/production/ProductionList";
 
 export default {
   data() {
@@ -25,6 +26,7 @@ export default {
     Lnb,
     ModelManList,
     PortfolioList,
+    ProductionList,
   },
   methods: {
     fetchData() {
@@ -33,6 +35,8 @@ export default {
         this.currentComponent = "ModelManList";
       } else if (page == "portfolio") {
         this.currentComponent = "PortfolioList";
+      } else if (page == "production") {
+        this.currentComponent = "ProductionList";
       }
     },
   },

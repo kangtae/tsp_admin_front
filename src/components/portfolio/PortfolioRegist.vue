@@ -63,24 +63,6 @@
                 <tr>
                   <th class="active">첨부파일</th>
                   <td>
-                    <div class="hidden">
-                      <div class="col-xs-2 input-file-box model">
-                        <input
-                          type="file"
-                          class="js-file-change"
-                          data-height="100"
-                          data-default-file=""
-                        />
-                        <button class="btn btn-xs btn-danger btn-remove">
-                          <i class="fa fa-times" aria-hidden="true"></i>
-                          <span class="sr-only">삭제</span>
-                        </button>
-                        <button class="btn btn-xs btn-primary btn-duplicator">
-                          <i class="fa fa-plus" aria-hidden="true"></i>
-                          <span class="sr-only">추가</span>
-                        </button>
-                      </div>
-                    </div>
                     <div class="row">
                       <div
                         v-for="(item, idx) in imageFiles"
@@ -95,8 +77,18 @@
                           @change="fileChange(idx, $event)"
                         />
                         <button
+                          v-if="idx > 0"
+                          class="btn btn-xs btn-danger btn-remove"
+                          type="button"
+                          @click="removeFile(idx, $event)"
+                        >
+                          <i class="fa fa-times" aria-hidden="true"></i>
+                          <span class="sr-only">삭제</span>
+                        </button>
+                        <button
                           @click="addFile"
                           class="btn btn-xs btn-primary btn-duplicator"
+                          type="button"
                         >
                           <i class="fa fa-plus" aria-hidden="true"></i>
                           <span class="sr-only">추가</span>
@@ -170,6 +162,10 @@ export default {
         fileName: "",
       });
       this.dropifyOtp();
+    },
+    removeFile(idx) {
+      console.log(idx);
+      this.imageFiles.splice(idx, 1);
     },
     fileChange(idx, e) {
       console.log(idx);

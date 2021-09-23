@@ -11,15 +11,24 @@ function createInstance() {
 
 const instance = createInstance();
 
+//로그인
 function loginUser(userData) {
   return instance.post("api/auth/admin-login", JSON.stringify(userData), {
     headers,
   });
 }
 
+//회원가입
 function signUser(userData) {
   return instance.post("api/auth/admin-signup", JSON.stringify(userData), {
     headers,
+  });
+}
+
+//포트폴리오 등록
+function portfolioCreated(portfolioData) {
+  return instance.post("api/portfolio", portfolioData, {
+    headersFormdata,
   });
 }
 
@@ -30,4 +39,11 @@ const headers = {
   Accept: "*/*",
 };
 
-export { loginUser, signUser };
+//멀티파트폼데이터 옵션추가
+const headersFormdata = {
+  "Access-Control-Allow-Origin": "*",
+  "Content-type": "multipart/form-data",
+  Accept: "*/*",
+};
+
+export { loginUser, signUser, portfolioCreated };

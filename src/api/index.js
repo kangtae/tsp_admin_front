@@ -42,6 +42,13 @@ function ProductionList(page) {
   );
 }
 
+//프로덕션 등록
+function productionCreated(productionData) {
+  return instance.post("api/production", productionData, {
+    headersFormdata,
+  });
+}
+
 //토큰 값 넘기기
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -56,4 +63,10 @@ const headersFormdata = {
   Accept: "*/*",
 };
 
-export { loginUser, signUser, portfolioCreated, ProductionList };
+export {
+  loginUser,
+  signUser,
+  portfolioCreated,
+  ProductionList,
+  productionCreated,
+};

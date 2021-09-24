@@ -79,13 +79,13 @@
         <div class="col-sm-4 text-left"></div>
         <div class="col-sm-4 text-center"></div>
         <div class="col-sm-4 text-right">
-          <a
+          <router-link
             class="btn btn-success"
-            href="Gallery관리_03등록.html"
+            to="/admin/regist/production"
             role="button"
           >
-            <i class="fa fa-pencil" aria-hidden="true"></i> 등록</a
-          >
+            <i class="fa fa-pencil" aria-hidden="true"></i> 등록
+          </router-link>
         </div>
       </div>
     </div>

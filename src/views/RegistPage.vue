@@ -12,6 +12,7 @@ import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
 import ModelManRegist from "@/components/model/ModelManRegist";
 import PortfolioRegist from "@/components/portfolio/PortfolioRegist";
+import productionRegist from "@/components/production/ProductionRegist";
 
 export default {
   data() {
@@ -25,6 +26,7 @@ export default {
     Lnb,
     ModelManRegist,
     PortfolioRegist,
+    productionRegist,
   },
   methods: {
     fetchData() {
@@ -33,6 +35,8 @@ export default {
         this.currentComponent = "ModelManRegist";
       } else if (page == "portfolio") {
         this.currentComponent = "PortfolioRegist";
+      } else if (page == "production") {
+        this.currentComponent = "productionRegist";
       }
     },
   },

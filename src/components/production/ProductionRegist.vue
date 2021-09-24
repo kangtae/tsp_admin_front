@@ -122,9 +122,8 @@ export default {
     return {
       pageTitle: "프로덕션 등록",
       title: "",
-      imageFile: { file: "", fileName: "" },
+      imageFile: {},
       visible: "Y",
-      testFile: {},
     };
   },
   components: { Editor, PageHeader },
@@ -135,9 +134,7 @@ export default {
     fileChange(e) {
       let file = e.target.files[0];
       console.log(file);
-      this.imageFile.file = file;
-      this.testFile = file;
-      this.imageFile.fileName = file.name;
+      this.imageFile = file;
     },
     dropifyOtp() {
       const vm = this;
@@ -171,7 +168,6 @@ export default {
             console.log(vm);
             e.preventDefault();
             vm.imageFile.file = "";
-            vm.imageFile.fileName = "";
           });
         });
       });
@@ -181,7 +177,6 @@ export default {
       productionData.append("title", this.title);
       productionData.append("visible", this.visible);
       productionData.append("imageFiles", this.imageFile);
-      productionData.append("testFile", this.testFile);
       productionData.append(
         "description",
         this.$refs.toastuiEditor.invoke("getMarkdown")

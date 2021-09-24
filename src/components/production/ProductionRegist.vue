@@ -133,8 +133,9 @@ export default {
     },
     fileChange(e) {
       let file = e.target.files[0];
-      this.imageFiles.file = file;
-      this.imageFiles.fileName = file.name;
+      console.log(file);
+      this.imageFile.file = file;
+      this.imageFile.fileName = file.name;
     },
     dropifyOtp() {
       const vm = this;
@@ -163,11 +164,12 @@ export default {
         };
         $(".dropify").dropify(dropifyOtp);
         const clearBtnAll = document.querySelectorAll(".js-image-clear");
-        Array.prototype.forEach.call(clearBtnAll, function (clearBtn, idx) {
+        Array.prototype.forEach.call(clearBtnAll, function (clearBtn) {
           clearBtn.addEventListener("click", function (e) {
             console.log(vm);
             e.preventDefault();
-            vm.$set(vm.imageFiles, idx, { file: "", fileName: "" });
+            vm.imageFile.file = "";
+            vm.imageFile.fileName = "";
           });
         });
       });

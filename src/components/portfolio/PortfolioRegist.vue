@@ -147,7 +147,7 @@ export default {
       hash: "",
       categoryCd: 0,
       videoUrl: "",
-      imageFiles: [{ file: "", fileName: "" }],
+      imageFiles: [{}],
       editerValue: "",
     };
   },
@@ -157,22 +157,27 @@ export default {
       this.content = this.$refs.toastuiEditor.invoke("getMarkdown");
     },
     addFile() {
-      this.imageFiles.push({
-        file: "",
-        fileName: "",
-      });
+      this.imageFiles.push({});
       this.dropifyOtp();
     },
     removeFile(idx) {
-      console.log(idx);
       this.imageFiles.splice(idx, 1);
+      const clearBtnAll = document.querySelectorAll(".js-image-clear");
+      console.log(clearBtnAll.length);
+      console.log(idx);
+      function triggerEvent(el, type) {
+        var e = document.createEvent("HTMLEvents");
+        e.initEvent(type, false, true);
+        el.dispatchEvent(e);
+      }
+      if (clearBtnAll.length - 1 == idx) {
+        return false;
+      }
+      triggerEvent(clearBtnAll[idx], "click");
     },
     fileChange(idx, e) {
-      console.log(idx);
-      console.log(e);
       let file = e.target.files[0];
-      console.log(this);
-      this.$set(this.imageFiles, idx, { file: file, fileName: file.name });
+      this.$set(this.imageFiles, idx, file);
     },
     dropifyOtp() {
       const vm = this;
@@ -203,9 +208,8 @@ export default {
         const clearBtnAll = document.querySelectorAll(".js-image-clear");
         Array.prototype.forEach.call(clearBtnAll, function (clearBtn, idx) {
           clearBtn.addEventListener("click", function (e) {
-            console.log(vm);
             e.preventDefault();
-            vm.$set(vm.imageFiles, idx, { file: "", fileName: "" });
+            vm.$set(vm.imageFiles, idx, {});
           });
         });
       });
@@ -216,7 +220,13 @@ export default {
       portfolioData.append("hashTag", this.hash);
       portfolioData.append("categoryCd", this.categoryCd);
       portfolioData.append("videoUrl", this.videoUrl);
-      portfolioData.append("imageFiles", this.imageFiles);
+      // portfolioData.append("imageFiles", this.imageFiles);
+      if (this.imageFiles.length > -1) {
+        for (let i = 0; i < this.imageFiles.length; i++) {
+          portfolioData.append(`imageFiles${i}`, this.imageFiles[i]);
+        }
+      }
+
       portfolioData.append(
         "editerValue",
         this.$refs.toastuiEditor.invoke("getMarkdown")

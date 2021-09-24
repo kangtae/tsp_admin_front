@@ -39,7 +39,7 @@
                   <th class="active">카테고리</th>
                   <td>
                     <div class="input-group">
-                      <select v-model="selected" class="form-control">
+                      <select v-model="categoryCd" class="form-control">
                         <option value="0">광고</option>
                         <option value="1">패션쇼</option>
                         <option value="2">패션필름</option>
@@ -55,7 +55,7 @@
                       type="text"
                       name=""
                       id=""
-                      v-model="vidoeUrl"
+                      v-model="videoUrl"
                       class="form-control input-sm"
                     />
                   </td>
@@ -145,8 +145,8 @@ export default {
       pageTitle: "포트폴리오 등록",
       title: "",
       hash: "",
-      selected: 0,
-      vidoeUrl: "",
+      categoryCd: 0,
+      videoUrl: "",
       imageFiles: [{ file: "", fileName: "" }],
       editerValue: "",
     };
@@ -213,9 +213,9 @@ export default {
     async submitForm() {
       const portfolioData = new FormData();
       portfolioData.append("title", this.title);
-      portfolioData.append("hash", this.hash);
-      portfolioData.append("selected", this.selected);
-      portfolioData.append("vidoeUrl", this.vidoeUrl);
+      portfolioData.append("hashTag", this.hash);
+      portfolioData.append("categoryCd", this.categoryCd);
+      portfolioData.append("videoUrl", this.videoUrl);
       portfolioData.append("imageFiles", this.imageFiles);
       portfolioData.append(
         "editerValue",

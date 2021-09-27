@@ -4,17 +4,21 @@
       <PageHeader :title="title"></PageHeader>
       <div class="container">
         <div class="row">
-          <div class="col-xs-4">
+          <div
+            class="col-xs-4"
+            v-for="(production, idx) in productionsMod"
+            :key="idx"
+          >
             <a class="thumbnail thumbnail-link" href="Gallery관리_02상세.html">
               <span class="thumbail-crop thumbail-crop-4:3">
                 <img src="https://i.imgur.com/yGqdVC8.jpg" alt="" />
               </span>
               <div class="caption">
                 <h3 class="thumbnail-title-2 line-ellipsis">
-                  On January 29, Dr. Chung Hak Suk from the Korea Institute of
-                  Scie
+                  {{ production.title }}
                 </h3>
-                <p>2018-05-30 / 275</p>
+                <p>작성일 : {{ production.createTime }}</p>
+                <p>노출여부 : {{ production.visible }}</p>
               </div>
             </a>
           </div>
@@ -23,55 +27,16 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="text-center">
-            <ul class="pagination">
-              <li>
-                <a href="#" aria-label="Previous">
-                  <span aria-hidden="true">
-                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="active">
-                <a href="#"
-                  >1
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">2</a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
-              <li>
-                <a href="#">4</a>
-              </li>
-              <li>
-                <a href="#">5</a>
-              </li>
-              <li>
-                <a href="#">6</a>
-              </li>
-              <li>
-                <a href="#">7</a>
-              </li>
-              <li>
-                <a href="#">8</a>
-              </li>
-              <li>
-                <a href="#">9</a>
-              </li>
-              <li>
-                <a href="#">10</a>
-              </li>
-              <li>
-                <a href="#" aria-label="Next">
-                  <span aria-hidden="true">
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
+            <Pagenation
+              :pageNum="pageNum"
+              :pageNumberList="pageNumberList"
+              :pageUnitNumber="pageUnitNumber"
+              :pageUnit="pageUnit"
+              :perPageListCnt="this.productions.productionListCnt"
+              @movePage="movePage"
+              @prevPage="prevPage"
+              @nextPage="nextPage"
+            ></Pagenation>
           </div>
         </div>
       </div>
@@ -94,6 +59,7 @@
 </template>
 
 <script>
+import Pagenation from "@/components/common/Pagenation";
 import PageHeader from "@/components/common/PageHeader";
 import { ProductionList } from "@/api/index";
 
@@ -104,13 +70,50 @@ export default {
       page: this.pageNum,
       size: this.pageSize,
       pageNum: 1, //보여질 페이지수
-      pageSize: 5, //한페이지에 보여줄 리스트 수
-      pageUnit: 3, // 페이징 번호 노출될 수
+      pageSize: 1, //한페이지에 보여줄 리스트 수
+      pageUnit: 10, // 페이징 번호 노출될 수
+      pageUnitNumber: 0,
+      productions: [],
     };
   },
-  computed: {},
+  computed: {
+    pageNumberList() {
+      let visiblePage;
+      // console.log("test" + this.productions.productionListCnt);
+      let fullPage = parseInt(
+        this.productions.productionListCnt / this.pageUnit
+      );
+      let pageCnt = parseInt(
+        this.productions.productionListCnt / this.pageSize
+      );
+      if (pageCnt == 0) {
+        pageCnt = 1;
+      }
+      let lastPage = pageCnt % this.pageUnit;
+      console.log("last" + lastPage);
+
+      if (this.pageUnitNumber != fullPage) {
+        visiblePage = this.pageUnit;
+      } else {
+        visiblePage = lastPage;
+      }
+      return visiblePage;
+    },
+    productionsMod() {
+      let test = this.productions.productionList;
+      if (test == undefined) return;
+      const newArr = test.map((item) => {
+        console.log("item: ", item);
+        const createTime = item.createTime.split(" ")[0];
+        item.createTime = createTime;
+        return item;
+      });
+      return newArr;
+    },
+  },
   components: {
     PageHeader,
+    Pagenation,
   },
   methods: {
     async productionData() {
@@ -119,13 +122,35 @@ export default {
         size: this.pageSize,
       };
       const { data } = await ProductionList(page);
-      console.log(data);
-      //   this.productions = data.brandInfoList;
+      this.productions = data;
+      console.log("test" + this.productions);
+    },
+    nextPage() {
+      this.pageNum += 1;
+      if ((this.pageNum - 1) % this.pageUnit == 0) {
+        this.pageUnitNumber += 1;
+      }
+      this.productionData();
+    },
+    prevPage() {
+      //이전페이지는 pageNum이 변하기전에  먼저 값을 계산
+      if ((this.pageNum - 1) % this.pageUnit == 0) {
+        this.pageUnitNumber -= 1;
+      }
+      this.pageNum -= 1;
+      this.productionData();
+    },
+    movePage() {
+      console.log(event.target);
+      console.log(event.target.querySelector("span"));
+      this.pageNum = Number(event.target.querySelector("span").innerText);
+      console.log("pageNum" + this.pageNum);
+      this.productionData();
+      console.log(1);
     },
   },
   created() {
     this.productionData();
-    console.log(2);
   },
 };
 </script>

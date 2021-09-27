@@ -206,4 +206,8 @@ select.form-control:optional, select.form-control:required {
   table-layout: fixed;
 }
 
+.is-hide{display:none !important;}
+.pagination > li{display: inline-block;}
+.pagination > li > button:disabled{opacity: 0;}
+.pagination > li + li{margin-left:5px;}
 /*# sourceMappingURL=maps/common.css.map */

@@ -141,7 +141,6 @@ export default {
       console.log(event.target);
       console.log(event.target.querySelector("span"));
       this.pageNum = Number(event.target.querySelector("span").innerText);
-      console.log("pageNum" + this.pageNum);
       this.productionData();
     },
   },

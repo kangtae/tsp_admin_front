@@ -103,7 +103,6 @@ export default {
       let test = this.productions.productionList;
       if (test == undefined) return;
       const newArr = test.map((item) => {
-        console.log("item: ", item);
         const createTime = item.createTime.split(" ")[0];
         item.createTime = createTime;
         return item;
@@ -123,7 +122,6 @@ export default {
       };
       const { data } = await ProductionList(page);
       this.productions = data;
-      console.log("test" + this.productions);
     },
     nextPage() {
       this.pageNum += 1;

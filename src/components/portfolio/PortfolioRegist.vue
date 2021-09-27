@@ -163,8 +163,6 @@ export default {
     removeFile(idx) {
       this.imageFiles.splice(idx, 1);
       const clearBtnAll = document.querySelectorAll(".js-image-clear");
-      console.log(clearBtnAll.length);
-      console.log(idx);
       function triggerEvent(el, type) {
         var e = document.createEvent("HTMLEvents");
         e.initEvent(type, false, true);
@@ -223,7 +221,7 @@ export default {
       // portfolioData.append("imageFiles", this.imageFiles);
       if (this.imageFiles.length > -1) {
         for (let i = 0; i < this.imageFiles.length; i++) {
-          portfolioData.append(`imageFiles${i}`, this.imageFiles[i]);
+          portfolioData.append(`imageFiles`, this.imageFiles[i]);
         }
       }
 

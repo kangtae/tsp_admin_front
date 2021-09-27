@@ -32,7 +32,7 @@
               :pageNumberList="pageNumberList"
               :pageUnitNumber="pageUnitNumber"
               :pageUnit="pageUnit"
-              :perPageListCnt="this.productions.productionListCnt"
+              :perPageListCnt="productionInfo.productionListCnt"
               @movePage="movePage"
               @prevPage="prevPage"
               @nextPage="nextPage"
@@ -61,7 +61,6 @@
 <script>
 import Pagenation from "@/components/common/Pagenation";
 import PageHeader from "@/components/common/PageHeader";
-import { ProductionList } from "@/api/index";
 
 export default {
   data() {
@@ -73,24 +72,25 @@ export default {
       pageSize: 1, //한페이지에 보여줄 리스트 수
       pageUnit: 10, // 페이징 번호 노출될 수
       pageUnitNumber: 0,
-      productions: [],
     };
   },
   computed: {
+    productionInfo() {
+      return this.$store.state.production;
+    },
     pageNumberList() {
       let visiblePage;
       // console.log("test" + this.productions.productionListCnt);
       let fullPage = parseInt(
-        this.productions.productionListCnt / this.pageUnit
+        this.$store.state.production.productionListCnt / this.pageUnit
       );
       let pageCnt = parseInt(
-        this.productions.productionListCnt / this.pageSize
+        this.$store.state.production.productionListCnt / this.pageSize
       );
       if (pageCnt == 0) {
         pageCnt = 1;
       }
       let lastPage = pageCnt % this.pageUnit;
-      console.log("last" + lastPage);
 
       if (this.pageUnitNumber != fullPage) {
         visiblePage = this.pageUnit;
@@ -100,9 +100,9 @@ export default {
       return visiblePage;
     },
     productionsMod() {
-      let test = this.productions.productionList;
-      if (test == undefined) return;
-      const newArr = test.map((item) => {
+      let productionOrigin = this.$store.state.production.productionList;
+      if (productionOrigin == undefined) return;
+      const newArr = productionOrigin.map((item) => {
         const createTime = item.createTime.split(" ")[0];
         item.createTime = createTime;
         return item;
@@ -115,13 +115,12 @@ export default {
     Pagenation,
   },
   methods: {
-    async productionData() {
+    productionData() {
       const page = {
         page: this.pageNum,
         size: this.pageSize,
       };
-      const { data } = await ProductionList(page);
-      this.productions = data;
+      this.$store.dispatch("LIST_PRODUCTION", page);
     },
     nextPage() {
       this.pageNum += 1;
@@ -144,7 +143,6 @@ export default {
       this.pageNum = Number(event.target.querySelector("span").innerText);
       console.log("pageNum" + this.pageNum);
       this.productionData();
-      console.log(1);
     },
   },
   created() {

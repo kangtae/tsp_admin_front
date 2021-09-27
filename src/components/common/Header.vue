@@ -47,7 +47,9 @@
               >
             </li>
             <li role="presentation">
-              <a href="/admin/content/portfolio">포트폴리오 관리</a>
+              <router-link to="/admin/content/portfolio"
+                >포트폴리오 관리</router-link
+              >
             </li>
             <li role="presentation">
               <a href="../gallery/Gallery관리_01목록.html">지원서 관리</a>

@@ -33,6 +33,16 @@ function portfolioCreated(portfolioData) {
 }
 
 //프로덕션 리스트
+function ModelManList(page) {
+  return instance.get(
+    "api/production/lists" + "?page=" + page.page + "&size=" + page.size,
+    {
+      headers,
+    }
+  );
+}
+
+//프로덕션 리스트
 function ProductionList(page) {
   return instance.get(
     "api/production/lists" + "?page=" + page.page + "&size=" + page.size,
@@ -69,4 +79,5 @@ export {
   portfolioCreated,
   ProductionList,
   productionCreated,
+  ModelManList,
 };

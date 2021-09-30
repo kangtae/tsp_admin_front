@@ -80,7 +80,6 @@ export default {
     },
     pageNumberList() {
       let visiblePage;
-      // console.log("test" + this.productions.productionListCnt);
       let fullPage = parseInt(
         this.$store.state.production.productionListCnt / this.pageUnit
       );

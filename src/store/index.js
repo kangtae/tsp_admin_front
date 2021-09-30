@@ -12,6 +12,8 @@ export default new Vuex.Store({
     token: "",
     isLogin: "",
     production: "",
+    modelman: "",
+    userId: "",
   },
   getters: {
     isLogin(state) {
@@ -25,17 +27,27 @@ export default new Vuex.Store({
     setIsLogin(state, loginYn) {
       state.isLogin = loginYn;
     },
+    setUserId(state, userId) {
+      state.userId = userId;
+    },
     clearIsLogin(state) {
       state.isLogin = "";
     },
     SET_PRODUCTION(state, production) {
       state.production = production;
     },
+    SET_MODELMAN(state, modelman) {
+      state.modelman = modelman;
+    },
   },
   actions: {
     async LIST_PRODUCTION({ commit }, page) {
       const { data } = await ProductionList(page);
       commit("SET_PRODUCTION", data);
+    },
+    async LIST_MODELMAN({ commit }, page) {
+      const { data } = await ProductionList(page);
+      commit("SET_MODELMAN", data);
     },
   },
 });

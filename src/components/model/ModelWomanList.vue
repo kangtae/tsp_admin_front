@@ -41,7 +41,7 @@
                 <td class="text-center">1</td>
                 <td>
                   <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >강태완</a
+                    >김수현</a
                   >
                 </td>
                 <td class="text-center">2021-09-16</td>
@@ -92,7 +92,7 @@ import PageHeader from "@/components/common/PageHeader";
 export default {
   data() {
     return {
-      title: "남자모델",
+      title: "여자모델",
       page: this.pageNum,
       size: this.pageSize,
       pageNum: 1, //보여질 페이지수

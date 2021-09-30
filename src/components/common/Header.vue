@@ -25,17 +25,13 @@
               </router-link>
               <ul class="dropdown-menu" role="menu">
                 <li>
-                  <router-link to="/admin/content/woman" class=""
-                    >여자 모델</router-link
-                  >
+                  <router-link to="/admin/content/woman">여자 모델</router-link>
                 </li>
                 <li>
-                  <router-link to="/admin/content/man" class=""
-                    >남자 모델</router-link
-                  >
+                  <router-link to="/admin/content/man">남자 모델</router-link>
                 </li>
                 <li>
-                  <router-link to="/admin/content/senior" class=""
+                  <router-link to="/admin/content/senior"
                     >시니어 모델</router-link
                   >
                 </li>
@@ -56,7 +52,7 @@
             </li>
           </ul>
           <p class="navbar-text navbar-right">
-            안녕하세요. 홍길동님
+            안녕하세요. {{ this.$store.state.userId }}님
             <button type="submit" class="btn btn-default btn-xs">
               <i class="fa fa-sign-out" aria-hidden="true"></i> 로그아웃
             </button>
@@ -81,7 +77,18 @@ export default {
       }
     },
   },
-  created() {},
+  mounted() {
+    const navElemAll = document.querySelectorAll(".navbar-nav li");
+    Array.prototype.forEach.call(navElemAll, function (navElem, idx) {
+      navElem.addEventListener("click", function () {
+        if (idx == 0) return false;
+        const dropdown = document.querySelector(".dropdown");
+        if (dropdown.classList.contains("open")) {
+          dropdown.classList.remove("open");
+        }
+      });
+    });
+  },
 };
 </script>
 

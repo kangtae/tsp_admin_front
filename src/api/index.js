@@ -59,6 +59,22 @@ function productionCreated(productionData) {
   });
 }
 
+//뉴스 수정
+function editProduction(productionSeq, productionData) {
+  return instance.post(
+    "api/admin-production/" + productionSeq,
+    productionData,
+    {
+      headersFormdata,
+    }
+  );
+}
+
+//뉴스 상세
+function fetchProduction(productionSeq) {
+  return instance.get("api/production/" + productionSeq);
+}
+
 //토큰 값 넘기기
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -80,4 +96,6 @@ export {
   ProductionList,
   productionCreated,
   ModelManList,
+  editProduction,
+  fetchProduction,
 };

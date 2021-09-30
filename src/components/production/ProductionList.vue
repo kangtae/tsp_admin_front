@@ -14,7 +14,8 @@
               class="thumbnail thumbnail-link"
             >
               <span class="thumbail-crop thumbail-crop-4:3">
-                <img src="../../../public/upload/0930142227508.png" />
+                <img :src="production.file_mask" />
+                <img src="../../../public/upload/0930175903807.png" alt="" />
               </span>
               <div class="caption">
                 <h3 class="thumbnail-title-2 line-ellipsis">
@@ -73,7 +74,7 @@ export default {
       page: this.pageNum,
       size: this.pageSize,
       pageNum: 1, //보여질 페이지수
-      pageSize: 1, //한페이지에 보여줄 리스트 수
+      pageSize: 5, //한페이지에 보여줄 리스트 수
       pageUnit: 3, // 페이징 번호 노출될 수
       pageUnitNumber: 0,
     };
@@ -96,16 +97,11 @@ export default {
       let fullPage = parseInt(pageCnt / this.pageUnit);
 
       let lastPage = pageCnt % this.pageUnit;
-      console.log("lastPage" + lastPage);
-      console.log("pageUnitNumber" + this.pageUnitNumber);
-      console.log("fullPage" + fullPage);
       if (this.pageUnitNumber != fullPage) {
         visiblePage = this.pageUnit;
       } else {
         visiblePage = lastPage;
       }
-      console.log(visiblePage);
-
       return visiblePage;
     },
     productionsMod() {
@@ -113,8 +109,9 @@ export default {
       if (productionOrigin == undefined) return;
       const newArr = productionOrigin.map((item) => {
         const createTime = item.createTime.split("T")[0];
+        const fileMask = `../../../public/upload/${item.file_mask}`;
         item.createTime = createTime;
-
+        item.file_mask = fileMask;
         return item;
       });
       return newArr;
@@ -133,7 +130,6 @@ export default {
       this.$store.dispatch("LIST_PRODUCTION", page);
     },
     ProductionEdit: function (idx) {
-      alert(1);
       const seq = this.productionInfo.productionList[idx].idx;
       this.$router.push(`/admin/edit/production/${seq}`);
     },

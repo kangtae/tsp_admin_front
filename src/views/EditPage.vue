@@ -10,23 +10,19 @@
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
-import ModelManList from "@/components/model/ModelManList";
-import PortfolioList from "@/components/portfolio/PortfolioList";
-import ProductionList from "@/components/production/ProductionList";
+import ProductionEdit from "@/components/production/ProductionEdit";
 
 export default {
   data() {
     return {
-      currentComponent: "ModelManList",
+      currentComponent: "ProductionEdit",
     };
   },
   components: {
     Header,
     Footer,
     Lnb,
-    ModelManList,
-    PortfolioList,
-    ProductionList,
+    ProductionEdit,
   },
   methods: {
     fetchData() {

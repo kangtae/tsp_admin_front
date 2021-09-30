@@ -5766,6 +5766,7 @@ a.badge:hover, a.badge:focus {
 .thumbnail .caption {
   padding: 9px;
   color: #333333;
+  pointer-events: none;
 }
 
 a.thumbnail:hover,
@@ -7751,6 +7752,7 @@ button.close {
   position: relative;
   display: block;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .thumbail-crop img {

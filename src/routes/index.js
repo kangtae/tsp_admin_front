@@ -35,6 +35,12 @@ const router = new VueRouter({
       meta: { auth: true },
     },
     {
+      //수정
+      path: "/admin/edit/:page/:idx",
+      component: () => import("../views/EditPage.vue"),
+      meta: { auth: true },
+    },
+    {
       //회원가입
       path: "/admin/signup",
       component: () => import("../views/SignupPage.vue"),

@@ -9,9 +9,12 @@
             v-for="(production, idx) in productionsMod"
             :key="idx"
           >
-            <a class="thumbnail thumbnail-link" href="Gallery관리_02상세.html">
+            <a
+              @click.self.prevent="ProductionEdit(idx)"
+              class="thumbnail thumbnail-link"
+            >
               <span class="thumbail-crop thumbail-crop-4:3">
-                <img :src="production.file_path" />
+                <img src="../../../public/upload/0930142227508.png" />
               </span>
               <div class="caption">
                 <h3 class="thumbnail-title-2 line-ellipsis">
@@ -104,6 +107,7 @@ export default {
       const newArr = productionOrigin.map((item) => {
         const createTime = item.createTime.split("T")[0];
         item.createTime = createTime;
+
         return item;
       });
       return newArr;
@@ -120,6 +124,11 @@ export default {
         size: this.pageSize,
       };
       this.$store.dispatch("LIST_PRODUCTION", page);
+    },
+    ProductionEdit: function (idx) {
+      alert(1);
+      const seq = this.productionInfo.productionList[idx].idx;
+      this.$router.push(`/admin/edit/production/${seq}`);
     },
     nextPage() {
       this.pageNum += 1;

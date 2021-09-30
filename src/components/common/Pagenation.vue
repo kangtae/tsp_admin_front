@@ -17,12 +17,12 @@
     >
       <button @click.self.prevent="childMovePage">
         {{ pageList + pageUnitNumber * pageUnit }}
-        <span class="sr-only">{{ idx + 1 }}</span>
+        <span class="sr-only">{{ pageList + pageUnitNumber * pageUnit }}</span>
       </button>
     </li>
     <!-- <li class="active"> -->
     <li>
-      <button :disabled="pageNum === perPageListCnt" @click="childNextPage">
+      <button :disabled="pageNum == productionInfo" @click="childNextPage">
         <span aria-hidden="true">
           <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         </span>
@@ -39,6 +39,7 @@ export default {
     "pageUnitNumber",
     "pageUnit",
     "perPageListCnt",
+    "pageSize",
   ],
   methods: {
     nextPage() {
@@ -64,6 +65,18 @@ export default {
     },
     childNextPage() {
       this.$emit("nextPage");
+    },
+  },
+  computed: {
+    productionInfo() {
+      let pageCnt = parseInt(this._props.perPageListCnt / this._props.pageSize);
+      if (this._props.perPageListCnt % this._props.pageSize != 0) {
+        pageCnt += 1;
+      }
+      if (pageCnt == 0) {
+        pageCnt = 1;
+      }
+      return pageCnt;
     },
   },
 };

@@ -36,6 +36,7 @@
               :pageUnitNumber="pageUnitNumber"
               :pageUnit="pageUnit"
               :perPageListCnt="productionInfo.productionListCnt"
+              :pageSize="pageSize"
               @movePage="movePage"
               @prevPage="prevPage"
               @nextPage="nextPage"
@@ -72,8 +73,8 @@ export default {
       page: this.pageNum,
       size: this.pageSize,
       pageNum: 1, //보여질 페이지수
-      pageSize: 10, //한페이지에 보여줄 리스트 수
-      pageUnit: 10, // 페이징 번호 노출될 수
+      pageSize: 1, //한페이지에 보여줄 리스트 수
+      pageUnit: 3, // 페이징 번호 노출될 수
       pageUnitNumber: 0,
     };
   },
@@ -83,22 +84,28 @@ export default {
     },
     pageNumberList() {
       let visiblePage;
-      let fullPage = parseInt(
-        this.$store.state.production.productionListCnt / this.pageUnit
-      );
       let pageCnt = parseInt(
         this.$store.state.production.productionListCnt / this.pageSize
       );
+      if (this.$store.state.production.productionListCnt % this.pageSize != 0) {
+        pageCnt += 1;
+      }
       if (pageCnt == 0) {
         pageCnt = 1;
       }
-      let lastPage = pageCnt % this.pageUnit;
+      let fullPage = parseInt(pageCnt / this.pageUnit);
 
+      let lastPage = pageCnt % this.pageUnit;
+      console.log("lastPage" + lastPage);
+      console.log("pageUnitNumber" + this.pageUnitNumber);
+      console.log("fullPage" + fullPage);
       if (this.pageUnitNumber != fullPage) {
         visiblePage = this.pageUnit;
       } else {
         visiblePage = lastPage;
       }
+      console.log(visiblePage);
+
       return visiblePage;
     },
     productionsMod() {

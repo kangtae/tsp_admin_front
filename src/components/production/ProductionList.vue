@@ -11,7 +11,7 @@
           >
             <a class="thumbnail thumbnail-link" href="Gallery관리_02상세.html">
               <span class="thumbail-crop thumbail-crop-4:3">
-                <img src="https://i.imgur.com/yGqdVC8.jpg" alt="" />
+                <img :src="production.file_path" />
               </span>
               <div class="caption">
                 <h3 class="thumbnail-title-2 line-ellipsis">
@@ -69,7 +69,7 @@ export default {
       page: this.pageNum,
       size: this.pageSize,
       pageNum: 1, //보여질 페이지수
-      pageSize: 1, //한페이지에 보여줄 리스트 수
+      pageSize: 10, //한페이지에 보여줄 리스트 수
       pageUnit: 10, // 페이징 번호 노출될 수
       pageUnitNumber: 0,
     };
@@ -102,7 +102,7 @@ export default {
       let productionOrigin = this.$store.state.production.productionList;
       if (productionOrigin == undefined) return;
       const newArr = productionOrigin.map((item) => {
-        const createTime = item.createTime.split(" ")[0];
+        const createTime = item.createTime.split("T")[0];
         item.createTime = createTime;
         return item;
       });

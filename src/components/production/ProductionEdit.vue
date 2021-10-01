@@ -33,7 +33,7 @@
                           id="input-file-now"
                           class="dropify"
                           data-height="200"
-                          data-default-file=""
+                          :data-default-file="filePath"
                           data-allowed-file-extensions="jpg png gif"
                           @change="fileChange"
                         />
@@ -123,7 +123,8 @@ export default {
       pageTitle: "프로덕션 수정",
       title: "",
       imageFile: {},
-      visible: "Y",
+      visible: "",
+      filePath: "",
     };
   },
   components: { Editor, PageHeader },
@@ -165,7 +166,6 @@ export default {
         const clearBtnAll = document.querySelectorAll(".js-image-clear");
         Array.prototype.forEach.call(clearBtnAll, function (clearBtn) {
           clearBtn.addEventListener("click", function (e) {
-            console.log(vm);
             e.preventDefault();
             vm.imageFile.file = "";
           });
@@ -173,6 +173,7 @@ export default {
       });
     },
     async submitForm() {
+      const idx = this.$route.params.idx;
       const productionData = new FormData();
       productionData.append("title", this.title);
       productionData.append("visible", this.visible);
@@ -181,24 +182,23 @@ export default {
         "description",
         this.$refs.toastuiEditor.invoke("getMarkdown")
       );
-      const { data } = await editProduction(productionData);
+      const { data } = await editProduction(idx, productionData);
       if (data == "Y") {
         this.$router.push("/admin/content/production");
       }
     },
   },
   async created() {
-    this.dropifyOtp();
     const idx = this.$route.params.idx;
     const { data } = await fetchProduction(idx);
-    // this.newsTitle = data.newsInfo.news_title;
-    // this.visible = data.newsInfo.visible;
-    // this.fileTitle = data.newsInfo.fileName;
-    // this.$refs.toastuiEditor.invoke(
-    //   "setMarkdown",
-    //   data.newsInfo.news_description
-    // );
-    console.log(data);
+    this.title = data.productionInfo.title;
+    this.visible = data.productionInfo.visible;
+    this.filePath = data.productionInfo.file_path;
+    this.$refs.toastuiEditor.invoke(
+      "setMarkdown",
+      data.productionInfo.description
+    );
+    this.dropifyOtp();
   },
 };
 </script>

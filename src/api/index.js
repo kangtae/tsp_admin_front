@@ -59,15 +59,11 @@ function productionCreated(productionData) {
   });
 }
 
-//뉴스 수정
+//프로덕션 수정
 function editProduction(productionSeq, productionData) {
-  return instance.post(
-    "api/admin-production/" + productionSeq,
-    productionData,
-    {
-      headersFormdata,
-    }
-  );
+  return instance.post("api/production/" + productionSeq, productionData, {
+    headersFormdata,
+  });
 }
 
 //뉴스 상세

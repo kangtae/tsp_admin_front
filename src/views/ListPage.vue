@@ -15,6 +15,7 @@ import ModelWomanList from "@/components/model/ModelWomanList";
 import ModelSeniorList from "@/components/model/ModelSeniorList";
 import PortfolioList from "@/components/portfolio/PortfolioList";
 import ProductionList from "@/components/production/ProductionList";
+import ResumeList from "@/components/resume/ResumeList";
 
 export default {
   data() {
@@ -31,6 +32,7 @@ export default {
     PortfolioList,
     ProductionList,
     ModelSeniorList,
+    ResumeList,
   },
   methods: {
     fetchData() {
@@ -45,6 +47,8 @@ export default {
         this.currentComponent = "PortfolioList";
       } else if (page == "production") {
         this.currentComponent = "ProductionList";
+      } else if (page == "resume") {
+        this.currentComponent = "ResumeList";
       }
     },
   },

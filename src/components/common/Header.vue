@@ -48,7 +48,7 @@
               >
             </li>
             <li role="presentation">
-              <a href="../gallery/Gallery관리_01목록.html">지원서 관리</a>
+              <router-link to="/admin/content/resume">지원서 관리</router-link>
             </li>
           </ul>
           <p class="navbar-text navbar-right">

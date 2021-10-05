@@ -34,6 +34,9 @@ export default new Vuex.Store({
     clearIsLogin(state) {
       state.isLogin = "";
     },
+    clearToken(state) {
+      state.token = "";
+    },
     SET_PRODUCTION(state, production) {
       state.production = production;
     },

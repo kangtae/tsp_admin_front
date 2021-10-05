@@ -110,11 +110,13 @@ export default {
     },
   },
   async created() {
+    this.$store.state.LoadingStatus = true;
     const idx = this.$route.params.idx;
     const { data } = await fetchProduction(idx);
+    this.$store.state.LoadingStatus = false;
     this.title = data.productionInfo.title;
     this.visible = data.productionInfo.visible;
-    this.filePath = data.productionInfo.file_path;
+    this.filePath = data.productionInfo.file_mask;
     this.description = data.productionInfo.description;
   },
 };

@@ -53,7 +53,11 @@
           </ul>
           <p class="navbar-text navbar-right">
             안녕하세요. {{ this.$store.state.userId }}님
-            <button type="submit" class="btn btn-default btn-xs">
+            <button
+              type="submit"
+              class="btn btn-default btn-xs"
+              @click="logOutBtn"
+            >
               <i class="fa fa-sign-out" aria-hidden="true"></i> 로그아웃
             </button>
           </p>
@@ -75,6 +79,11 @@ export default {
       } else {
         navElem.classList.add("open");
       }
+    },
+    logOutBtn() {
+      this.$store.commit("clearIsLogin");
+      this.$store.commit("clearToken");
+      this.$router.push("/admin/login");
     },
   },
   mounted() {

@@ -22,7 +22,7 @@
                   <td colspan="5">
                     <div class="row">
                       <div class="col-xs-2">
-                        <img :src="filePath" alt="" />
+                        <img class="img-w100" :src="filePath" alt="" />
                       </div>
                     </div>
                   </td>

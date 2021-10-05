@@ -197,7 +197,7 @@ export default {
     this.$store.state.LoadingStatus = false;
     this.title = data.productionInfo.title;
     this.visible = data.productionInfo.visible;
-    this.filePath = data.productionInfo.file_path;
+    this.filePath = data.productionInfo.file_mask;
     this.$refs.toastuiEditor.invoke(
       "setMarkdown",
       data.productionInfo.description

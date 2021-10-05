@@ -108,9 +108,8 @@ export default {
       if (productionOrigin == undefined) return;
       const newArr = productionOrigin.map((item) => {
         const createTime = item.createTime.split("T")[0];
-        const fileMask = `../../../public/upload/${item.file_mask}`;
+        // const fileMask = `../../../public/upload/${item.file_mask}`;
         item.createTime = createTime;
-        item.file_mask = fileMask;
         return item;
       });
       return newArr;

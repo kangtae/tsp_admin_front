@@ -1,6 +1,7 @@
 <template>
   <div style="display: table; width: 100%">
     <Header></Header>
+    <LodingSpinner v-if="$store.state.LoadingStatus"></LodingSpinner>
     <component :is="currentComponent"></component>
     <Footer></Footer>
   </div>
@@ -12,6 +13,7 @@ import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
 import ResumeDetail from "@/components/resume/ResumeDetail";
 import ProductionDetail from "@/components/production/ProductionDetail.vue";
+import LodingSpinner from "@/components/common/LodingSpinner.vue";
 
 export default {
   data() {
@@ -25,6 +27,7 @@ export default {
     Lnb,
     ResumeDetail,
     ProductionDetail,
+    LodingSpinner,
   },
   methods: {
     fetchData() {

@@ -173,6 +173,7 @@ export default {
       });
     },
     async submitForm() {
+      this.$store.state.LoadingStatus = true;
       const idx = this.$route.params.idx;
       const productionData = new FormData();
       productionData.append("title", this.title);
@@ -183,6 +184,7 @@ export default {
         this.$refs.toastuiEditor.invoke("getMarkdown")
       );
       const { data } = await editProduction(idx, productionData);
+      this.$store.state.LoadingStatus = false;
       if (data == "Y") {
         this.$router.push("/admin/content/production");
       }
@@ -190,7 +192,9 @@ export default {
   },
   async created() {
     const idx = this.$route.params.idx;
+    this.$store.state.LoadingStatus = true;
     const { data } = await fetchProduction(idx);
+    this.$store.state.LoadingStatus = false;
     this.title = data.productionInfo.title;
     this.visible = data.productionInfo.visible;
     this.filePath = data.productionInfo.file_path;

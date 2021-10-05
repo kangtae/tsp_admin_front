@@ -40,20 +40,18 @@ export default new Vuex.Store({
     SET_MODELMAN(state, modelman) {
       state.modelman = modelman;
     },
-    startSpinner(state) {
-      state.LoadingStatus = true;
-    },
-    endSpinner(state) {
-      state.LoadingStatus = false;
-    },
   },
   actions: {
     async LIST_PRODUCTION({ commit }, page) {
+      this.state.LoadingStatus = true;
       const { data } = await ProductionList(page);
+      this.state.LoadingStatus = false;
       commit("SET_PRODUCTION", data);
     },
     async LIST_MODELMAN({ commit }, page) {
+      this.state.LoadingStatus = true;
       const { data } = await ProductionList(page);
+      this.state.LoadingStatus = false;
       commit("SET_MODELMAN", data);
     },
   },

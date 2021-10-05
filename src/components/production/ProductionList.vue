@@ -10,12 +10,11 @@
             :key="idx"
           >
             <a
-              @click.self.prevent="ProductionEdit(idx)"
+              @click.self.prevent="ProductionDetail(idx)"
               class="thumbnail thumbnail-link"
             >
               <span class="thumbail-crop thumbail-crop-4:3">
                 <img :src="production.file_mask" />
-                <img src="../../../public/upload/0930175903807.png" alt="" />
               </span>
               <div class="caption">
                 <h3 class="thumbnail-title-2 line-ellipsis">
@@ -129,9 +128,9 @@ export default {
       };
       this.$store.dispatch("LIST_PRODUCTION", page);
     },
-    ProductionEdit: function (idx) {
+    ProductionDetail: function (idx) {
       const seq = this.productionInfo.productionList[idx].idx;
-      this.$router.push(`/admin/edit/production/${seq}`);
+      this.$router.push(`/admin/detail/production/${seq}`);
     },
     nextPage() {
       this.pageNum += 1;

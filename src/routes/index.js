@@ -29,7 +29,7 @@ const router = new VueRouter({
     },
     {
       //상세
-      path: "/admin/detail/:page",
+      path: "/admin/detail/:page/:idx",
       component: () => import("../views/DetailPage.vue"),
       meta: { auth: true },
     },

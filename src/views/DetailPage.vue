@@ -11,6 +11,7 @@ import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
 import ResumeDetail from "@/components/resume/ResumeDetail";
+import ProductionDetail from "@/components/production/ProductionDetail.vue";
 
 export default {
   data() {
@@ -23,12 +24,15 @@ export default {
     Footer,
     Lnb,
     ResumeDetail,
+    ProductionDetail,
   },
   methods: {
     fetchData() {
       const page = this.$route.params.page;
       if (page == "resume") {
         this.currentComponent = "ResumeDetail";
+      } else if (page == "production") {
+        this.currentComponent = "ProductionDetail";
       }
     },
   },

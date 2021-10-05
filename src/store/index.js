@@ -14,6 +14,7 @@ export default new Vuex.Store({
     production: "",
     modelman: "",
     userId: "",
+    LoadingStatus: false,
   },
   getters: {
     isLogin(state) {
@@ -38,6 +39,12 @@ export default new Vuex.Store({
     },
     SET_MODELMAN(state, modelman) {
       state.modelman = modelman;
+    },
+    startSpinner(state) {
+      state.LoadingStatus = true;
+    },
+    endSpinner(state) {
+      state.LoadingStatus = false;
     },
   },
   actions: {

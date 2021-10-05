@@ -27,7 +27,12 @@ const router = new VueRouter({
       component: () => import("../views/ListPage.vue"),
       meta: { auth: true },
     },
-
+    {
+      //상세
+      path: "/admin/detail/:page",
+      component: () => import("../views/DetailPage.vue"),
+      meta: { auth: true },
+    },
     {
       //등록
       path: "/admin/regist/:page",

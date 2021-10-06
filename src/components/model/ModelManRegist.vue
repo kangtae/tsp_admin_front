@@ -313,7 +313,6 @@ export default {
     async submitForm() {
       let totalImageFiles = this.imageFiles.slice();
       totalImageFiles.unshift(this.mainImage);
-      console.log(totalImageFiles);
       const modelManData = new FormData();
       modelManData.append("modelKorName", this.korTitle);
       modelManData.append("modelEngName", this.engTitle);
@@ -321,10 +320,9 @@ export default {
       modelManData.append("size3", this.size3);
       modelManData.append("height", this.height);
       modelManData.append("visible", this.visible);
-      // modelManData.append("imageFiles", this.mainImage);
       if (totalImageFiles.length > -1) {
         for (let i = 0; i < totalImageFiles.length; i++) {
-          modelManData.append(`imageFiles1`, totalImageFiles[i]);
+          modelManData.append(`imageFiles`, totalImageFiles[i]);
         }
       }
       modelManData.append(

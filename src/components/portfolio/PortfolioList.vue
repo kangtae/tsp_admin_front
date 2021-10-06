@@ -32,6 +32,7 @@
           <div class="space-vertical"></div>
           <table class="table table-striped table-bordered">
             <thead>
+              <th class="text-center" style="width: 60px">선택</th>
               <th class="text-center" style="width: 60px">번호</th>
               <th class="text-center" style="width: 100px">구분</th>
               <th class="text-center">제목</th>
@@ -39,6 +40,12 @@
             </thead>
             <tbody>
               <tr>
+                <td class="text-center">
+                  <label class="form-checkbox">
+                    <input type="checkbox" name="" id="" value="option1" />
+                    <i></i>
+                  </label>
+                </td>
                 <td class="text-center">1</td>
                 <td class="text-center">광고</td>
                 <td>
@@ -54,63 +61,65 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
-          <div class="text-center">
-            <ul class="pagination">
-              <li>
-                <a href="#" aria-label="Previous">
-                  <span aria-hidden="true">
-                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="active">
-                <a href="#"
-                  >1
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">2</a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
-              <li>
-                <a href="#">4</a>
-              </li>
-              <li>
-                <a href="#">5</a>
-              </li>
-              <li>
-                <a href="#">6</a>
-              </li>
-              <li>
-                <a href="#">7</a>
-              </li>
-              <li>
-                <a href="#">8</a>
-              </li>
-              <li>
-                <a href="#">9</a>
-              </li>
-              <li>
-                <a href="#">10</a>
-              </li>
-              <li>
-                <a href="#" aria-label="Next">
-                  <span aria-hidden="true">
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div class="col-sm-4 text-left">
+          <button type="button" class="btn btn-danger btn-flat">
+            <i class="fa fa-trash" aria-hidden="true"></i> 선택삭제
+          </button>
+          <button type="button" class="btn btn-danger btn-flat">
+            <i class="fa fa-check-square" aria-hidden="true"></i> 전체선택
+          </button>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4 text-left"></div>
-        <div class="col-sm-4 text-center"></div>
+        <div class="col-sm-4 text-center">
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                </span>
+              </a>
+            </li>
+            <li class="active">
+              <a href="#"
+                >1
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">2</a>
+            </li>
+            <li>
+              <a href="#">3</a>
+            </li>
+            <li>
+              <a href="#">4</a>
+            </li>
+            <li>
+              <a href="#">5</a>
+            </li>
+            <li>
+              <a href="#">6</a>
+            </li>
+            <li>
+              <a href="#">7</a>
+            </li>
+            <li>
+              <a href="#">8</a>
+            </li>
+            <li>
+              <a href="#">9</a>
+            </li>
+            <li>
+              <a href="#">10</a>
+            </li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
         <div class="col-sm-4 text-right">
           <router-link
             class="btn btn-success"

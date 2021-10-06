@@ -47,7 +47,11 @@
         </div>
         <div class="row">
           <div class="col-sm-4 text-left">
-            <a class="btn btn-danger" href="" role="button">
+            <a
+              class="btn btn-danger"
+              @click.self.prevent="ProductionDelete"
+              role="button"
+            >
               <i class="fa fa-trash" aria-hidden="true"></i> 삭제</a
             >
           </div>
@@ -78,7 +82,7 @@
 <script>
 import "@toast-ui/editor/dist/toastui-editor.css";
 import PageHeader from "@/components/common/PageHeader";
-import { fetchProduction } from "@/api/index";
+import { deleteProduction, fetchProduction } from "@/api/index";
 
 export default {
   data() {
@@ -107,6 +111,13 @@ export default {
     ProductionEdit() {
       const seq = this.$route.params.idx;
       this.$router.push(`/admin/edit/production/${seq}`);
+    },
+    async ProductionDelete() {
+      const seq = this.$route.params.idx;
+      const { data } = await deleteProduction(seq);
+      if (data == "Y") {
+        this.$router.push(`/admin/content/production`);
+      }
     },
   },
   async created() {

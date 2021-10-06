@@ -32,7 +32,14 @@ function portfolioCreated(portfolioData) {
   });
 }
 
-//프로덕션 리스트
+//남자모델 등록
+function modelManCreated(modelManData) {
+  return instance.post("api/model", modelManData, {
+    headersFormdata,
+  });
+}
+
+//남자모델 리스트
 function ModelManList(page) {
   return instance.get(
     "api/production/lists" + "?page=" + page.page + "&size=" + page.size,
@@ -66,9 +73,14 @@ function editProduction(productionSeq, productionData) {
   });
 }
 
-//뉴스 상세
+//프로덕션 상세
 function fetchProduction(productionSeq) {
   return instance.get("api/production/" + productionSeq);
+}
+
+//프로덕션 삭제
+function deleteProduction(productionSeq) {
+  return instance.delete("api/production/" + productionSeq);
 }
 
 //토큰 값 넘기기
@@ -94,4 +106,6 @@ export {
   ModelManList,
   editProduction,
   fetchProduction,
+  deleteProduction,
+  modelManCreated,
 };

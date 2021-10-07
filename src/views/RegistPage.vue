@@ -10,29 +10,29 @@
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
-import ModelManRegist from "@/components/model/ModelManRegist";
+import ModelRegist from "@/components/model/ModelRegist";
 import PortfolioRegist from "@/components/portfolio/PortfolioRegist";
 import productionRegist from "@/components/production/ProductionRegist";
 
 export default {
   data() {
     return {
-      currentComponent: "ModelManRegist",
+      currentComponent: "ModelRegist",
     };
   },
   components: {
     Header,
     Footer,
     Lnb,
-    ModelManRegist,
+    ModelRegist,
     PortfolioRegist,
     productionRegist,
   },
   methods: {
     fetchData() {
       const page = this.$route.params.page;
-      if (page == "man") {
-        this.currentComponent = "ModelManRegist";
+      if (page == "model") {
+        this.currentComponent = "ModelRegist";
       } else if (page == "portfolio") {
         this.currentComponent = "PortfolioRegist";
       } else if (page == "production") {

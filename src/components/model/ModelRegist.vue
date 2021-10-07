@@ -10,11 +10,131 @@
                 <col style="width: 100px" />
                 <col />
                 <col style="width: 100px" />
-                <col />
+                <col style="width: 300px" />
                 <col style="width: 100px" />
                 <col />
               </colgroup>
               <tbody>
+                <tr>
+                  <th class="active">구분</th>
+                  <td colspan="5">
+                    <label class="radio-inline">
+                      <span class="form-radio">
+                        <input
+                          type="radio"
+                          name="categoryCd"
+                          value="man"
+                          v-model="categoryCd"
+                          checked
+                        />
+                        <i></i>
+                      </span>
+                      남자
+                    </label>
+                    <label class="radio-inline">
+                      <span class="form-radio">
+                        <input
+                          type="radio"
+                          name="categoryCd"
+                          value="woman"
+                          v-model="categoryCd"
+                        />
+                        <i></i>
+                      </span>
+                      여자
+                    </label>
+                    <label class="radio-inline">
+                      <span class="form-radio">
+                        <input
+                          type="radio"
+                          name="categoryCd"
+                          value="senior"
+                          v-model="categoryCd"
+                        />
+                        <i></i>
+                      </span>
+                      시니어
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="active">나이</th>
+                  <td colspan="5">
+                    <label class="radio-inline">
+                      <span class="form-radio">
+                        <input
+                          type="radio"
+                          name="categoryAge"
+                          value="2"
+                          v-model="categoryAge"
+                          checked
+                        />
+                        <i></i>
+                      </span>
+                      20대
+                    </label>
+                    <label class="radio-inline">
+                      <span class="form-radio">
+                        <input
+                          type="radio"
+                          name="categoryAge"
+                          value="3"
+                          v-model="categoryAge"
+                        />
+                        <i></i>
+                      </span>
+                      30대
+                    </label>
+                    <label class="radio-inline">
+                      <span class="form-radio">
+                        <input
+                          type="radio"
+                          name="categoryAge"
+                          value="4"
+                          v-model="categoryAge"
+                        />
+                        <i></i>
+                      </span>
+                      40대
+                    </label>
+                    <label class="radio-inline">
+                      <span class="form-radio">
+                        <input
+                          type="radio"
+                          name="categoryAge"
+                          value="5"
+                          v-model="categoryAge"
+                        />
+                        <i></i>
+                      </span>
+                      50대
+                    </label>
+                    <label class="radio-inline">
+                      <span class="form-radio">
+                        <input
+                          type="radio"
+                          name="categoryAge"
+                          value="6"
+                          v-model="categoryAge"
+                        />
+                        <i></i>
+                      </span>
+                      60대
+                    </label>
+                    <label class="radio-inline">
+                      <span class="form-radio">
+                        <input
+                          type="radio"
+                          name="categoryAge"
+                          value="7"
+                          v-model="categoryAge"
+                        />
+                        <i></i>
+                      </span>
+                      70대
+                    </label>
+                  </td>
+                </tr>
                 <tr>
                   <th class="active">국문 이름</th>
                   <td colspan="5">
@@ -52,13 +172,35 @@
                   </td>
                   <th class="active">3-size</th>
                   <td>
-                    <input
-                      type="number"
-                      name=""
-                      id=""
-                      v-model="size3"
-                      class="form-control input-sm"
-                    />
+                    <ul class="three-input">
+                      <li class="three-input__item">
+                        <input
+                          type="number"
+                          name=""
+                          id=""
+                          v-model="size1"
+                          class="form-control input-sm"
+                        />
+                      </li>
+                      <li class="three-input__item">
+                        <input
+                          type="number"
+                          name=""
+                          id=""
+                          v-model="size2"
+                          class="form-control input-sm"
+                        />
+                      </li>
+                      <li class="three-input__item">
+                        <input
+                          type="number"
+                          name=""
+                          id=""
+                          v-model="size3"
+                          class="form-control input-sm"
+                        />
+                      </li>
+                    </ul>
                   </td>
                   <th class="active">shoes</th>
                   <td>
@@ -204,10 +346,14 @@ import { modelManCreated } from "@/api/index";
 export default {
   data() {
     return {
-      pageTitle: "포트폴리오 등록",
+      pageTitle: "모델 등록",
+      categoryCd: "man",
+      categoryAge: "2",
       korTitle: "",
       engTitle: "",
       height: "",
+      size1: "",
+      size2: "",
       size3: "",
       shoes: "",
       mainImage: "",
@@ -313,11 +459,14 @@ export default {
     async submitForm() {
       let totalImageFiles = this.imageFiles.slice();
       totalImageFiles.unshift(this.mainImage);
+      const totalSize3 = this.size1 + this.size2 + this.size3;
       const modelManData = new FormData();
       modelManData.append("modelKorName", this.korTitle);
       modelManData.append("modelEngName", this.engTitle);
+      modelManData.append("categoryCd", this.categoryCd);
+      modelManData.append("categoryAge", this.categoryAge);
       modelManData.append("shoes", this.shoes);
-      modelManData.append("size3", this.size3);
+      modelManData.append("size3", totalSize3);
       modelManData.append("height", this.height);
       modelManData.append("visible", this.visible);
       if (totalImageFiles.length > -1) {
@@ -344,5 +493,31 @@ export default {
 <style>
 .dropify-wrapper .dropify-message p {
   font-size: 14px;
+}
+.three-input {
+  margin: 0 0 0 -10px;
+  padding: 0;
+  list-style: none;
+}
+.three-input__item {
+  position: relative;
+  display: inline-block;
+  width: 33.33%;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.three-input__item:before {
+  position: absolute;
+  top: 0;
+  left: 3px;
+  bottom: 0;
+  width: 4px;
+  height: 0;
+  margin: auto 0;
+  border-top: 1px solid #000;
+  content: "";
+}
+.three-input__item:first-of-type:before {
+  display: none;
 }
 </style>

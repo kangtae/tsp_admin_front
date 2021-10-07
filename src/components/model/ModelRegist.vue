@@ -459,7 +459,7 @@ export default {
     async submitForm() {
       let totalImageFiles = this.imageFiles.slice();
       totalImageFiles.unshift(this.mainImage);
-      const totalSize3 = this.size1 + this.size2 + this.size3;
+      const totalSize3 = `${this.size1}-${this.size2}-${this.size3}`;
       const modelManData = new FormData();
       modelManData.append("modelKorName", this.korTitle);
       modelManData.append("modelEngName", this.engTitle);

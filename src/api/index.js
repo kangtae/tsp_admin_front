@@ -42,7 +42,7 @@ function modelManCreated(modelManData) {
 //남자모델 리스트
 function ModelManList(page) {
   return instance.get(
-    "api/production/lists" + "?page=" + page.page + "&size=" + page.size,
+    "api/model/lists" + "?page=" + page.page + "&size=" + page.size,
     {
       headers,
     }

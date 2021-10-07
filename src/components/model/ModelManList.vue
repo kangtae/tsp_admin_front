@@ -37,14 +37,16 @@
               <th class="text-center" style="width: 100px">등록일</th>
             </thead>
             <tbody>
-              <tr>
-                <td class="text-center">1</td>
+              <tr v-for="(modelMan, idx) in modelMansMod" :key="idx">
+                <td class="text-center">{{ modelMan.idx }}</td>
                 <td>
-                  <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >강태완</a
+                  <a
+                    @click.self.prevent="ProductionDetail(idx)"
+                    class="board-link board-nowrap"
+                    >{{ modelMan.modelKorName }}</a
                   >
                 </td>
-                <td class="text-center">2021-09-16</td>
+                <td class="text-center">{{ modelMan.createTime }}</td>
               </tr>
             </tbody>
           </table>
@@ -59,7 +61,8 @@
               :pageNumberList="pageNumberList"
               :pageUnitNumber="pageUnitNumber"
               :pageUnit="pageUnit"
-              :perPageListCnt="productionInfo.productionListCnt"
+              :pageSize="pageSize"
+              :perPageListCnt="modelManInfo.modelListTotalCnt"
               @movePage="movePage"
               @prevPage="prevPage"
               @nextPage="nextPage"
@@ -96,39 +99,37 @@ export default {
       page: this.pageNum,
       size: this.pageSize,
       pageNum: 1, //보여질 페이지수
-      pageSize: 1, //한페이지에 보여줄 리스트 수
-      pageUnit: 10, // 페이징 번호 노출될 수
+      pageSize: 10, //한페이지에 보여줄 리스트 수
+      pageUnit: 3, // 페이징 번호 노출될 수
       pageUnitNumber: 0,
     };
   },
   computed: {
-    productionInfo() {
-      return this.$store.state.production;
+    modelManInfo() {
+      return this.$store.state.modelman;
     },
     pageNumberList() {
       let visiblePage;
-      let fullPage = parseInt(
-        this.$store.state.production.productionListCnt / this.pageUnit
+      //노출될 페이징 갯수
+      let pageCnt = Math.ceil(
+        this.$store.state.modelman.modelListTotalCnt / this.pageSize
       );
-      let pageCnt = parseInt(
-        this.$store.state.production.productionListCnt / this.pageSize
-      );
-      if (pageCnt == 0) {
-        pageCnt = 1;
-      }
-      let lastPage = pageCnt % this.pageUnit;
+      //페이징번호 노출되는 총 단위
+      let fullPage = Math.floor(pageCnt / this.pageUnit);
 
-      if (this.pageUnitNumber != fullPage) {
-        visiblePage = this.pageUnit;
-      } else {
+      //마지막페이지 갯수
+      let lastPage = pageCnt % this.pageUnit;
+      if (this.pageUnitNumber == fullPage) {
         visiblePage = lastPage;
+      } else {
+        visiblePage = this.pageUnit;
       }
       return visiblePage;
     },
-    productionsMod() {
-      let productionOrigin = this.$store.state.production.productionList;
-      if (productionOrigin == undefined) return;
-      const newArr = productionOrigin.map((item) => {
+    modelMansMod() {
+      let modelManOrigin = this.$store.state.modelman.modelList;
+      if (modelManOrigin == undefined) return;
+      const newArr = modelManOrigin.map((item) => {
         const createTime = item.createTime.split(" ")[0];
         item.createTime = createTime;
         return item;
@@ -141,7 +142,7 @@ export default {
     Pagenation,
   },
   methods: {
-    productionData() {
+    modelManData() {
       const page = {
         page: this.pageNum,
         size: this.pageSize,
@@ -153,7 +154,7 @@ export default {
       if ((this.pageNum - 1) % this.pageUnit == 0) {
         this.pageUnitNumber += 1;
       }
-      this.productionData();
+      this.modelManData();
     },
     prevPage() {
       //이전페이지는 pageNum이 변하기전에  먼저 값을 계산
@@ -161,17 +162,17 @@ export default {
         this.pageUnitNumber -= 1;
       }
       this.pageNum -= 1;
-      this.productionData();
+      this.modelManData();
     },
     movePage() {
       console.log(event.target);
       console.log(event.target.querySelector("span"));
       this.pageNum = Number(event.target.querySelector("span").innerText);
-      this.productionData();
+      this.modelManData();
     },
   },
   created() {
-    this.productionData();
+    this.modelManData();
   },
 };
 </script>

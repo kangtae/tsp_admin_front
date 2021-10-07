@@ -48,6 +48,7 @@ export default {
         this._props.pageUnitNumber += 1;
       }
       // this.newsData();
+      console.log(this._props.perPageListCnt);
     },
     prevPage() {
       //이전페이지는 pageNum이 변하기전에  먼저 값을 계산

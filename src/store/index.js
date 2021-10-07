@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
-import { ProductionList } from "@/api/index";
+import { ProductionList, ModelManList } from "@/api/index";
 
 Vue.use(Vuex);
 
@@ -53,7 +53,7 @@ export default new Vuex.Store({
     },
     async LIST_MODELMAN({ commit }, page) {
       this.state.LoadingStatus = true;
-      const { data } = await ProductionList(page);
+      const { data } = await ModelManList(page);
       this.state.LoadingStatus = false;
       commit("SET_MODELMAN", data);
     },

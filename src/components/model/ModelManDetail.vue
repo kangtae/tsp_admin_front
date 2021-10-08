@@ -17,7 +17,7 @@
               <tbody>
                 <tr>
                   <th class="active">나이</th>
-                  <td colspan="5">{{ category_age }}</td>
+                  <td colspan="5">{{ category_age }}0대</td>
                 </tr>
                 <tr>
                   <th class="active">국문 이름</th>
@@ -199,6 +199,7 @@ export default {
     this.height = data.modelMap.modelInfo.height;
     this.size3 = data.modelMap.modelInfo.size3;
     this.visible = data.modelMap.modelInfo.visible;
+    this.category_age = data.modelMap.modelInfo.category_age;
     //이미지 분리하기
     let images = data.modelMap.modelImageList;
     let mainImages = images.filter(function (item) {

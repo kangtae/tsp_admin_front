@@ -457,6 +457,7 @@ export default {
       });
     },
     async submitForm() {
+      this.$store.state.LoadingStatus = true;
       let totalImageFiles = this.imageFiles.slice();
       totalImageFiles.unshift(this.mainImage);
       const totalSize3 = `${this.size1}-${this.size2}-${this.size3}`;
@@ -479,6 +480,7 @@ export default {
         this.$refs.toastuiEditor.invoke("getMarkdown")
       );
       const { data } = await modelManCreated(modelManData);
+      this.$store.state.LoadingStatus = false;
       if (data == "Y") {
         this.$router.push("/admin/content/man");
       }

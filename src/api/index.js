@@ -49,6 +49,11 @@ function ModelManList(page) {
   );
 }
 
+//남자모델 상세
+function fetchModelMan(modelManSeq) {
+  return instance.get("api/model/men/" + modelManSeq);
+}
+
 //프로덕션 리스트
 function ProductionList(page) {
   return instance.get(
@@ -104,6 +109,7 @@ export {
   ProductionList,
   productionCreated,
   ModelManList,
+  fetchModelMan,
   editProduction,
   fetchProduction,
   deleteProduction,

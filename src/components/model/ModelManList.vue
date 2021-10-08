@@ -41,7 +41,7 @@
                 <td class="text-center">{{ modelMan.idx }}</td>
                 <td>
                   <a
-                    @click.self.prevent="ProductionDetail(idx)"
+                    @click.self.prevent="ModelManDetail(idx)"
                     class="board-link board-nowrap"
                     >{{ modelMan.modelKorName }}</a
                   >
@@ -169,6 +169,10 @@ export default {
       console.log(event.target.querySelector("span"));
       this.pageNum = Number(event.target.querySelector("span").innerText);
       this.modelManData();
+    },
+    ModelManDetail: function (idx) {
+      const seq = this.modelManInfo.modelList[idx].idx;
+      this.$router.push(`/admin/detail/modelMan/${seq}`);
     },
   },
   created() {

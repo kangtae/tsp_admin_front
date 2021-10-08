@@ -490,34 +490,4 @@ export default {
 };
 </script>
 
-<style>
-.dropify-wrapper .dropify-message p {
-  font-size: 14px;
-}
-.three-input {
-  margin: 0 0 0 -10px;
-  padding: 0;
-  list-style: none;
-}
-.three-input__item {
-  position: relative;
-  display: inline-block;
-  width: 33.33%;
-  padding-left: 10px;
-  box-sizing: border-box;
-}
-.three-input__item:before {
-  position: absolute;
-  top: 0;
-  left: 3px;
-  bottom: 0;
-  width: 4px;
-  height: 0;
-  margin: auto 0;
-  border-top: 1px solid #000;
-  content: "";
-}
-.three-input__item:first-of-type:before {
-  display: none;
-}
-</style>
+<style></style>

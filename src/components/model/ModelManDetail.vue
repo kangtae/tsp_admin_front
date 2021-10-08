@@ -9,34 +9,88 @@
               <colgroup>
                 <col style="width: 100px" />
                 <col />
+                <col style="width: 100px" />
+                <col style="width: 300px" />
+                <col style="width: 100px" />
+                <col />
               </colgroup>
               <tbody>
                 <tr>
-                  <th class="active">제목</th>
+                  <th class="active">나이</th>
+                  <td colspan="5">{{ category_age }}</td>
+                </tr>
+                <tr>
+                  <th class="active">국문 이름</th>
+                  <td colspan="5">
+                    {{ model_kor_name }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="active">영문 이름</th>
+                  <td colspan="5">
+                    {{ model_eng_name }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="active">height</th>
                   <td>
-                    {{ title }}
+                    {{ height }}
+                  </td>
+                  <th class="active">3-size</th>
+                  <td>
+                    {{ size3 }}
+                  </td>
+                  <th class="active">shoes</th>
+                  <td>
+                    {{ shoes }}
                   </td>
                 </tr>
                 <tr>
                   <th class="active">대표 이미지</th>
                   <td colspan="5">
-                    <div class="row">
+                    <div
+                      class="row"
+                      v-for="(modelImages, idx) in mainModelImageList"
+                      :key="idx"
+                    >
                       <div class="col-xs-2">
-                        <img class="img-w100" :src="filePath" alt="" />
+                        <img
+                          class="img-w100"
+                          :src="modelImages.fileMask"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="active">첨부파일</th>
+                  <td colspan="5">
+                    <div class="row">
+                      <div
+                        class="col-xs-2"
+                        v-for="(modelImages, idx) in subModelImageList"
+                        :key="idx"
+                      >
+                        <img
+                          class="img-w100"
+                          :src="modelImages.fileMask"
+                          alt=""
+                        />
                       </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <th class="active">노출 여부</th>
-                  <td>
+                  <td colspan="5">
                     {{ visibleTxt }}
                   </td>
                 </tr>
                 <tr>
-                  <td colspan="2">
+                  <td colspan="6">
                     <div>
-                      {{ description }}
+                      {{ model_description }}
                     </div>
                   </td>
                 </tr>
@@ -66,7 +120,7 @@
             >
             <router-link
               class="btn btn-default"
-              to="/admin/content/production"
+              to="/admin/content/man"
               role="button"
             >
               <i class="fa fa-list" aria-hidden="true"></i> 목록</router-link
@@ -82,17 +136,27 @@
 <script>
 import "@toast-ui/editor/dist/toastui-editor.css";
 import PageHeader from "@/components/common/PageHeader";
-import { deleteProduction, fetchProduction } from "@/api/index";
+import { deleteProduction, fetchModelMan } from "@/api/index";
 
 export default {
   data() {
     return {
-      pageTitle: "프로덕션 상세",
-      title: "",
+      pageTitle: "남자모델 상세",
+      category_age: "",
+      model_kor_name: "",
+      model_eng_name: "",
+      model_description: "",
+      category_nm: "",
+      category_cd: "",
+      idx: "",
+      height: "",
+      shoes: "",
       imageFile: {},
       visible: "",
       filePath: "",
-      description: "",
+      mainModelImageList: "",
+      subModelImageList: "",
+      size3: "",
     };
   },
   components: { PageHeader },
@@ -123,12 +187,28 @@ export default {
   async created() {
     this.$store.state.LoadingStatus = true;
     const idx = this.$route.params.idx;
-    const { data } = await fetchProduction(idx);
+    const { data } = await fetchModelMan(idx);
     this.$store.state.LoadingStatus = false;
-    this.title = data.productionInfo.title;
-    this.visible = data.productionInfo.visible;
-    this.filePath = data.productionInfo.file_mask;
-    this.description = data.productionInfo.description;
+    this.model_kor_name = data.modelMap.modelInfo.model_kor_name;
+    this.model_eng_name = data.modelMap.modelInfo.model_eng_name;
+    this.model_description = data.modelMap.modelInfo.model_description;
+    this.category_nm = data.modelMap.modelInfo.category_nm;
+    this.category_cd = data.modelMap.modelInfo.category_cd;
+    this.idx = data.modelMap.modelInfo.idx;
+    this.shoes = data.modelMap.modelInfo.shoes;
+    this.height = data.modelMap.modelInfo.height;
+    this.size3 = data.modelMap.modelInfo.size3;
+    this.visible = data.modelMap.modelInfo.visible;
+    //이미지 분리하기
+    let images = data.modelMap.modelImageList;
+    let mainImages = images.filter(function (item) {
+      return item.imageType === "main";
+    });
+    let subImages = images.filter(function (item) {
+      return item.imageType !== "main";
+    });
+    this.mainModelImageList = mainImages;
+    this.subModelImageList = subImages;
   },
 };
 </script>

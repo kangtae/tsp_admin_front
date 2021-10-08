@@ -13,6 +13,7 @@ import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
 import ResumeDetail from "@/components/resume/ResumeDetail";
 import ProductionDetail from "@/components/production/ProductionDetail.vue";
+import ModelManDetail from "@/components/model/ModelManDetail.vue";
 import LodingSpinner from "@/components/common/LodingSpinner.vue";
 
 export default {
@@ -28,6 +29,7 @@ export default {
     ResumeDetail,
     ProductionDetail,
     LodingSpinner,
+    ModelManDetail,
   },
   methods: {
     fetchData() {
@@ -36,6 +38,8 @@ export default {
         this.currentComponent = "ResumeDetail";
       } else if (page == "production") {
         this.currentComponent = "ProductionDetail";
+      } else if (page == "modelMan") {
+        this.currentComponent = "ModelManDetail";
       }
     },
   },

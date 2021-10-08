@@ -3,8 +3,8 @@ module.exports = {
     overlay: false,
     compress: true,
     disableHostCheck: true,
-    port: 8080,
+    // port: 8080,
   },
-  publicPath: "/admin/",
-  outputDir: "./admin",
+  // publicPath: "/admin/",
+  // outputDir: "./admin",
 };

@@ -163,4 +163,19 @@
   display: none;
 }
 
+.error-message {
+	display: none;
+	margin-top: 10px;
+	color: red;
+	font-size: 11px;
+}
+.error-message.is-active {
+	display: block;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 /*# sourceMappingURL=maps/style.css.map */

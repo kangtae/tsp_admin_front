@@ -145,6 +145,9 @@
                       v-model="korTitle"
                       class="form-control input-sm"
                     />
+                    <p class="error-message" v-show="!this.korTitle">
+                      값을 입력해주세요.
+                    </p>
                   </td>
                 </tr>
                 <tr>
@@ -157,6 +160,9 @@
                       v-model="engTitle"
                       class="form-control input-sm"
                     />
+                    <p class="error-message" v-show="!this.engTitle">
+                      값을 입력해주세요.
+                    </p>
                   </td>
                 </tr>
                 <tr>
@@ -168,7 +174,12 @@
                       id=""
                       v-model="height"
                       class="form-control input-sm"
+                      maxLength="3"
+                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                     />
+                    <p class="error-message" v-show="!this.height">
+                      값을 입력해주세요.
+                    </p>
                   </td>
                   <th class="active">3-size</th>
                   <td>
@@ -179,7 +190,9 @@
                           name=""
                           id=""
                           v-model="size1"
-                          class="form-control input-sm"
+                          class="form-control input-sm js-size"
+                          maxLength="2"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         />
                       </li>
                       <li class="three-input__item">
@@ -188,7 +201,9 @@
                           name=""
                           id=""
                           v-model="size2"
-                          class="form-control input-sm"
+                          class="form-control input-sm js-size"
+                          maxLength="2"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         />
                       </li>
                       <li class="three-input__item">
@@ -196,11 +211,17 @@
                           type="number"
                           name=""
                           id=""
+                          value=""
                           v-model="size3"
-                          class="form-control input-sm"
+                          class="form-control input-sm js-size"
+                          maxLength="2"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         />
                       </li>
                     </ul>
+                    <p class="error-message" v-show="!this.size3">
+                      값을 입력해주세요.
+                    </p>
                   </td>
                   <th class="active">shoes</th>
                   <td>
@@ -210,7 +231,12 @@
                       id=""
                       v-model="shoes"
                       class="form-control input-sm"
+                      maxLength="3"
+                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                     />
+                    <p class="error-message" v-show="!this.shoes">
+                      값을 입력해주세요.
+                    </p>
                   </td>
                 </tr>
                 <tr>
@@ -233,6 +259,9 @@
                       권장비율 00:00 <br />
                       권장사이즈 000x000
                     </div>
+                    <p class="error-message" v-show="!this.mainImage">
+                      이미지를 등록해주세요.
+                    </p>
                   </td>
                 </tr>
                 <tr>
@@ -270,6 +299,9 @@
                         </button>
                       </div>
                     </div>
+                    <p class="error-message" v-show="this.imageFiles[0] == ''">
+                      첫번째 이미지를 등록해주세요.
+                    </p>
                   </td>
                 </tr>
                 <tr>
@@ -311,6 +343,9 @@
                         preview-style="tab"
                         ref="toastuiEditor"
                       />
+                      <p class="error-message" v-show="!this.editerValue">
+                        값을 입력해주세요.
+                      </p>
                     </div>
                   </td>
                 </tr>
@@ -357,7 +392,7 @@ export default {
       size3: "",
       shoes: "",
       mainImage: "",
-      imageFiles: [{}],
+      imageFiles: [""],
       editerValue: "",
       visible: "Y",
     };
@@ -457,6 +492,25 @@ export default {
       });
     },
     async submitForm() {
+      console.log(this.imageFiles);
+      if (
+        !this.korTitle ||
+        !this.engTitle ||
+        !this.height ||
+        !this.size1 ||
+        !this.size2 ||
+        !this.size3 ||
+        !this.shoes ||
+        this.imagesFiles == "" ||
+        !this.imageFiles ||
+        !this.editerValue
+      ) {
+        const errorElemAll = document.querySelectorAll(".error-message");
+        for (let i = 0; i < errorElemAll.length; i++) {
+          errorElemAll[i].classList.add("is-active");
+        }
+        return false;
+      }
       this.$store.state.LoadingStatus = true;
       let totalImageFiles = this.imageFiles.slice();
       totalImageFiles.unshift(this.mainImage);

@@ -30,8 +30,6 @@ export default {
   methods: {
     fetchData() {
       const page = this.$route.params.page;
-            const page = this.$route.params.page;
-
       console.log(page);
       if (page == "production") {
         this.currentComponent = "ProductionEdit";

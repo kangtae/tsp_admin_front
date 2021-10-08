@@ -173,8 +173,10 @@ export default {
   },
   methods: {
     ModelEdit() {
-      const seq = this.$route.params.idx;
-      this.$router.push(`/admin/edit/model/${seq}`);
+      // const seq = this.$route.params.idx;
+      const test = this.$route;
+      console.log(test);
+      // this.$router.push(`/admin/edit/model/${seq}`);
     },
     async ProductionDelete() {
       const seq = this.$route.params.idx;

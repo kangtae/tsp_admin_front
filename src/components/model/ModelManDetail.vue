@@ -113,7 +113,7 @@
           <div class="col-sm-4 text-right">
             <a
               class="btn btn-success"
-              @click.self.prevent="ProductionEdit"
+              @click.self.prevent="ModelEdit"
               role="button"
             >
               <i class="fa fa-wrench" aria-hidden="true"></i> 수정</a
@@ -172,9 +172,9 @@ export default {
     },
   },
   methods: {
-    ProductionEdit() {
+    ModelEdit() {
       const seq = this.$route.params.idx;
-      this.$router.push(`/admin/edit/production/${seq}`);
+      this.$router.push(`/admin/edit/model/${seq}`);
     },
     async ProductionDelete() {
       const seq = this.$route.params.idx;

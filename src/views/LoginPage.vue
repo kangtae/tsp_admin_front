@@ -125,7 +125,7 @@ export default {
           this.$store.commit("setToken", data.token.body.token);
           this.$store.commit("setIsLogin", data.loginYn);
           this.$store.commit("setUserId", data.userId);
-          this.$router.push("/admin/content/model");
+          this.$router.push("/admin/content/1");
         } else {
           alert("비밀번호를 확인해주세요");
         }

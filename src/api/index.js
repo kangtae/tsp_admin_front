@@ -40,9 +40,15 @@ function modelManCreated(modelManData) {
 }
 
 //남자모델 리스트
-function ModelManList(page) {
+function ModelList(page) {
+  console.log(page);
   return instance.get(
-    "api/model/lists" + "?page=" + page.page + "&size=" + page.size,
+    "api/model/lists/" +
+      page.categoryCd +
+      "?page=" +
+      page.page +
+      "&size=" +
+      page.size,
     {
       headers,
     }
@@ -50,8 +56,8 @@ function ModelManList(page) {
 }
 
 //남자모델 상세
-function fetchModelMan(modelManSeq) {
-  return instance.get("api/model/men/" + modelManSeq);
+function fetchModel(category, seq) {
+  return instance.get("api/model/" + category + "/" + seq);
 }
 
 //프로덕션 리스트
@@ -108,8 +114,8 @@ export {
   portfolioCreated,
   ProductionList,
   productionCreated,
-  ModelManList,
-  fetchModelMan,
+  ModelList,
+  fetchModel,
   editProduction,
   fetchProduction,
   deleteProduction,

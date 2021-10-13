@@ -136,7 +136,7 @@
 <script>
 import "@toast-ui/editor/dist/toastui-editor.css";
 import PageHeader from "@/components/common/PageHeader";
-import { deleteProduction, fetchModelMan } from "@/api/index";
+import { deleteProduction, fetchModel } from "@/api/index";
 
 export default {
   data() {
@@ -189,7 +189,8 @@ export default {
   async created() {
     this.$store.state.LoadingStatus = true;
     const idx = this.$route.params.idx;
-    const { data } = await fetchModelMan(idx);
+    const page = this.$route.params.page;
+    const { data } = await fetchModel(page, idx);
     this.$store.state.LoadingStatus = false;
     this.model_kor_name = data.modelMap.modelInfo.model_kor_name;
     this.model_eng_name = data.modelMap.modelInfo.model_eng_name;

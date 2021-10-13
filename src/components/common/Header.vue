@@ -19,21 +19,19 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" role="navigation">
             <li role="presentation" class="dropdown">
-              <router-link to="#" @click.self.native="dropdownToggle"
+              <router-link to="" @click.self.native="dropdownToggle"
                 >모델관리
                 <span class="caret"></span>
               </router-link>
               <ul class="dropdown-menu" role="menu">
                 <li>
-                  <router-link to="/admin/content/woman">여자 모델</router-link>
+                  <router-link to="/admin/content/2">여자 모델</router-link>
                 </li>
                 <li>
-                  <router-link to="/admin/content/man">남자 모델</router-link>
+                  <router-link to="/admin/content/1">남자 모델</router-link>
                 </li>
                 <li>
-                  <router-link to="/admin/content/senior"
-                    >시니어 모델</router-link
-                  >
+                  <router-link to="/admin/content/3">시니어 모델</router-link>
                 </li>
               </ul>
             </li>

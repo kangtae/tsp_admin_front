@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
-import { ProductionList, ModelManList } from "@/api/index";
+import { ProductionList, ModelList } from "@/api/index";
 
 Vue.use(Vuex);
 
@@ -12,7 +12,7 @@ export default new Vuex.Store({
     token: "",
     isLogin: "",
     production: "",
-    modelman: "",
+    model: "",
     userId: "",
     LoadingStatus: false,
   },
@@ -40,8 +40,8 @@ export default new Vuex.Store({
     SET_PRODUCTION(state, production) {
       state.production = production;
     },
-    SET_MODELMAN(state, modelman) {
-      state.modelman = modelman;
+    SET_MODEL(state, model) {
+      state.model = model;
     },
   },
   actions: {
@@ -51,11 +51,11 @@ export default new Vuex.Store({
       this.state.LoadingStatus = false;
       commit("SET_PRODUCTION", data);
     },
-    async LIST_MODELMAN({ commit }, page) {
+    async LIST_MODEL({ commit }, page) {
       this.state.LoadingStatus = true;
-      const { data } = await ModelManList(page);
+      const { data } = await ModelList(page);
       this.state.LoadingStatus = false;
-      commit("SET_MODELMAN", data);
+      commit("SET_MODEL", data);
     },
   },
 });

@@ -37,16 +37,16 @@
               <th class="text-center" style="width: 100px">등록일</th>
             </thead>
             <tbody>
-              <tr v-for="(modelMan, idx) in modelMansMod" :key="idx">
-                <td class="text-center">{{ modelMan.idx }}</td>
+              <tr v-for="(model, idx) in modelsMod" :key="idx">
+                <td class="text-center">{{ model.idx }}</td>
                 <td>
                   <a
-                    @click.self.prevent="ModelManDetail(idx)"
+                    @click.self.prevent="ModelDetail(idx)"
                     class="board-link board-nowrap"
-                    >{{ modelMan.modelKorName }}</a
+                    >{{ model.modelKorName }}</a
                   >
                 </td>
-                <td class="text-center">{{ modelMan.createTime }}</td>
+                <td class="text-center">{{ model.createTime }}</td>
               </tr>
             </tbody>
           </table>
@@ -62,7 +62,7 @@
               :pageUnitNumber="pageUnitNumber"
               :pageUnit="pageUnit"
               :pageSize="pageSize"
-              :perPageListCnt="modelManInfo.modelListTotalCnt"
+              :perPageListCnt="modelInfo.modelListTotalCnt"
               @movePage="movePage"
               @prevPage="prevPage"
               @nextPage="nextPage"
@@ -105,8 +105,8 @@ export default {
     };
   },
   computed: {
-    modelManInfo() {
-      return this.$store.state.modelman;
+    modelInfo() {
+      return this.$store.state.model;
     },
     pageNumberList() {
       let visiblePage;
@@ -126,8 +126,8 @@ export default {
       }
       return visiblePage;
     },
-    modelMansMod() {
-      let modelManOrigin = this.$store.state.modelman.modelList;
+    modelsMod() {
+      let modelManOrigin = this.$store.state.model.modelList;
       if (modelManOrigin == undefined) return;
       const newArr = modelManOrigin.map((item) => {
         const createTime = item.createTime.split(" ")[0];
@@ -142,19 +142,29 @@ export default {
     Pagenation,
   },
   methods: {
-    modelManData() {
+    modelData() {
+      let categoryCd = this.$route.params.page;
+      if (categoryCd == "1") {
+        this.title = "남자모델";
+      } else if (categoryCd == "2") {
+        this.title = "여자모델";
+      } else if (categoryCd == "3") {
+        this.title = "여자모델";
+      }
       const page = {
         page: this.pageNum,
         size: this.pageSize,
+        categoryCd: categoryCd,
       };
-      this.$store.dispatch("LIST_MODELMAN", page);
+      this.$store.dispatch("LIST_MODEL", page);
+      console.log("fetch");
     },
     nextPage() {
       this.pageNum += 1;
       if ((this.pageNum - 1) % this.pageUnit == 0) {
         this.pageUnitNumber += 1;
       }
-      this.modelManData();
+      this.modelData();
     },
     prevPage() {
       //이전페이지는 pageNum이 변하기전에  먼저 값을 계산
@@ -162,21 +172,24 @@ export default {
         this.pageUnitNumber -= 1;
       }
       this.pageNum -= 1;
-      this.modelManData();
+      this.modelData();
     },
     movePage() {
       console.log(event.target);
       console.log(event.target.querySelector("span"));
       this.pageNum = Number(event.target.querySelector("span").innerText);
-      this.modelManData();
+      this.modelData();
     },
-    ModelManDetail: function (idx) {
-      const seq = this.modelManInfo.modelList[idx].idx;
-      this.$router.push(`/admin/detail/modelMan/${seq}`);
+    ModelDetail: function (idx) {
+      const seq = this.modelInfo.modelList[idx].idx;
+      this.$router.push(`/admin/detail/1/${seq}`);
     },
   },
+  watch: {
+    $route: "modelData",
+  },
   created() {
-    this.modelManData();
+    this.modelData();
   },
 };
 </script>

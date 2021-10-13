@@ -13,7 +13,7 @@ import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
 import LodingSpinner from "@/components/common/LodingSpinner.vue";
 
-import ModelManList from "@/components/model/ModelManList";
+import ModelList from "@/components/model/ModelList";
 import ModelWomanList from "@/components/model/ModelWomanList";
 import ModelSeniorList from "@/components/model/ModelSeniorList";
 import PortfolioList from "@/components/portfolio/PortfolioList";
@@ -23,14 +23,14 @@ import ResumeList from "@/components/resume/ResumeList";
 export default {
   data() {
     return {
-      currentComponent: "ModelManList",
+      currentComponent: "ModelList",
     };
   },
   components: {
     Header,
     Footer,
     Lnb,
-    ModelManList,
+    ModelList,
     ModelWomanList,
     PortfolioList,
     ProductionList,
@@ -41,12 +41,8 @@ export default {
   methods: {
     fetchData() {
       const page = this.$route.params.page;
-      if (page == "man") {
-        this.currentComponent = "ModelManList";
-      } else if (page == "woman") {
-        this.currentComponent = "ModelWomanList";
-      } else if (page == "senior") {
-        this.currentComponent = "ModelSeniorList";
+      if (page == "1" || page == "2" || page == "3") {
+        this.currentComponent = "ModelList";
       } else if (page == "portfolio") {
         this.currentComponent = "PortfolioList";
       } else if (page == "production") {

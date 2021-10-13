@@ -102,6 +102,7 @@ export default {
       pageSize: 10, //한페이지에 보여줄 리스트 수
       pageUnit: 3, // 페이징 번호 노출될 수
       pageUnitNumber: 0,
+      categoryCd: "",
     };
   },
   computed: {
@@ -143,18 +144,18 @@ export default {
   },
   methods: {
     modelData() {
-      let categoryCd = this.$route.params.page;
-      if (categoryCd == "1") {
-        this.title = "남자모델";
-      } else if (categoryCd == "2") {
-        this.title = "여자모델";
-      } else if (categoryCd == "3") {
-        this.title = "여자모델";
+      this.categoryCd = this.$route.params.page;
+      if (this.categoryCd == "1") {
+        this.title = "남자 모델";
+      } else if (this.categoryCd == "2") {
+        this.title = "여자 모델";
+      } else if (this.categoryCd == "3") {
+        this.title = "시니어 모델";
       }
       const page = {
         page: this.pageNum,
         size: this.pageSize,
-        categoryCd: categoryCd,
+        categoryCd: this.categoryCd,
       };
       this.$store.dispatch("LIST_MODEL", page);
       console.log("fetch");
@@ -182,7 +183,7 @@ export default {
     },
     ModelDetail: function (idx) {
       const seq = this.modelInfo.modelList[idx].idx;
-      this.$router.push(`/admin/detail/1/${seq}`);
+      this.$router.push(`/admin/detail/${this.categoryCd}/${seq}`);
     },
   },
   watch: {

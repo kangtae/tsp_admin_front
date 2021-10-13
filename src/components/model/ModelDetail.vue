@@ -118,12 +118,8 @@
             >
               <i class="fa fa-wrench" aria-hidden="true"></i> 수정</a
             >
-            <router-link
-              class="btn btn-default"
-              to="/admin/content/man"
-              role="button"
-            >
-              <i class="fa fa-list" aria-hidden="true"></i> 목록</router-link
+            <a @click.self.prevent="ModelListLink" class="btn btn-default">
+              <i class="fa fa-list" aria-hidden="true"></i> 목록</a
             >
           </div>
         </div>
@@ -141,7 +137,7 @@ import { deleteProduction, fetchModel } from "@/api/index";
 export default {
   data() {
     return {
-      pageTitle: "남자모델 상세",
+      pageTitle: "",
       category_age: "",
       model_kor_name: "",
       model_eng_name: "",
@@ -157,6 +153,7 @@ export default {
       mainModelImageList: "",
       subModelImageList: "",
       size3: "",
+      page: "",
     };
   },
   components: { PageHeader },
@@ -178,6 +175,9 @@ export default {
       console.log(test);
       // this.$router.push(`/admin/edit/model/${seq}`);
     },
+    ModelListLink() {
+      this.$router.push(`/admin/content/${this.page}`);
+    },
     async ProductionDelete() {
       const seq = this.$route.params.idx;
       const { data } = await deleteProduction(seq);
@@ -192,6 +192,7 @@ export default {
     const page = this.$route.params.page;
     const { data } = await fetchModel(page, idx);
     this.$store.state.LoadingStatus = false;
+    this.page = this.$route.params.page;
     this.model_kor_name = data.modelMap.modelInfo.model_kor_name;
     this.model_eng_name = data.modelMap.modelInfo.model_eng_name;
     this.model_description = data.modelMap.modelInfo.model_description;
@@ -203,6 +204,15 @@ export default {
     this.size3 = data.modelMap.modelInfo.size3;
     this.visible = data.modelMap.modelInfo.visible;
     this.category_age = data.modelMap.modelInfo.category_age;
+    //타이틀변경
+    console.log("page" + page);
+    if (page == "1") {
+      this.pageTitle = "남자모델 상세";
+    } else if (page == "2") {
+      this.pageTitle = "여자모델 상세";
+    } else if (page == "3") {
+      this.pageTitle = "시니어모델 상세";
+    }
     //이미지 분리하기
     let images = data.modelMap.modelImageList;
     let mainImages = images.filter(function (item) {

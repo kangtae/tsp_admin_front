@@ -39,7 +39,7 @@ export default {
         this.currentComponent = "ResumeDetail";
       } else if (page == "production") {
         this.currentComponent = "ProductionDetail";
-      } else if (page == "1") {
+      } else if (page == "1" || page == "2" || page == "3") {
         this.currentComponent = "ModelDetail";
       }
     },

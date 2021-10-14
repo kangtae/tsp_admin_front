@@ -357,11 +357,11 @@
         <div class="row">
           <div class="col-sm-4 text-left"></div>
           <div class="col-sm-4 text-center">
-            <a class="btn btn-default" href="자료실_01목록.html" role="button">
-              <i class="fa fa-times" aria-hidden="true"></i> 취소</a
-            >
+            <button class="btn btn-default" role="button" @click="cancelBtn">
+              <i class="fa fa-times" aria-hidden="true"></i> 취소
+            </button>
             <button type="submit" class="btn btn-success">
-              <i class="fa fa-check" aria-hidden="true"></i> 등록
+              <i class="fa fa-check" aria-hidden="true"></i> 수정
             </button>
           </div>
           <div class="col-sm-4 text-right"></div>
@@ -400,6 +400,9 @@ export default {
   },
   components: { Editor, PageHeader },
   methods: {
+    cancelBtn() {
+      this.$router.push(`/admin/content/${this.categoryCd}`);
+    },
     editorChange() {
       this.editerValue = this.$refs.toastuiEditor.invoke("getMarkdown");
     },
@@ -525,11 +528,16 @@ export default {
       modelData.append("size3", totalSize3);
       modelData.append("height", this.height);
       modelData.append("visible", this.visible);
+
       const totalImageFilesMod = totalImageFiles.map((item) => {
-        if (item.fileMask !== undefined) {
-          item = "";
+        try {
+          if (item.fileMask !== undefined) {
+            item = "";
+          }
+          return item;
+        } catch (error) {
+          console.log(error);
         }
-        return item;
       });
       if (totalImageFilesMod.length > -1) {
         for (let i = 0; i < totalImageFilesMod.length; i++) {

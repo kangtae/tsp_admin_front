@@ -357,9 +357,9 @@
         <div class="row">
           <div class="col-sm-4 text-left"></div>
           <div class="col-sm-4 text-center">
-            <a class="btn btn-default" href="자료실_01목록.html" role="button">
-              <i class="fa fa-times" aria-hidden="true"></i> 취소</a
-            >
+            <button class="btn btn-default" role="button" @click="cancelBtn">
+              <i class="fa fa-times" aria-hidden="true"></i> 취소
+            </button>
             <button type="submit" class="btn btn-success">
               <i class="fa fa-check" aria-hidden="true"></i> 등록
             </button>
@@ -399,6 +399,9 @@ export default {
   },
   components: { Editor, PageHeader },
   methods: {
+    cancelBtn() {
+      this.$router.push(`/admin/content/${this.categoryCd}`);
+    },
     editorChange() {
       this.editerValue = this.$refs.toastuiEditor.invoke("getMarkdown");
     },

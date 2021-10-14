@@ -65,6 +65,11 @@ function fetchModel(category, seq) {
   return instance.get("api/model/" + category + "/" + seq);
 }
 
+//모델 삭제
+function deleteModel(categoryCd, modelSeq) {
+  return instance.delete("api/model/" + categoryCd, modelSeq);
+}
+
 //프로덕션 리스트
 function ProductionList(page) {
   return instance.get(
@@ -126,4 +131,5 @@ export {
   deleteProduction,
   modelCreated,
   editModel,
+  deleteModel,
 };

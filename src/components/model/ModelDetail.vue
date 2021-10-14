@@ -103,7 +103,7 @@
           <div class="col-sm-4 text-left">
             <a
               class="btn btn-danger"
-              @click.self.prevent="ProductionDelete"
+              @click.self.prevent="ModelDelete"
               role="button"
             >
               <i class="fa fa-trash" aria-hidden="true"></i> 삭제</a
@@ -132,7 +132,7 @@
 <script>
 import "@toast-ui/editor/dist/toastui-editor.css";
 import PageHeader from "@/components/common/PageHeader";
-import { deleteProduction, fetchModel } from "@/api/index";
+import { deleteModel, deleteProduction, fetchModel } from "@/api/index";
 
 export default {
   data() {
@@ -176,11 +176,11 @@ export default {
     ModelListLink() {
       this.$router.push(`/admin/content/${this.page}`);
     },
-    async ProductionDelete() {
+    async ModelDelete() {
       const seq = this.$route.params.idx;
-      const { data } = await deleteProduction(seq);
+      const { data } = await deleteModel(seq);
       if (data == "Y") {
-        this.$router.push(`/admin/content/production`);
+        this.$router.push(`/admin/content/${this.page}`);
       }
     },
   },

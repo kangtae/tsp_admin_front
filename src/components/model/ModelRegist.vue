@@ -377,7 +377,7 @@ import $ from "jquery";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/vue-editor";
 import PageHeader from "@/components/common/PageHeader";
-import { modelManCreated } from "@/api/index";
+import { modelCreated } from "@/api/index";
 export default {
   data() {
     return {
@@ -515,25 +515,25 @@ export default {
       let totalImageFiles = this.imageFiles.slice();
       totalImageFiles.unshift(this.mainImage);
       const totalSize3 = `${this.size1}-${this.size2}-${this.size3}`;
-      const modelManData = new FormData();
-      modelManData.append("modelKorName", this.korTitle);
-      modelManData.append("modelEngName", this.engTitle);
-      modelManData.append("categoryCd", this.categoryCd);
-      modelManData.append("categoryAge", this.categoryAge);
-      modelManData.append("shoes", this.shoes);
-      modelManData.append("size3", totalSize3);
-      modelManData.append("height", this.height);
-      modelManData.append("visible", this.visible);
+      const modelData = new FormData();
+      modelData.append("modelKorName", this.korTitle);
+      modelData.append("modelEngName", this.engTitle);
+      modelData.append("categoryCd", this.categoryCd);
+      modelData.append("categoryAge", this.categoryAge);
+      modelData.append("shoes", this.shoes);
+      modelData.append("size3", totalSize3);
+      modelData.append("height", this.height);
+      modelData.append("visible", this.visible);
       if (totalImageFiles.length > -1) {
         for (let i = 0; i < totalImageFiles.length; i++) {
-          modelManData.append(`imageFiles`, totalImageFiles[i]);
+          modelData.append(`imageFiles`, totalImageFiles[i]);
         }
       }
-      modelManData.append(
+      modelData.append(
         "modelDescription",
         this.$refs.toastuiEditor.invoke("getMarkdown")
       );
-      const { data } = await modelManCreated(modelManData);
+      const { data } = await modelCreated(modelData);
       this.$store.state.LoadingStatus = false;
       if (data == "Y") {
         this.$router.push(`/admin/content/${this.categoryCd}`);

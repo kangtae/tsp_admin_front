@@ -249,7 +249,7 @@
                           id="input-file-now"
                           class="dropifyMain"
                           data-height="200"
-                          data-default-file=""
+                          :data-default-file="mainFilePath"
                           data-allowed-file-extensions="jpg png gif"
                           @change="imgChange"
                         />
@@ -277,7 +277,7 @@
                           type="file"
                           class="dropify js-file-change"
                           data-height="100"
-                          data-default-file=""
+                          :data-default-file="item.fileMask"
                           @change="fileChange(idx, $event)"
                         />
                         <button
@@ -377,7 +377,7 @@ import $ from "jquery";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/vue-editor";
 import PageHeader from "@/components/common/PageHeader";
-import { modelManCreated, fetchModel } from "@/api/index";
+import { editModel, fetchModel } from "@/api/index";
 export default {
   data() {
     return {
@@ -395,12 +395,13 @@ export default {
       imageFiles: [""],
       editerValue: "",
       visible: "Y",
+      mainFilePath: "",
     };
   },
   components: { Editor, PageHeader },
   methods: {
     editorChange() {
-      this.content = this.$refs.toastuiEditor.invoke("getMarkdown");
+      this.editerValue = this.$refs.toastuiEditor.invoke("getMarkdown");
     },
     addFile() {
       this.imageFiles.push({});
@@ -492,7 +493,6 @@ export default {
       });
     },
     async submitForm() {
-      console.log(this.imageFiles);
       if (
         !this.korTitle ||
         !this.engTitle ||
@@ -512,31 +512,39 @@ export default {
         return false;
       }
       this.$store.state.LoadingStatus = true;
+      const idx = this.$route.params.idx;
       let totalImageFiles = this.imageFiles.slice();
       totalImageFiles.unshift(this.mainImage);
       const totalSize3 = `${this.size1}-${this.size2}-${this.size3}`;
-      const modelManData = new FormData();
-      modelManData.append("modelKorName", this.korTitle);
-      modelManData.append("modelEngName", this.engTitle);
-      modelManData.append("categoryCd", this.categoryCd);
-      modelManData.append("categoryAge", this.categoryAge);
-      modelManData.append("shoes", this.shoes);
-      modelManData.append("size3", totalSize3);
-      modelManData.append("height", this.height);
-      modelManData.append("visible", this.visible);
-      if (totalImageFiles.length > -1) {
-        for (let i = 0; i < totalImageFiles.length; i++) {
-          modelManData.append(`imageFiles`, totalImageFiles[i]);
+      const modelData = new FormData();
+      modelData.append("modelKorName", this.korTitle);
+      modelData.append("modelEngName", this.engTitle);
+      modelData.append("categoryCd", this.categoryCd);
+      modelData.append("categoryAge", this.categoryAge);
+      modelData.append("shoes", this.shoes);
+      modelData.append("size3", totalSize3);
+      modelData.append("height", this.height);
+      modelData.append("visible", this.visible);
+      const totalImageFilesMod = totalImageFiles.map((item) => {
+        if (item.fileMask !== undefined) {
+          item = "";
+        }
+        return item;
+      });
+      if (totalImageFilesMod.length > -1) {
+        for (let i = 0; i < totalImageFilesMod.length; i++) {
+          modelData.append(`imageFiles`, totalImageFilesMod[i]);
         }
       }
-      modelManData.append(
+      modelData.append(
         "modelDescription",
         this.$refs.toastuiEditor.invoke("getMarkdown")
       );
-      const { data } = await modelManCreated(modelManData);
+      const { data } = await editModel(this.categoryCd, idx, modelData);
       this.$store.state.LoadingStatus = false;
       if (data == "Y") {
-        this.$router.push("/admin/content/man");
+        console.log(2);
+        this.$router.push(`/admin/content/${this.categoryCd}`);
       }
     },
   },
@@ -545,20 +553,32 @@ export default {
     const page = this.$route.params.page;
     this.$store.state.LoadingStatus = true;
     let { data } = await fetchModel(page, idx);
+    console.log(data);
     this.$store.state.LoadingStatus = false;
-    data = data.modelMap.modelInfo;
-    this.categoryCd = data.category_cd;
-    this.categoryAge = data.category_age;
-    this.visible = data.visible;
-    const sizeTotal = data.size3.split("-");
+    let dataInfo = data.modelMap.modelInfo;
+    this.categoryCd = dataInfo.category_cd;
+    this.categoryAge = dataInfo.category_age;
+    this.visible = dataInfo.visible;
+    const sizeTotal = dataInfo.size3.split("-");
     this.size1 = sizeTotal[0];
     this.size2 = sizeTotal[1];
     this.size3 = sizeTotal[2];
-    this.korTitle = data.model_kor_name;
-    this.engTitle = data.model_eng_name;
-    this.shoes = data.shoes;
-    this.height = data.height;
-    this.$refs.toastuiEditor.invoke("setMarkdown", data.model_description);
+    this.korTitle = dataInfo.model_kor_name;
+    this.engTitle = dataInfo.model_eng_name;
+    this.shoes = dataInfo.shoes;
+    this.height = dataInfo.height;
+    this.$refs.toastuiEditor.invoke("setMarkdown", dataInfo.model_description);
+
+    let images = data.modelMap.modelImageList;
+    let mainImages = images.filter(function (item) {
+      return item.imageType === "main";
+    });
+    let subImages = images.filter(function (item) {
+      return item.imageType !== "main";
+    });
+    console.log(mainImages);
+    this.mainFilePath = mainImages[0].fileMask;
+    this.imageFiles = subImages;
     this.dropifyOtp();
   },
 };

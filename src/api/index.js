@@ -33,13 +33,18 @@ function portfolioCreated(portfolioData) {
 }
 
 //남자모델 등록
-function modelManCreated(modelManData) {
-  return instance.post("api/model", modelManData, {
+function modelCreated(modelData) {
+  return instance.post("api/model", modelData, {
     headersFormdata,
   });
 }
-
-//남자모델 리스트
+//모델 수정
+function editModel(categoryCd, modelSeq, modelData) {
+  return instance.post("api/model/" + categoryCd + "/" + modelSeq, modelData, {
+    headersFormdata,
+  });
+}
+//모델 리스트
 function ModelList(page) {
   console.log(page);
   return instance.get(
@@ -55,7 +60,7 @@ function ModelList(page) {
   );
 }
 
-//남자모델 상세
+//모델 상세
 function fetchModel(category, seq) {
   return instance.get("api/model/" + category + "/" + seq);
 }
@@ -119,5 +124,6 @@ export {
   editProduction,
   fetchProduction,
   deleteProduction,
-  modelManCreated,
+  modelCreated,
+  editModel,
 };

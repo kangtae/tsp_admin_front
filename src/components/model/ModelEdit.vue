@@ -23,7 +23,7 @@
                         <input
                           type="radio"
                           name="categoryCd"
-                          value="man"
+                          value="1"
                           v-model="categoryCd"
                           checked
                         />
@@ -36,7 +36,7 @@
                         <input
                           type="radio"
                           name="categoryCd"
-                          value="woman"
+                          value="2"
                           v-model="categoryCd"
                         />
                         <i></i>
@@ -48,7 +48,7 @@
                         <input
                           type="radio"
                           name="categoryCd"
-                          value="senior"
+                          value="3"
                           v-model="categoryCd"
                         />
                         <i></i>
@@ -377,13 +377,13 @@ import $ from "jquery";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/vue-editor";
 import PageHeader from "@/components/common/PageHeader";
-import { modelManCreated } from "@/api/index";
+import { modelManCreated, fetchModel } from "@/api/index";
 export default {
   data() {
     return {
-      pageTitle: "모델 등록",
-      categoryCd: "man",
-      categoryAge: "2",
+      pageTitle: "모델 수정",
+      categoryCd: "",
+      categoryAge: "",
       korTitle: "",
       engTitle: "",
       height: "",
@@ -540,7 +540,25 @@ export default {
       }
     },
   },
-  created() {
+  async created() {
+    const idx = this.$route.params.idx;
+    const page = this.$route.params.page;
+    this.$store.state.LoadingStatus = true;
+    let { data } = await fetchModel(page, idx);
+    this.$store.state.LoadingStatus = false;
+    data = data.modelMap.modelInfo;
+    this.categoryCd = data.category_cd;
+    this.categoryAge = data.category_age;
+    this.visible = data.visible;
+    const sizeTotal = data.size3.split("-");
+    this.size1 = sizeTotal[0];
+    this.size2 = sizeTotal[1];
+    this.size3 = sizeTotal[2];
+    this.korTitle = data.model_kor_name;
+    this.engTitle = data.model_eng_name;
+    this.shoes = data.shoes;
+    this.height = data.height;
+    this.$refs.toastuiEditor.invoke("setMarkdown", data.model_description);
     this.dropifyOtp();
   },
 };

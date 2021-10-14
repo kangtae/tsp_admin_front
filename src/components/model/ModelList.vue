@@ -113,7 +113,7 @@ export default {
       let visiblePage;
       //노출될 페이징 갯수
       let pageCnt = Math.ceil(
-        this.$store.state.modelman.modelListTotalCnt / this.pageSize
+        this.$store.state.model.modelListTotalCnt / this.pageSize
       );
       //페이징번호 노출되는 총 단위
       let fullPage = Math.floor(pageCnt / this.pageUnit);

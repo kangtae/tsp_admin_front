@@ -170,10 +170,8 @@ export default {
   },
   methods: {
     ModelEdit() {
-      // const seq = this.$route.params.idx;
-      const test = this.$route;
-      console.log(test);
-      // this.$router.push(`/admin/edit/model/${seq}`);
+      const seq = this.$route.params.idx;
+      this.$router.push(`/admin/edit/${this.page}/${seq}`);
     },
     ModelListLink() {
       this.$router.push(`/admin/content/${this.page}`);
@@ -189,10 +187,9 @@ export default {
   async created() {
     this.$store.state.LoadingStatus = true;
     const idx = this.$route.params.idx;
-    const page = this.$route.params.page;
-    const { data } = await fetchModel(page, idx);
-    this.$store.state.LoadingStatus = false;
     this.page = this.$route.params.page;
+    const { data } = await fetchModel(this.page, idx);
+    this.$store.state.LoadingStatus = false;
     this.model_kor_name = data.modelMap.modelInfo.model_kor_name;
     this.model_eng_name = data.modelMap.modelInfo.model_eng_name;
     this.model_description = data.modelMap.modelInfo.model_description;
@@ -205,12 +202,12 @@ export default {
     this.visible = data.modelMap.modelInfo.visible;
     this.category_age = data.modelMap.modelInfo.category_age;
     //타이틀변경
-    console.log("page" + page);
-    if (page == "1") {
+    console.log("page" + this.page);
+    if (this.page == "1") {
       this.pageTitle = "남자모델 상세";
-    } else if (page == "2") {
+    } else if (this.page == "2") {
       this.pageTitle = "여자모델 상세";
-    } else if (page == "3") {
+    } else if (this.page == "3") {
       this.pageTitle = "시니어모델 상세";
     }
     //이미지 분리하기

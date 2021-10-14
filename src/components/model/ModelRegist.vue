@@ -400,7 +400,7 @@ export default {
   components: { Editor, PageHeader },
   methods: {
     editorChange() {
-      this.content = this.$refs.toastuiEditor.invoke("getMarkdown");
+      this.editerValue = this.$refs.toastuiEditor.invoke("getMarkdown");
     },
     addFile() {
       this.imageFiles.push({});

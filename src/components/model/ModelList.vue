@@ -158,7 +158,6 @@ export default {
         categoryCd: this.categoryCd,
       };
       this.$store.dispatch("LIST_MODEL", page);
-      console.log("fetch");
     },
     nextPage() {
       this.pageNum += 1;

@@ -23,7 +23,7 @@
                         <input
                           type="radio"
                           name="categoryCd"
-                          value="man"
+                          value="1"
                           v-model="categoryCd"
                           checked
                         />
@@ -36,7 +36,7 @@
                         <input
                           type="radio"
                           name="categoryCd"
-                          value="woman"
+                          value="2"
                           v-model="categoryCd"
                         />
                         <i></i>
@@ -48,7 +48,7 @@
                         <input
                           type="radio"
                           name="categoryCd"
-                          value="senior"
+                          value="3"
                           v-model="categoryCd"
                         />
                         <i></i>
@@ -382,7 +382,7 @@ export default {
   data() {
     return {
       pageTitle: "모델 등록",
-      categoryCd: "man",
+      categoryCd: "1",
       categoryAge: "2",
       korTitle: "",
       engTitle: "",
@@ -536,7 +536,7 @@ export default {
       const { data } = await modelManCreated(modelManData);
       this.$store.state.LoadingStatus = false;
       if (data == "Y") {
-        this.$router.push("/admin/content/man");
+        this.$router.push(`/admin/content/${this.categoryCd}`);
       }
     },
   },

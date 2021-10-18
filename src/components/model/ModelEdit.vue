@@ -269,7 +269,7 @@
                   <td colspan="5">
                     <div class="row">
                       <div
-                        v-for="(item, idx) in imageFiles"
+                        v-for="(item, idx) in updateImageFiles"
                         v-bind:key="idx"
                         class="col-xs-2 input-file-box"
                       >
@@ -282,9 +282,9 @@
                         />
                         <button
                           v-if="idx > 0"
+                          @click="removeFile(idx, $event)"
                           class="btn btn-xs btn-danger btn-remove"
                           type="button"
-                          @click="removeFile(idx, $event)"
                         >
                           <i class="fa fa-times" aria-hidden="true"></i>
                           <span class="sr-only">삭제</span>
@@ -377,7 +377,7 @@ import $ from "jquery";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/vue-editor";
 import PageHeader from "@/components/common/PageHeader";
-import { editModel, fetchModel } from "@/api/index";
+import { editModel, fetchModel, deleteImgModel } from "@/api/index";
 export default {
   data() {
     return {
@@ -393,10 +393,19 @@ export default {
       shoes: "",
       mainImage: "",
       imageFiles: [""],
+      imageState: [],
       editerValue: "",
       visible: "Y",
       mainFilePath: "",
     };
+  },
+  computed: {
+    updateImageFiles() {
+      let updateImages = this.imageFiles.filter(function (item) {
+        return item.state !== "D";
+      });
+      return updateImages;
+    },
   },
   components: { Editor, PageHeader },
   methods: {
@@ -411,17 +420,25 @@ export default {
       this.dropifyOtp();
     },
     removeFile(idx) {
-      this.imageFiles.splice(idx, 1);
-      const clearBtnAll = document.querySelectorAll(".js-image-clear");
-      function triggerEvent(el, type) {
-        var e = document.createEvent("HTMLEvents");
-        e.initEvent(type, false, true);
-        el.dispatchEvent(e);
-      }
-      if (clearBtnAll.length - 1 == idx) {
-        return false;
-      }
-      triggerEvent(clearBtnAll[idx], "click");
+      // console.log("idx" + idx);
+      // this.imageFiles.splice(idx, 1);
+
+      let deleteValueObj = {};
+      deleteValueObj.state = "D";
+      this.$set(this.imageFiles, idx, deleteValueObj);
+      // const clearBtnAll = document.querySelectorAll(".js-image-clear");
+      // if (this.imageFiles[idx - 1].idx != undefined) {
+      //   deleteImgModel(this.imageFiles[idx - 1].idx);
+      // }
+      // function triggerEvent(el, type) {
+      //   var e = document.createEvent("HTMLEvents");
+      //   e.initEvent(type, false, true);
+      //   el.dispatchEvent(e);
+      // }
+      // if (clearBtnAll.length - 1 == idx) {
+      //   return false;
+      // }
+      // triggerEvent(clearBtnAll[idx], "click");
     },
     imgChange(e) {
       let file = e.target.files[0];
@@ -429,7 +446,14 @@ export default {
     },
     fileChange(idx, e) {
       let file = e.target.files[0];
-      this.$set(this.imageFiles, idx, file);
+      if (this.imageFiles[idx].idx != undefined) {
+        deleteImgModel(this.imageFiles[idx].idx);
+      }
+
+      let updateValueObj = {};
+      updateValueObj.file = file;
+      updateValueObj.state = "U";
+      this.$set(this.imageFiles, idx, updateValueObj);
     },
     dropifyOtp() {
       const vm = this;
@@ -484,7 +508,10 @@ export default {
         Array.prototype.forEach.call(clearBtnAll, function (clearBtn, idx) {
           clearBtn.addEventListener("click", function (e) {
             e.preventDefault();
-            vm.$set(vm.imageFiles, idx, {});
+            let deleteValueObj = {};
+            deleteValueObj.state = "H";
+            vm.$set(vm.imageFiles, idx, deleteValueObj);
+            // vm.$set(vm.imageFiles, idx, {});
           });
         });
         $(".dropifyMain").dropify(dropifyOtpMain);
@@ -516,8 +543,8 @@ export default {
       }
       this.$store.state.LoadingStatus = true;
       const idx = this.$route.params.idx;
-      let totalImageFiles = this.imageFiles.slice();
-      totalImageFiles.unshift(this.mainImage);
+      // let totalImageFiles = this.imageFiles.slice();
+      // totalImageFiles.unshift(this.mainImage);
       const totalSize3 = `${this.size1}-${this.size2}-${this.size3}`;
       const modelData = new FormData();
       modelData.append("modelKorName", this.korTitle);
@@ -529,19 +556,23 @@ export default {
       modelData.append("height", this.height);
       modelData.append("visible", this.visible);
 
-      const totalImageFilesMod = totalImageFiles.map((item) => {
-        try {
-          if (item.fileMask !== undefined) {
-            item = "";
-          }
-          return item;
-        } catch (error) {
-          console.log(error);
-        }
-      });
-      if (totalImageFilesMod.length > -1) {
-        for (let i = 0; i < totalImageFilesMod.length; i++) {
-          modelData.append(`imageFiles`, totalImageFilesMod[i]);
+      let imageState = this.imageFiles.map((item) => item.state);
+      let updateImageFile = this.imageFiles.map((item) => item.file);
+      modelData.append("imageState", imageState);
+
+      // const totalImageFilesMod = totalImageFiles.map((item) => {
+      //   try {
+      //     if (item.fileMask !== undefined) {
+      //       item = "";
+      //     }
+      //     return item;
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      // });
+      if (updateImageFile.length > -1) {
+        for (let i = 0; i < updateImageFile.length; i++) {
+          modelData.append(`imageFiles`, updateImageFile[i]);
         }
       }
       modelData.append(
@@ -586,7 +617,14 @@ export default {
     });
     console.log(mainImages);
     this.mainFilePath = mainImages[0].fileMask;
+    for (let i = 0; i < subImages.length; i++) {
+      subImages[i].state = "N";
+      subImages[i].file = "";
+    }
     this.imageFiles = subImages;
+    // let createImageState = new Array();
+
+    // this.imageState = createImageState;
     this.dropifyOtp();
   },
 };

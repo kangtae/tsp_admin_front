@@ -70,6 +70,11 @@ function deleteModel(categoryCd, modelSeq) {
   return instance.delete("api/model/" + categoryCd, modelSeq);
 }
 
+//모델 삭제
+function deleteImgModel(idx) {
+  return instance.delete("api/model/image/" + idx);
+}
+
 //프로덕션 리스트
 function ProductionList(page) {
   return instance.get(
@@ -132,4 +137,5 @@ export {
   modelCreated,
   editModel,
   deleteModel,
+  deleteImgModel,
 };

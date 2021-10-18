@@ -132,7 +132,7 @@
 <script>
 import "@toast-ui/editor/dist/toastui-editor.css";
 import PageHeader from "@/components/common/PageHeader";
-import { deleteModel, deleteProduction, fetchModel } from "@/api/index";
+import { deleteModel, fetchModel } from "@/api/index";
 
 export default {
   data() {
@@ -202,7 +202,6 @@ export default {
     this.visible = data.modelMap.modelInfo.visible;
     this.category_age = data.modelMap.modelInfo.category_age;
     //타이틀변경
-    console.log("page" + this.page);
     if (this.page == "1") {
       this.pageTitle = "남자모델 상세";
     } else if (this.page == "2") {

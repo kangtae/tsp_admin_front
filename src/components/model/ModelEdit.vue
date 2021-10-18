@@ -391,7 +391,7 @@ export default {
       size2: "",
       size3: "",
       shoes: "",
-      mainImage: "",
+      mainImage: { file: "", state: "N" },
       imageFiles: [""],
       imageState: [],
       editerValue: "",
@@ -442,7 +442,8 @@ export default {
     },
     imgChange(e) {
       let file = e.target.files[0];
-      this.mainImage = file;
+      this.mainImage.file = file;
+      this.mainImage.state = "U";
     },
     fileChange(idx, e) {
       let file = e.target.files[0];
@@ -543,8 +544,8 @@ export default {
       }
       this.$store.state.LoadingStatus = true;
       const idx = this.$route.params.idx;
-      // let totalImageFiles = this.imageFiles.slice();
-      // totalImageFiles.unshift(this.mainImage);
+      let copyImageFiles = this.imageFiles.slice();
+      copyImageFiles.unshift(this.mainImage);
       const totalSize3 = `${this.size1}-${this.size2}-${this.size3}`;
       const modelData = new FormData();
       modelData.append("modelKorName", this.korTitle);
@@ -556,8 +557,9 @@ export default {
       modelData.append("height", this.height);
       modelData.append("visible", this.visible);
 
-      let imageState = this.imageFiles.map((item) => item.state);
-      let updateImageFile = this.imageFiles.map((item) => item.file);
+      let imageState = copyImageFiles.map((item) => item.state);
+      let totalImageFiles = copyImageFiles.map((item) => item.file);
+      console.log(imageState);
       modelData.append("imageState", imageState);
 
       // const totalImageFilesMod = totalImageFiles.map((item) => {
@@ -570,9 +572,9 @@ export default {
       //     console.log(error);
       //   }
       // });
-      if (updateImageFile.length > -1) {
-        for (let i = 0; i < updateImageFile.length; i++) {
-          modelData.append(`imageFiles`, updateImageFile[i]);
+      if (totalImageFiles.length > -1) {
+        for (let i = 0; i < totalImageFiles.length; i++) {
+          modelData.append(`imageFiles`, totalImageFiles[i]);
         }
       }
       modelData.append(
@@ -583,7 +585,7 @@ export default {
       this.$store.state.LoadingStatus = false;
       if (data == "Y") {
         console.log(2);
-        this.$router.push(`/admin/content/${this.categoryCd}`);
+        // this.$router.push(`/admin/content/${this.categoryCd}`);
       }
     },
   },
@@ -615,7 +617,6 @@ export default {
     let subImages = images.filter(function (item) {
       return item.imageType !== "main";
     });
-    console.log(mainImages);
     this.mainFilePath = mainImages[0].fileMask;
     for (let i = 0; i < subImages.length; i++) {
       subImages[i].state = "N";

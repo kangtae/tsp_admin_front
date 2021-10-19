@@ -52,6 +52,10 @@ function ModelList(page) {
       page.categoryCd +
       "?page=" +
       page.page +
+      "&searchKeyword=" +
+      page.searchKeyword +
+      "&searchType=" +
+      page.searchType +
       "&size=" +
       page.size,
     {

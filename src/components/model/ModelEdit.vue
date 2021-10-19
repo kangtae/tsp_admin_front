@@ -591,8 +591,7 @@ export default {
       const { data } = await editModel(this.categoryCd, idx, modelData);
       this.$store.state.LoadingStatus = false;
       if (data == "Y") {
-        console.log(2);
-        // this.$router.push(`/admin/content/${this.categoryCd}`);
+        this.$router.push(`/admin/content/${this.categoryCd}`);
       }
     },
   },

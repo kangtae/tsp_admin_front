@@ -7,19 +7,19 @@
           <div class="pull-right">
             <div class="form-inline">
               <div class="input-group">
-                <select class="form-control">
-                  <option value="">구분</option>
-                  <option value="">이름</option>
-                  <option value="">내용</option>
+                <select class="form-control" v-model="selected">
+                  <option value="0">구분</option>
+                  <option value="1">이름</option>
+                  <option value="2">내용</option>
                 </select>
               </div>
               <div class="input-group ml5">
-                <input type="text" class="form-control" />
+                <input v-model="searchValue" type="text" class="form-control" />
                 <span class="input-group-btn">
                   <button
                     type="button"
                     class="btn btn-primary"
-                    onclick="window.location.href='건설_01목록.html'"
+                    @click.self.prevent="searchSubmit"
                   >
                     <span class="fa fa-search" aria-hidden="true"></span>
                     <span class="text-hide">검색</span>
@@ -98,6 +98,8 @@ export default {
       title: "남자모델",
       page: this.pageNum,
       size: this.pageSize,
+      selected: "0",
+      searchValue: "",
       pageNum: 1, //보여질 페이지수
       pageSize: 10, //한페이지에 보여줄 리스트 수
       pageUnit: 3, // 페이징 번호 노출될 수
@@ -143,6 +145,9 @@ export default {
     Pagenation,
   },
   methods: {
+    searchSubmit() {
+      this.modelData();
+    },
     modelData() {
       this.categoryCd = this.$route.params.page;
       if (this.categoryCd == "1") {
@@ -156,6 +161,8 @@ export default {
         page: this.pageNum,
         size: this.pageSize,
         categoryCd: this.categoryCd,
+        searchType: this.selected,
+        searchKeyword: this.searchValue,
       };
       this.$store.dispatch("LIST_MODEL", page);
     },

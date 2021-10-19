@@ -425,6 +425,7 @@ export default {
 
       let deleteValueObj = {};
       deleteValueObj.state = "D";
+      deleteValueObj.idx = "0";
       this.$set(this.imageFiles, idx, deleteValueObj);
       // const clearBtnAll = document.querySelectorAll(".js-image-clear");
       // if (this.imageFiles[idx - 1].idx != undefined) {
@@ -444,6 +445,7 @@ export default {
       let file = e.target.files[0];
       this.mainImage.file = file;
       this.mainImage.state = "U";
+      this.mainImage.idx = "0";
     },
     fileChange(idx, e) {
       let file = e.target.files[0];
@@ -454,6 +456,7 @@ export default {
       let updateValueObj = {};
       updateValueObj.file = file;
       updateValueObj.state = "U";
+      updateValueObj.idx = "0";
       this.$set(this.imageFiles, idx, updateValueObj);
     },
     dropifyOtp() {
@@ -511,6 +514,7 @@ export default {
             e.preventDefault();
             let deleteValueObj = {};
             deleteValueObj.state = "H";
+            deleteValueObj.idx = "0";
             vm.$set(vm.imageFiles, idx, deleteValueObj);
             // vm.$set(vm.imageFiles, idx, {});
           });
@@ -520,6 +524,7 @@ export default {
         clearBtnMain.addEventListener("click", function (e) {
           e.preventDefault();
           vm.mainImage = "";
+          vm.mainImage.state = "H";
         });
       });
     },
@@ -558,8 +563,10 @@ export default {
       modelData.append("visible", this.visible);
 
       let imageState = copyImageFiles.map((item) => item.state);
+      let idxState = copyImageFiles.map((item) => item.idx);
       let totalImageFiles = copyImageFiles.map((item) => item.file);
       console.log(imageState);
+      modelData.append("idxState", idxState);
       modelData.append("imageState", imageState);
 
       // const totalImageFilesMod = totalImageFiles.map((item) => {
@@ -617,7 +624,9 @@ export default {
     let subImages = images.filter(function (item) {
       return item.imageType !== "main";
     });
+    console.log(mainImages);
     this.mainFilePath = mainImages[0].fileMask;
+    this.mainImage.idx = mainImages[0].idx;
     for (let i = 0; i < subImages.length; i++) {
       subImages[i].state = "N";
       subImages[i].file = "";

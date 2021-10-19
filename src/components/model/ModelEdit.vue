@@ -422,10 +422,10 @@ export default {
     removeFile(idx) {
       // console.log("idx" + idx);
       // this.imageFiles.splice(idx, 1);
-
+      let nowIdx = this.imageFiles[idx].idx;
       let deleteValueObj = {};
       deleteValueObj.state = "D";
-      deleteValueObj.idx = "0";
+      deleteValueObj.idx = nowIdx;
       this.$set(this.imageFiles, idx, deleteValueObj);
       // const clearBtnAll = document.querySelectorAll(".js-image-clear");
       // if (this.imageFiles[idx - 1].idx != undefined) {
@@ -512,9 +512,10 @@ export default {
         Array.prototype.forEach.call(clearBtnAll, function (clearBtn, idx) {
           clearBtn.addEventListener("click", function (e) {
             e.preventDefault();
+            let nowIdx = vm.imageFiles[idx].idx;
             let deleteValueObj = {};
             deleteValueObj.state = "H";
-            deleteValueObj.idx = "0";
+            deleteValueObj.idx = nowIdx;
             vm.$set(vm.imageFiles, idx, deleteValueObj);
             // vm.$set(vm.imageFiles, idx, {});
           });
@@ -523,7 +524,6 @@ export default {
         const clearBtnMain = document.querySelector(".js-mainimage-clear");
         clearBtnMain.addEventListener("click", function (e) {
           e.preventDefault();
-          vm.mainImage = "";
           vm.mainImage.state = "H";
         });
       });

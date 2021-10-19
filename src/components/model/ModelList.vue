@@ -14,7 +14,12 @@
                 </select>
               </div>
               <div class="input-group ml5">
-                <input v-model="searchValue" type="text" class="form-control" />
+                <input
+                  v-model="searchValue"
+                  type="text"
+                  class="form-control"
+                  @keyup.enter="searchSubmit"
+                />
                 <span class="input-group-btn">
                   <button
                     type="button"

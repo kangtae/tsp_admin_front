@@ -94,7 +94,7 @@
           <div class="col-sm-4 text-left">
             <a
               class="btn btn-danger"
-              @click.self.prevent="ModelDelete"
+              @click.self.prevent="PortfolioDelete"
               role="button"
             >
               <i class="fa fa-trash" aria-hidden="true"></i> 삭제</a
@@ -109,7 +109,7 @@
             >
               <i class="fa fa-wrench" aria-hidden="true"></i> 수정</a
             >
-            <a @click.self.prevent="ModelListLink" class="btn btn-default">
+            <a @click.self.prevent="PortfolioListLink" class="btn btn-default">
               <i class="fa fa-list" aria-hidden="true"></i> 목록</a
             >
           </div>
@@ -146,13 +146,13 @@ export default {
       this.$router.push(`/admin/edit/${this.page}/${seq}`);
     },
     PortfolioListLink() {
-      this.$router.push(`/admin/content/${this.page}`);
+      this.$router.push(`/admin/content/portfolio`);
     },
     async PortfolioDelete() {
       const seq = this.$route.params.idx;
       const { data } = await deletePortfolio(seq);
       if (data == "Y") {
-        this.$router.push(`/admin/content/${this.page}`);
+        this.$router.push(`/admin/content/portfolio`);
       }
     },
   },

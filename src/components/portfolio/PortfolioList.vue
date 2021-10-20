@@ -121,14 +121,14 @@ export default {
       selected: "0",
       searchValue: "",
       pageNum: 1, //보여질 페이지수
-      pageSize: 10, //한페이지에 보여줄 리스트 수
+      pageSize: 3, //한페이지에 보여줄 리스트 수
       pageUnit: 3, // 페이징 번호 노출될 수
       pageUnitNumber: 0,
     };
   },
   computed: {
     portfolioInfo() {
-      return this.$store.state.portfolio.portFolioList;
+      return this.$store.state.portfolio;
     },
     pageNumberList() {
       let visiblePage;
@@ -199,7 +199,7 @@ export default {
       this.portfolioData();
     },
     PortfolioDetail(idx) {
-      const seq = this.portfolioInfo[idx].idx;
+      const seq = this.portfolioInfo.portFolioList[idx].idx;
       console.log(seq);
       this.$router.push(`/admin/detail/portfolio/${seq}`);
     },

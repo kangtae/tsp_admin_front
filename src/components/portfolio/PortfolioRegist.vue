@@ -67,7 +67,7 @@
                       v-model="videoUrl"
                       class="form-control input-sm"
                     />
-                    <p class="error-message" v-show="!this.shoes">
+                    <p class="error-message" v-show="!this.videoUrl">
                       동영상 URL을 입력해주세요.
                     </p>
                   </td>

@@ -377,7 +377,7 @@ import $ from "jquery";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/vue-editor";
 import PageHeader from "@/components/common/PageHeader";
-import { editModel, fetchModel, deleteImgModel } from "@/api/index";
+import { editModel, fetchModel } from "@/api/index";
 export default {
   data() {
     return {
@@ -449,9 +449,9 @@ export default {
     },
     fileChange(idx, e) {
       let file = e.target.files[0];
-      if (this.imageFiles[idx].idx != undefined) {
-        deleteImgModel(this.imageFiles[idx].idx);
-      }
+      // if (this.imageFiles[idx].idx != undefined) {
+      //   deleteImgModel(this.imageFiles[idx].idx);
+      // }
 
       let updateValueObj = {};
       updateValueObj.file = file;

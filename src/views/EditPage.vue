@@ -13,6 +13,7 @@ import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
 import ProductionEdit from "@/components/production/ProductionEdit";
 import ModelEdit from "@/components/model/ModelEdit";
+import PortfolioEdit from "@/components/portfolio/PortfolioEdit";
 import LodingSpinner from "@/components/common/LodingSpinner.vue";
 
 export default {
@@ -27,6 +28,7 @@ export default {
     Lnb,
     ProductionEdit,
     ModelEdit,
+    PortfolioEdit,
     LodingSpinner,
   },
   methods: {
@@ -37,6 +39,8 @@ export default {
         this.currentComponent = "ProductionEdit";
       } else if (page == "1" || page == "2" || page == "3") {
         this.currentComponent = "ModelEdit";
+      } else if (page == "portfolio") {
+        this.currentComponent = "PortfolioEdit";
       }
     },
   },

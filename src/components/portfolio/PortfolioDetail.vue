@@ -104,7 +104,7 @@
           <div class="col-sm-4 text-right">
             <a
               class="btn btn-success"
-              @click.self.prevent="ModelEdit"
+              @click.self.prevent="PortfolioEdit"
               role="button"
             >
               <i class="fa fa-wrench" aria-hidden="true"></i> 수정</a
@@ -143,7 +143,7 @@ export default {
   methods: {
     PortfolioEdit() {
       const seq = this.$route.params.idx;
-      this.$router.push(`/admin/edit/${this.page}/${seq}`);
+      this.$router.push(`/admin/edit/portfolio/${seq}`);
     },
     PortfolioListLink() {
       this.$router.push(`/admin/content/portfolio`);

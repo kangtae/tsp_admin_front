@@ -59,6 +59,13 @@ function deletePortfolio(seq) {
   return instance.delete("api/portfolio/" + seq);
 }
 
+//포트폴리오 수정
+function editPortfolio(seq, data) {
+  return instance.post("api/portfolio/" + seq, data, {
+    headersFormdata,
+  });
+}
+
 //남자모델 등록
 function modelCreated(modelData) {
   return instance.post("api/model", modelData, {
@@ -172,4 +179,5 @@ export {
   deleteImgModel,
   fetchPortfolio,
   deletePortfolio,
+  editPortfolio,
 };

@@ -13,6 +13,7 @@ import Footer from "@/components/common/Footer";
 import Lnb from "@/components/common/Lnb";
 import ResumeDetail from "@/components/resume/ResumeDetail";
 import ProductionDetail from "@/components/production/ProductionDetail.vue";
+import PortfolioDetail from "@/components/portfolio/PortfolioDetail.vue";
 import ModelDetail from "@/components/model/ModelDetail.vue";
 import LodingSpinner from "@/components/common/LodingSpinner.vue";
 
@@ -28,6 +29,7 @@ export default {
     Lnb,
     ResumeDetail,
     ProductionDetail,
+    PortfolioDetail,
     LodingSpinner,
     ModelDetail,
   },
@@ -41,6 +43,8 @@ export default {
         this.currentComponent = "ProductionDetail";
       } else if (page == "1" || page == "2" || page == "3") {
         this.currentComponent = "ModelDetail";
+      } else if (page == "portfolio") {
+        this.currentComponent = "PortfolioDetail";
       }
     },
   },

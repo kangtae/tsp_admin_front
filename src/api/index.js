@@ -32,6 +32,27 @@ function portfolioCreated(portfolioData) {
   });
 }
 
+//포트폴리오 리스트
+function PortfolioList(page) {
+  return instance.get(
+    "api/portfolio/lists/?page=" +
+      page.page +
+      "&searchKeyword=" +
+      page.searchKeyword +
+      "&searchType=" +
+      page.searchType +
+      "&size=" +
+      page.size,
+    {
+      headers,
+    }
+  );
+}
+
+//포트폴리오 상세
+function fetchPortfolio(portfolioSeq) {
+  return instance.get("api/portfolio/" + portfolioSeq);
+}
 //남자모델 등록
 function modelCreated(modelData) {
   return instance.post("api/model", modelData, {
@@ -131,6 +152,7 @@ export {
   loginUser,
   signUser,
   portfolioCreated,
+  PortfolioList,
   ProductionList,
   productionCreated,
   ModelList,
@@ -142,4 +164,5 @@ export {
   editModel,
   deleteModel,
   deleteImgModel,
+  fetchPortfolio,
 };

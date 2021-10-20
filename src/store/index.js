@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
-import { ProductionList, ModelList } from "@/api/index";
+import { ProductionList, ModelList, PortfolioList } from "@/api/index";
 
 Vue.use(Vuex);
 
@@ -43,6 +43,9 @@ export default new Vuex.Store({
     SET_MODEL(state, model) {
       state.model = model;
     },
+    SET_PORTFOLIO(state, portfolio) {
+      state.portfolio = portfolio;
+    },
   },
   actions: {
     async LIST_PRODUCTION({ commit }, page) {
@@ -56,6 +59,13 @@ export default new Vuex.Store({
       const { data } = await ModelList(page);
       this.state.LoadingStatus = false;
       commit("SET_MODEL", data);
+    },
+    async LIST_PORTFOLIO({ commit }, page) {
+      this.state.LoadingStatus = true;
+      const { data } = await PortfolioList(page);
+      console.log(data);
+      this.state.LoadingStatus = false;
+      commit("SET_PORTFOLIO", data);
     },
   },
 });

@@ -7,19 +7,24 @@
           <div class="pull-right">
             <div class="form-inline">
               <div class="input-group">
-                <select class="form-control">
-                  <option value="">구분</option>
-                  <option value="">이름</option>
-                  <option value="">내용</option>
+                <select class="form-control" v-model="selected">
+                  <option value="0">구분</option>
+                  <option value="1">이름</option>
+                  <option value="2">내용</option>
                 </select>
               </div>
               <div class="input-group ml5">
-                <input type="text" class="form-control" />
+                <input
+                  v-model="searchValue"
+                  type="text"
+                  class="form-control"
+                  @keyup.enter="searchSubmit"
+                />
                 <span class="input-group-btn">
                   <button
                     type="button"
                     class="btn btn-primary"
-                    onclick="window.location.href='건설_01목록.html'"
+                    @click.self.prevent="searchSubmit"
                   >
                     <span class="fa fa-search" aria-hidden="true"></span>
                     <span class="text-hide">검색</span>
@@ -39,21 +44,25 @@
               <th class="text-center" style="width: 100px">등록일</th>
             </thead>
             <tbody>
-              <tr>
+              <tr v-for="(portfolio, idx) in portfolioMod" :key="idx">
                 <td class="text-center">
                   <label class="form-checkbox">
                     <input type="checkbox" name="" id="" value="option1" />
                     <i></i>
                   </label>
                 </td>
-                <td class="text-center">1</td>
-                <td class="text-center">광고</td>
+                <td class="text-center">
+                  {{ portfolio.rnum }}
+                </td>
+                <td class="text-center">{{ portfolio.categoryNm }}</td>
                 <td>
-                  <a href="건설_02상세.html" class="board-link board-nowrap"
-                    >태고신이담:신의한수
+                  <a
+                    @click.self.prevent="PortfolioDetail(idx)"
+                    class="board-link board-nowrap"
+                    >{{ portfolio.title }}
                   </a>
                 </td>
-                <td class="text-center">2021-09-16</td>
+                <td class="text-center">{{ portfolio.createTime }}</td>
               </tr>
             </tbody>
           </table>
@@ -70,55 +79,19 @@
           </button>
         </div>
         <div class="col-sm-4 text-center">
-          <ul class="pagination">
-            <li>
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true">
-                  <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-                </span>
-              </a>
-            </li>
-            <li class="active">
-              <a href="#"
-                >1
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">2</a>
-            </li>
-            <li>
-              <a href="#">3</a>
-            </li>
-            <li>
-              <a href="#">4</a>
-            </li>
-            <li>
-              <a href="#">5</a>
-            </li>
-            <li>
-              <a href="#">6</a>
-            </li>
-            <li>
-              <a href="#">7</a>
-            </li>
-            <li>
-              <a href="#">8</a>
-            </li>
-            <li>
-              <a href="#">9</a>
-            </li>
-            <li>
-              <a href="#">10</a>
-            </li>
-            <li>
-              <a href="#" aria-label="Next">
-                <span aria-hidden="true">
-                  <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
+          <div class="text-center">
+            <Pagenation
+              :pageNum="pageNum"
+              :pageNumberList="pageNumberList"
+              :pageUnitNumber="pageUnitNumber"
+              :pageUnit="pageUnit"
+              :pageSize="pageSize"
+              :perPageListCnt="portfolioInfo.portFolioListCnt"
+              @movePage="movePage"
+              @prevPage="prevPage"
+              @nextPage="nextPage"
+            ></Pagenation>
+          </div>
         </div>
         <div class="col-sm-4 text-right">
           <router-link
@@ -136,16 +109,103 @@
 </template>
 
 <script>
+import Pagenation from "@/components/common/Pagenation";
 import PageHeader from "@/components/common/PageHeader";
 
 export default {
   data() {
     return {
       title: "포트폴리오",
+      page: this.pageNum,
+      size: this.pageSize,
+      selected: "0",
+      searchValue: "",
+      pageNum: 1, //보여질 페이지수
+      pageSize: 10, //한페이지에 보여줄 리스트 수
+      pageUnit: 3, // 페이징 번호 노출될 수
+      pageUnitNumber: 0,
     };
+  },
+  computed: {
+    portfolioInfo() {
+      return this.$store.state.portfolio.portFolioList;
+    },
+    pageNumberList() {
+      let visiblePage;
+      //노출될 페이징 갯수
+      let pageCnt = Math.ceil(
+        this.$store.state.portfolio.portFolioListCnt / this.pageSize
+      );
+      //페이징번호 노출되는 총 단위
+      let fullPage = Math.floor(pageCnt / this.pageUnit);
+
+      //마지막페이지 갯수
+      let lastPage = pageCnt % this.pageUnit;
+      if (this.pageUnitNumber == fullPage) {
+        visiblePage = lastPage;
+      } else {
+        visiblePage = this.pageUnit;
+      }
+      return visiblePage;
+    },
+    portfolioMod() {
+      let portfolioOrigin = this.$store.state.portfolio.portFolioList;
+      if (portfolioOrigin == undefined) return;
+      const newArr = portfolioOrigin.map((item) => {
+        const createTime = item.createTime.split(" ")[0];
+        // const fileMask = `../../../public/upload/${item.file_mask}`;
+        item.createTime = createTime;
+        return item;
+      });
+      return newArr;
+    },
   },
   components: {
     PageHeader,
+    Pagenation,
+  },
+  methods: {
+    portfolioData() {
+      const page = {
+        page: this.pageNum,
+        size: this.pageSize,
+        searchType: this.selected,
+        searchKeyword: this.searchValue,
+      };
+      this.$store.dispatch("LIST_PORTFOLIO", page);
+    },
+    searchSubmit() {
+      this.portfolioData();
+    },
+    nextPage() {
+      this.pageNum += 1;
+      if ((this.pageNum - 1) % this.pageUnit == 0) {
+        this.pageUnitNumber += 1;
+      }
+      this.portfolioData();
+    },
+    prevPage() {
+      //이전페이지는 pageNum이 변하기전에  먼저 값을 계산
+      if ((this.pageNum - 1) % this.pageUnit == 0) {
+        this.pageUnitNumber -= 1;
+      }
+      this.pageNum -= 1;
+      this.portfolioData();
+    },
+    movePage() {
+      console.log(event.target);
+      console.log(event.target.querySelector("span"));
+      this.pageNum = Number(event.target.querySelector("span").innerText);
+      this.portfolioData();
+    },
+    PortfolioDetail(idx) {
+      const seq = this.portfolioInfo[idx].idx;
+      console.log(seq);
+      this.$router.push(`/admin/detail/portfolio/${seq}`);
+    },
+  },
+  created() {
+    this.portfolioData();
   },
 };
 </script>

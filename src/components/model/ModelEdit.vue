@@ -282,7 +282,7 @@
                         />
                         <button
                           v-if="idx > 0"
-                          @click="removeFile(idx, $event)"
+                          @click="removeFile(item.idx, $event)"
                           class="btn btn-xs btn-danger btn-remove"
                           type="button"
                         >
@@ -419,27 +419,15 @@ export default {
       this.imageFiles.push({});
       this.dropifyOtp();
     },
-    removeFile(idx) {
-      // console.log("idx" + idx);
-      // this.imageFiles.splice(idx, 1);
-      let nowIdx = this.imageFiles[idx].idx;
+    removeFile(nowIdx) {
+      // let previewImg = document.querySelectorAll(".dropify-render img");
+      // console.log(previewImg);
+      let imageIdx = this.imageFiles.map((item) => item.idx);
+      let idx = imageIdx.indexOf(nowIdx);
       let deleteValueObj = {};
       deleteValueObj.state = "D";
       deleteValueObj.idx = nowIdx;
       this.$set(this.imageFiles, idx, deleteValueObj);
-      // const clearBtnAll = document.querySelectorAll(".js-image-clear");
-      // if (this.imageFiles[idx - 1].idx != undefined) {
-      //   deleteImgModel(this.imageFiles[idx - 1].idx);
-      // }
-      // function triggerEvent(el, type) {
-      //   var e = document.createEvent("HTMLEvents");
-      //   e.initEvent(type, false, true);
-      //   el.dispatchEvent(e);
-      // }
-      // if (clearBtnAll.length - 1 == idx) {
-      //   return false;
-      // }
-      // triggerEvent(clearBtnAll[idx], "click");
     },
     imgChange(e) {
       let file = e.target.files[0];

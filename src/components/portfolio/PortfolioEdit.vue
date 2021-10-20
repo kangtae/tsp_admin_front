@@ -196,6 +196,7 @@ export default {
       editerValue: "",
       mainFilePath: "",
       mainImage: { file: "", state: "N" },
+      copyArray: [],
     };
   },
   computed: {
@@ -219,13 +220,14 @@ export default {
       this.dropifyOtp();
     },
     removeFile(nowIdx) {
+      // let previewImg = document.querySelectorAll(".dropify-render img");
+      // console.log(previewImg);
       let imageIdx = this.imageFiles.map((item) => item.idx);
       let idx = imageIdx.indexOf(nowIdx);
       let deleteValueObj = {};
       deleteValueObj.state = "D";
       deleteValueObj.idx = nowIdx;
       this.$set(this.imageFiles, idx, deleteValueObj);
-      this.dropifyOtp();
     },
     imgChange(e) {
       let file = e.target.files[0];
@@ -248,6 +250,8 @@ export default {
           tpl: {
             clearButton:
               '<button type="button" class="dropify-clear js-image-clear">{{ remove }}</button>',
+            preview:
+              '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">{{ replace }}</p></div></div></div>',
           },
           messages: {
             default: "파일을 여기 끌어다 놓거나 클릭하십시오.",
@@ -320,11 +324,11 @@ export default {
       this.$store.state.LoadingStatus = false;
 
       if (data == "Y") {
-        alert("등록완료");
         this.$router.push("/admin/content/portfolio");
       }
     },
   },
+
   async created() {
     const idx = this.$route.params.idx;
     this.$store.state.LoadingStatus = true;

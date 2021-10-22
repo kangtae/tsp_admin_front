@@ -47,7 +47,13 @@
               <tr v-for="(portfolio, idx) in portfolioMod" :key="idx">
                 <td class="text-center">
                   <label class="form-checkbox">
-                    <input type="checkbox" name="" id="" value="option1" />
+                    <input
+                      type="checkbox"
+                      name="check"
+                      id=""
+                      v-model="checkedValues"
+                      :value="portfolio.idx"
+                    />
                     <i></i>
                   </label>
                 </td>
@@ -71,10 +77,18 @@
       </div>
       <div class="row">
         <div class="col-sm-4 text-left">
-          <button type="button" class="btn btn-danger btn-flat">
+          <button
+            type="button"
+            class="btn btn-danger btn-flat"
+            @click.self.prevent="PortfolioDelete"
+          >
             <i class="fa fa-trash" aria-hidden="true"></i> 선택삭제
           </button>
-          <button type="button" class="btn btn-danger btn-flat">
+          <button
+            type="button"
+            class="btn btn-danger btn-flat"
+            @click="checkedAll($event.target.checked)"
+          >
             <i class="fa fa-check-square" aria-hidden="true"></i> 전체선택
           </button>
         </div>
@@ -111,6 +125,7 @@
 <script>
 import Pagenation from "@/components/common/Pagenation";
 import PageHeader from "@/components/common/PageHeader";
+import { deletePortfolio } from "@/api/index";
 
 export default {
   data() {
@@ -124,6 +139,8 @@ export default {
       pageSize: 3, //한페이지에 보여줄 리스트 수
       pageUnit: 3, // 페이징 번호 노출될 수
       pageUnitNumber: 0,
+      allChecked: "",
+      checkedValues: [],
     };
   },
   computed: {
@@ -152,7 +169,7 @@ export default {
       let portfolioOrigin = this.$store.state.portfolio.portFolioList;
       if (portfolioOrigin == undefined) return;
       const newArr = portfolioOrigin.map((item) => {
-        const createTime = item.createTime.split(" ")[0];
+        const createTime = item.createTime.split("T")[0];
         // const fileMask = `../../../public/upload/${item.file_mask}`;
         item.createTime = createTime;
         return item;
@@ -165,6 +182,34 @@ export default {
     Pagenation,
   },
   methods: {
+    checkedAll() {
+      // console.log(checked);
+      // let checkboxAll = document.querySelectorAll('input[type="checkbox"]');
+      // console.log(checkboxAll);
+      // checkboxAll.forEach((checkbox) => {
+      //   checkbox.checked = true;
+      // });
+      let checkboxAll = document.querySelectorAll('input[type="checkbox"]');
+      console.log(checkboxAll);
+      this.checkedValues = [];
+
+      for (let i = 0; i < checkboxAll.length; i++) {
+        checkboxAll[i].checked = true;
+        console.log(this.portfolioMod[i].idx);
+
+        this.checkedValues.push(this.portfolioMod[i].idx);
+      }
+      // this.isAllChecked = true;
+    },
+    async PortfolioDelete() {
+      let deleteIdx = this.checkedValues;
+      const { data } = await deletePortfolio(deleteIdx);
+      if (data == "Y") {
+        alert("삭제가 완료되었습니다.");
+        this.checkedValues = [];
+        this.portfolioData();
+      }
+    },
     portfolioData() {
       const page = {
         page: this.pageNum,

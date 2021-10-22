@@ -56,7 +56,9 @@ function fetchPortfolio(portfolioSeq) {
 
 //포트폴리오 삭제
 function deletePortfolio(seq) {
-  return instance.delete("api/portfolio/" + seq);
+  return instance.delete(
+    "api/portfolio/delete-type-portfolio?deleteIdx=" + seq
+  );
 }
 
 //포트폴리오 수정
@@ -108,7 +110,7 @@ function deleteModel(categoryCd, modelSeq) {
   return instance.delete("api/model/" + categoryCd, modelSeq);
 }
 
-//모델 삭제
+//모델 이미지 삭제
 function deleteImgModel(idx) {
   return instance.delete("api/model/image/" + idx);
 }

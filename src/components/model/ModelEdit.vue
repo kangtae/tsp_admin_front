@@ -280,7 +280,7 @@
                           :data-default-file="item.fileMask"
                           @change="fileChange(idx, $event)"
                         />
-                        <button
+                        <!-- <button
                           v-if="idx > 0"
                           @click="removeFile(item.idx, $event)"
                           class="btn btn-xs btn-danger btn-remove"
@@ -288,7 +288,7 @@
                         >
                           <i class="fa fa-times" aria-hidden="true"></i>
                           <span class="sr-only">삭제</span>
-                        </button>
+                        </button> -->
                         <button
                           @click="addFile"
                           class="btn btn-xs btn-primary btn-duplicator"
@@ -419,16 +419,16 @@ export default {
       this.imageFiles.push({});
       this.dropifyOtp();
     },
-    removeFile(nowIdx) {
-      // let previewImg = document.querySelectorAll(".dropify-render img");
-      // console.log(previewImg);
-      let imageIdx = this.imageFiles.map((item) => item.idx);
-      let idx = imageIdx.indexOf(nowIdx);
-      let deleteValueObj = {};
-      deleteValueObj.state = "D";
-      deleteValueObj.idx = nowIdx;
-      this.$set(this.imageFiles, idx, deleteValueObj);
-    },
+    // removeFile(nowIdx) {
+    //   // let previewImg = document.querySelectorAll(".dropify-render img");
+    //   // console.log(previewImg);
+    //   let imageIdx = this.imageFiles.map((item) => item.idx);
+    //   let idx = imageIdx.indexOf(nowIdx);
+    //   let deleteValueObj = {};
+    //   deleteValueObj.state = "D";
+    //   deleteValueObj.idx = nowIdx;
+    //   this.$set(this.imageFiles, idx, deleteValueObj);
+    // },
     imgChange(e) {
       let file = e.target.files[0];
       this.mainImage.file = file;
@@ -437,10 +437,6 @@ export default {
     },
     fileChange(idx, e) {
       let file = e.target.files[0];
-      // if (this.imageFiles[idx].idx != undefined) {
-      //   deleteImgModel(this.imageFiles[idx].idx);
-      // }
-
       let updateValueObj = {};
       updateValueObj.file = file;
       updateValueObj.state = "U";

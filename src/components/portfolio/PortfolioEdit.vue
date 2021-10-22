@@ -80,7 +80,7 @@
                         <input
                           type="file"
                           id="input-file-now"
-                          class="dropify"
+                          class="dropifyMain"
                           data-height="200"
                           :data-default-file="mainFilePath"
                           data-allowed-file-extensions="jpg png gif"
@@ -113,7 +113,7 @@
                           :data-default-file="item.fileMask"
                           @change="fileChange(idx, $event)"
                         />
-                        <button
+                        <!-- <button
                           v-if="idx > 0"
                           class="btn btn-xs btn-danger btn-remove"
                           type="button"
@@ -121,7 +121,7 @@
                         >
                           <i class="fa fa-times" aria-hidden="true"></i>
                           <span class="sr-only">삭제</span>
-                        </button>
+                        </button> -->
                         <button
                           @click="addFile"
                           class="btn btn-xs btn-primary btn-duplicator"
@@ -219,16 +219,26 @@ export default {
       this.imageFiles.push({});
       this.dropifyOtp();
     },
-    removeFile(nowIdx) {
-      // let previewImg = document.querySelectorAll(".dropify-render img");
-      // console.log(previewImg);
-      let imageIdx = this.imageFiles.map((item) => item.idx);
-      let idx = imageIdx.indexOf(nowIdx);
-      let deleteValueObj = {};
-      deleteValueObj.state = "D";
-      deleteValueObj.idx = nowIdx;
-      this.$set(this.imageFiles, idx, deleteValueObj);
-    },
+    // removeFile(nowIdx) {
+    //   let imageIdx = this.imageFiles.map((item) => item.idx);
+    //   let idx = imageIdx.indexOf(nowIdx);
+    //   let deleteValueObj = {};
+    //   deleteValueObj.state = "D";
+    //   deleteValueObj.idx = nowIdx;
+    //   this.$set(this.imageFiles, idx, deleteValueObj);
+    //   // let previewImg = document.querySelectorAll(".dropify-render img");
+    //   // let previewTxt = document.querySelectorAll(".dropify-filename-inner");
+    //   // let previewDisplay = document.querySelectorAll(".dropify-preview");
+
+    //   // console.log("preview" + previewImg.length);
+    //   // for (let i = 0; i < previewImg.length - 1; i++) {
+    //   //   console.log(i + "," + previewDisplay[i].style.display);
+    //   //   previewDisplay[i].style.display = "block";
+    //   //   previewTxt[i + 1].innerHTML = this.updateImageFilesSrc[i];
+    //   //   previewImg[i + 1].src = this.updateImageFilesSrc[i];
+    //   // }
+    //   this.dropifyOtp();
+    // },
     imgChange(e) {
       let file = e.target.files[0];
       this.mainImage.file = file;
@@ -250,8 +260,29 @@ export default {
           tpl: {
             clearButton:
               '<button type="button" class="dropify-clear js-image-clear">{{ remove }}</button>',
-            preview:
-              '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">{{ replace }}</p></div></div></div>',
+          },
+          messages: {
+            default: "파일을 여기 끌어다 놓거나 클릭하십시오.",
+            replace: "파일을 바꾸려면 드래그 앤 드롭하거나 클릭하십시오.",
+            remove: "삭제",
+            error: "죄송합니다.",
+          },
+          error: {
+            fileSize: "파일 크기가 너무 큽니다. (최대 {{ value }})",
+            minWidth: "이미지가 너무 작습니다. (최고 {{ value }}px)",
+            maxWidth: "이미지 너비가 너무 큽니다. (최대 {{ value }}px)",
+            minHeight: "이미지 높이가 너무 작습니다. (최소 {{ value }}px)",
+            maxHeight: "이미지 높이가 너무 큽니다. (최대 {{ value }}px )",
+            imageFormat:
+              "이미지 형식이 허용되지 않습니다. ({{ value }}만 허용)",
+            fileExtension: "허용되지 않는 파일형식입니다. ({{ value }}만 허용)",
+          },
+        };
+
+        var dropifyOtpMain = {
+          tpl: {
+            clearButton:
+              '<button type="button" class="dropify-clear js-mainimage-clear">{{ remove }}</button>',
           },
           messages: {
             default: "파일을 여기 끌어다 놓거나 클릭하십시오.",
@@ -272,11 +303,24 @@ export default {
         };
         $(".dropify").dropify(dropifyOtp);
         const clearBtnAll = document.querySelectorAll(".js-image-clear");
-        Array.prototype.forEach.call(clearBtnAll, function (clearBtn) {
+        console.log(clearBtnAll.length);
+        Array.prototype.forEach.call(clearBtnAll, function (clearBtn, idx) {
           clearBtn.addEventListener("click", function (e) {
             e.preventDefault();
-            vm.imageFile.file = "";
+            let nowIdx = vm.imageFiles[idx].idx;
+            let deleteValueObj = {};
+            deleteValueObj.state = "H";
+            deleteValueObj.idx = nowIdx;
+            console.log(idx);
+            vm.$set(vm.imageFiles, idx, deleteValueObj);
+            // vm.$set(vm.imageFiles, idx, {});
           });
+        });
+        $(".dropifyMain").dropify(dropifyOtpMain);
+        const clearBtnMain = document.querySelector(".js-mainimage-clear");
+        clearBtnMain.addEventListener("click", function (e) {
+          e.preventDefault();
+          vm.mainImage.state = "H";
         });
       });
     },
@@ -324,7 +368,7 @@ export default {
       this.$store.state.LoadingStatus = false;
 
       if (data == "Y") {
-        this.$router.push("/admin/content/portfolio");
+        // this.$router.push("/admin/content/portfolio");
       }
     },
   },
@@ -357,7 +401,8 @@ export default {
       subImages[i].file = "";
     }
     this.imageFiles = subImages;
-
+  },
+  updated() {
     this.dropifyOtp();
   },
 };
